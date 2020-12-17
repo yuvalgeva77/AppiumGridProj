@@ -50,7 +50,6 @@ public class EriBankTest {
             e.printStackTrace();
         }
         System.out.println("Aplication Started");
-        System.out.println("sdgsfsdfsdf");
     }
 
     @Test

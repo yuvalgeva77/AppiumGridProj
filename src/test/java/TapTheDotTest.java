@@ -30,13 +30,11 @@ public class TapTheDotTest {
     @BeforeEach
     public void setUp() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-
         capabilities.setCapability("accessKey","eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
         capabilities.setCapability("deviceQuery", "@os='android' and @category='TABLET' and @serialnumber='32e0d2a20377e920'");
         capabilities.setCapability("platformVersion", "8");
         capabilities.setCapability(MobileCapabilityType.APP,"cloud:com.example.tapthedot/.MainActivity");
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
-
         capabilities.setCapability("appPackage", "com.example.tapthedot");
         capabilities.setCapability("appActivity", ".MainActivity");
 
@@ -59,7 +57,7 @@ public class TapTheDotTest {
 
     @Test
     public void Test1() {
-        String pathToCsv = "C:\\Users\\YuvalGeva\\IdeaProjects\\FirstAutomationProj\\src\\test\\company.csv";
+        String pathToCsv = "C:\\Users\\YuvalGeva\\IdeaProjects\\FirstAutomationProj\\src\\test\\Login data.csv";
         BufferedReader csvReader = null;
 
         try {
@@ -110,6 +108,22 @@ public class TapTheDotTest {
 
     @Test
     public void Test2() {
+        insertInfo("Yuval","Yuval");
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@text='PLAY!']")))).click();
+        for (int i=0;i<3;i++){
+            try{
+                driver.findElement(By.xpath("//*[@text='TAP']")).click();
+            }
+            catch (Exception e) {
+                System.out.println("failed to catch the button on the:"+i+"'s try");
+
+            }
+
+
+        }
+
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@text='FINISH']")))).click();
+
 
     }
 
@@ -127,8 +141,8 @@ public class TapTheDotTest {
     public Boolean checkErrorMessage() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, 100L);
-            wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("com.example.tapthedot:id/errorTextBox"))));
-            return (driver.findElement(By.xpath("com.example.tapthedot:id/errorTextBox")).isDisplayed());
+            wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id='errorTextBox']\n"))));
+            return ((driver.findElement(By.xpath("//*[@id='errorTextBox']\n"))).isDisplayed());
         } catch (Exception var2) {
             return false;
         }

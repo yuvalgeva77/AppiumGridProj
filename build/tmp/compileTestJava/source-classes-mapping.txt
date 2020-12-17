@@ -2,3 +2,5 @@ EriBankTest.java
  EriBankTest
 EspnTest.java
  EspnTest
+TapTheDotTest.java
+ TapTheDotTest
