@@ -1,6 +1,8 @@
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.remote.MobileBrowserType;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,19 +36,29 @@ public class EspnTest {
 
     @BeforeEach
     public void setUp() {
-
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName", "SM-G965F");
-        capabilities.setCapability("udid", "23896d383d017ece");
-        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("accessKey","eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
+        capabilities.setCapability("deviceQuery", "@os='android' and @category='TABLET' and @serialnumber='32e0d2a20377e920'");
         capabilities.setCapability("platformVersion", "8");
-//        capabilities.setCapability("appPackage", "com.experitest.ExperiBank");
-//        capabilities.setCapability("appActivity", "LoginActivity");
-        capabilities.setCapability("automationName", "UiAutomator2");
-        capabilities.setCapability("browserName", "Chrome");
-        capabilities.setCapability("chromedriverExecutable", "C:\\Program Files\\nodejs\\chromedriver.exe");
+        capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
+        capabilities.setBrowserName(MobileBrowserType.CHROMIUM);
+
         try {
-            driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+
+            driver = new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
+
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("deviceName", "SM-G965F");
+//        capabilities.setCapability("udid", "23896d383d017ece");
+//        capabilities.setCapability("platformName", "Android");
+//        capabilities.setCapability("platformVersion", "8");
+////        capabilities.setCapability("appPackage", "com.experitest.ExperiBank");
+////        capabilities.setCapability("appActivity", "LoginActivity");
+//        capabilities.setCapability("automationName", "UiAutomator2");
+//        capabilities.setCapability("browserName", "Chrome");
+//        capabilities.setCapability("chromedriverExecutable", "C:\\Program Files\\nodejs\\chromedriver.exe");
+//        try {
+//            driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
         } catch (MalformedURLException e) {
@@ -94,8 +106,13 @@ public class EspnTest {
     }
     public void aproveCondiotionsStart(){
         waitT();
-        WebElement el1 =  wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("onetrust-accept-btn-handler"))));
-        el1.click();
+        try {
+            WebElement el1 =  wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("onetrust-accept-btn-handler"))));
+            el1.click();
+        } catch (Exception e) {
+            System.out.println("No approve condition notification");
+        }
+
     }
     public void waitT(){
         try {
