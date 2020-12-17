@@ -1,6 +1,6 @@
-EriBankTest.java
- EriBankTest
-EspnTest.java
- EspnTest
 TapTheDotTest.java
  TapTheDotTest
+EspnTest.java
+ EspnTest
+EriBankTest.java
+ EriBankTest

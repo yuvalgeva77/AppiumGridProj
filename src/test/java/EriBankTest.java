@@ -1,5 +1,6 @@
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,17 +33,20 @@ public class EriBankTest {
 
     @BeforeEach
     public void setUp() {
-
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("deviceName", "SM-G965F");
-        capabilities.setCapability("udid", "23896d383d017ece");
-        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("accessKey","eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
+        capabilities.setCapability("deviceQuery", "@os='android' and @category='TABLET' and @serialnumber='32e0d2a20377e920'");
         capabilities.setCapability("platformVersion", "8");
+        capabilities.setCapability(MobileCapabilityType.APP,"cloud:com.experitest.ExperiBank/.LoginActivity");
+        capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
         capabilities.setCapability("appPackage", "com.experitest.ExperiBank");
-        capabilities.setCapability("appActivity", "LoginActivity");
-        capabilities.setCapability("automationName", "UiAutomator1");
+        capabilities.setCapability("appActivity", ".LoginActivity");
+
+
+
         try {
-            driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+
+            driver = new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
             wait = new WebDriverWait(driver, 10);
         } catch (MalformedURLException e) {
             System.out.println(e.getCause());
@@ -51,6 +55,7 @@ public class EriBankTest {
         }
         System.out.println("Aplication Started");
     }
+
 
     @Test
     public void Test1() {
