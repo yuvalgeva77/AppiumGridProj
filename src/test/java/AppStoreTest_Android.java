@@ -1,28 +1,26 @@
+import io.appium.java_client.FindsByAndroidViewTag;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.swing.text.View;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-//import org.junit.Test;
-//import org.junit.Test;
-import java.lang.*;
-
-
-
-public class EriBankTest {
+public class AppStoreTest_Android {
     static AndroidDriver<AndroidElement> driver;
     static WebDriverWait wait;
     String DEVICE_NAME="device1";
@@ -37,12 +35,11 @@ public class EriBankTest {
         CURRENT_TIME=System.currentTimeMillis();
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("accessKey","eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
-        capabilities.setCapability("deviceQuery", "@os='android' and @category='TABLET' and @serialnumber='32e0d2a20377e920'");
-        capabilities.setCapability("platformVersion", "8");
-        capabilities.setCapability(MobileCapabilityType.APP,"cloud:com.experitest.ExperiBank/.LoginActivity");
+        capabilities.setCapability("deviceQuery", "@os='android' ");
+//        capabilities.setCapability("platformVersion", "8");
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
-        capabilities.setCapability("appPackage", "com.experitest.ExperiBank");
-        capabilities.setCapability("appActivity", ".LoginActivity");
+        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.android.vending");
+        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".AssetBrowserActivity");
 
 
 
@@ -62,97 +59,47 @@ public class EriBankTest {
 
     @Test
     public void Test1() {
-        String TEST_NAME="EriBank Login";
-        String pathToCsv = "C:\\Users\\YuvalGeva\\IdeaProjects\\FirstAutomationProj\\src\\test\\Login data.csv";
-        BufferedReader csvReader = null;
+        String TEST_NAME="AppStore Download";
         try {
-            csvReader = new BufferedReader(new FileReader(pathToCsv));
-        } catch (FileNotFoundException e) {
-            System.out.println("failed to open csv");
-            e.printStackTrace();
-        }
-        String log = "";
-        while (true) {
-            try {
-                if (((log = csvReader.readLine()) == null)) break;
-            } catch (IOException e) {
-                System.out.println("no line");
-                e.printStackTrace();
-                writeFile("TEST "+TEST_NAME+" failed\n"+e.getStackTrace());
-
-            }
-            String[] logData = log.split(",");
-            String name = logData[0];
-            String password = "";
-            if(logData.length==2){
-                password = logData[1];
-            }
-
-
-//            System.out.println(logData[0]+logData[1]+"\n");
-
-            // do something with the data
-            insertInfo(name,password);
-            if(name.equals("company")&&password.equals("company")){
-                try {
-                    assertFalse("company company pops Erorr message",checkErrorMessage());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    writeFile("TEST "+TEST_NAME+" failed\n"+e.getStackTrace());
-                    throw e;
-                }
-
-            }
-            else {
-                try {
-                    assertTrue(name+", "+password+"didnt pop Erorr message",checkErrorMessage());
-                    backToReister();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    writeFile("TEST "+TEST_NAME+" failed\n"+e.getStackTrace());
-                    throw e;
-                }
-                }
-            }
-
-
-
-
-        try {
-            csvReader.close();
-        } catch (IOException e) {
-            System.out.println("cant close file");
-            e.printStackTrace();
-            writeFile("TEST "+TEST_NAME+" failed\n"+e.getStackTrace());
+            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
+            List<AndroidElement> appList= driver.findElementsByXPath("//*[contains(@contentDescription, \"App:\")]");
+            wait.until(ExpectedConditions.elementToBeClickable(appList.get(0))).click();
+            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Install']"))).click();
+            System.out.println("-----------TEST "+TEST_NAME+"passed ------------\n");
+            writeFile("TEST "+TEST_NAME+" passed");
+        } catch (Exception e) {
+            System.out.println("-----------TEST "+TEST_NAME+" failed------------\n"+e+"\n");
+            writeFile("TEST "+TEST_NAME+" failed\n"+e+"\n");
 
         }
 
-        System.out.println("test 1 finished");
-        writeFile("TEST "+TEST_NAME+" passed");
     }
 
     @Test
     public void Test2() {
-        String TEST_NAME="EriBank Payment";
-        insertInfo("company","company");
-        double payedAmount=50;
-        double firstAmount=makePayment(payedAmount);
-        double finalAmount=checkAmount();
-        assertTrue("error:checkAmount!=firstAmount-payedAmount",finalAmount==firstAmount-payedAmount);
-        writeFile("TEST "+TEST_NAME+" passed");
+        String TEST_NAME="AppStore top10";
+        try {
+//            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Galaxy Store']"))).click();
+//            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Close']"))).click();
+//            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top']"))).click();
+//            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top apps']"))).click();
+//            List<AndroidElement> appList= driver.findElementsByXPath("//*//*[@id='layout_list_itemly_centerly_pname']");
+             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
+            List<AndroidElement> appList= driver.findElementsByXPath("//*[contains(@contentDescription, \"App:\")]");
+            for(int i=0;i<10;i++) {
+                String appName= (appList.get(i)).getAttribute("contentDescription").toString();
+                System.out.println(appName);
+            }
+            System.out.println("-----------TEST "+TEST_NAME+"passed ------------\n");
+            writeFile("TEST "+TEST_NAME+" passed");
+        } catch (Exception e) {
+            System.out.println("-----------TEST "+TEST_NAME+" failed------------\n"+e.getStackTrace().toString()+"\n");
+            writeFile("TEST "+TEST_NAME+" failed\n"+e.getStackTrace().toString()+"\n");
+            throw e;
 
-
-
+        }
     }
-    @Test
-    public void Test3() {
 
-        writeFile("TEST TEST_NAME sdfdsfsfdsfsd");}
-
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
-    }
 
 
     public void insertInfo(String username, String password) {
@@ -204,7 +151,7 @@ public class EriBankTest {
 
     }
     public void writeFile(String value){
-        String PATH = "/";
+        String PATH = "./";
         String directoryName = PATH.concat("RUN_"+CURRENT_TIME);
         String fileName = DEVICE_NAME+ ".txt";
 
@@ -219,7 +166,7 @@ public class EriBankTest {
         File file = new File(directoryName + "/" + fileName);
         try {
             file.createNewFile(); // if file already exists will do nothing
-             FileOutputStream oFile = new FileOutputStream(file, false);
+            FileOutputStream oFile = new FileOutputStream(file, false);
 
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
