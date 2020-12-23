@@ -86,9 +86,11 @@ public class AppStoreTest_Android {
 //            List<AndroidElement> appList= driver.findElementsByXPath("//*//*[@id='layout_list_itemly_centerly_pname']");
              wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
             List<AndroidElement> appList= driver.findElementsByXPath("//*[contains(@contentDescription, \"App:\")]");
-            for(int i=0;i<10;i++) {
+            for(int i=0;i<Math.min(10,appList.size());i++) {
                 String appName= (appList.get(i)).getAttribute("contentDescription").toString();
-                System.out.println(appName);
+                String[] res = appName.split("\n");
+                String name=res[0].split("App: ")[1];
+                System.out.println(name);
             }
             System.out.println("-----------TEST "+TEST_NAME+"passed ------------\n");
             writeFile("TEST "+TEST_NAME+" passed");
