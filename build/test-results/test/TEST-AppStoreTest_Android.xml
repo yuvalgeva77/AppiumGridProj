@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="AppStoreTest_Android" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-12-23T08:37:15" hostname="YGEVA-LT" time="36.281">
+<testsuite name="AppStoreTest_Android" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-12-23T15:45:07" hostname="YGEVA-LT" time="51.634">
   <properties/>
-  <testcase name="Test2()" classname="AppStoreTest_Android" time="36.281"/>
+  <testcase name="Test2()" classname="AppStoreTest_Android" time="51.634"/>
   <system-out><![CDATA[Aplication Started
-YouTube Kids
-TikTok
-ibis Paint X
-Netflix
-Kamera Lab
-No.Pix - Color by Number, Pixel Art Coloring Book
-Kidoodle.TV - Safe Streaming™
+1.YouTube Kids
+
+2.TikTok
+
+3.Netflix
+
+4.Kamera Lab
+
+5.ibis Paint X
+
+6.Kidoodle.TV - Safe Streaming™
+
+7.Google Play Games
+
+8.No.Pix - Color by Number, Pixel Art Coloring Book
+
+9.Facebook
+
+10.FortuneScope: live palm reader and fortune teller
+
 -----------TEST AppStore top10passed ------------
 
 directory created at: ./
-file data written at: .\RUN_1608712635554\device1.txt
+file data written at: .\RUN_1608738307792\device1.txt
 ]]></system-out>
-  <system-err><![CDATA[Dec 23, 2020 10:37:37 AM io.appium.java_client.remote.AppiumCommandExecutor$1 lambda$0
+  <system-err><![CDATA[Dec 23, 2020 5:45:28 PM io.appium.java_client.remote.AppiumCommandExecutor$1 lambda$0
 INFO: Detected dialect: OSS
 ]]></system-err>
 </testsuite>
