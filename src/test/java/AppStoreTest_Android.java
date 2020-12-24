@@ -8,6 +8,7 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
@@ -30,15 +31,18 @@ public class AppStoreTest_Android {
     static AndroidDriver<AndroidElement> driver;
     static WebDriverWait wait;
     String DEVICE_NAME = "device1";
-    long CURRENT_TIME;
+    static long CURRENT_TIME;
 
     public static void main(String[] args) {
 
     }
+    @BeforeAll
+    public static void resetTimer(){
+        CURRENT_TIME = System.currentTimeMillis();
 
+    }
     @BeforeEach
     public void setUp()  {
-        CURRENT_TIME = System.currentTimeMillis();
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
         capabilities.setCapability("deviceQuery", "@os='android'");
@@ -69,7 +73,7 @@ public class AppStoreTest_Android {
 //            wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@id='message']")));
             wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='Uninstall']")));
             System.out.println("-----------TEST " + TEST_NAME + " passed ------------\n");
-            writeFile("TEST " + TEST_NAME + " passed");
+            writeFile("TEST " + TEST_NAME + " passed\n");
             //*[@text=
 
         } catch (Exception e) {
