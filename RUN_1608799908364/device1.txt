@@ -1,0 +1,2 @@
+TEST AppStore top10 failed
+[Ljava.lang.StackTraceElement;@444dab82

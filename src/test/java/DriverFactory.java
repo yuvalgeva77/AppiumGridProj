@@ -14,19 +14,22 @@ import java.net.URL;
 
 public class DriverFactory {
     private String accessKey="eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4";
-    public AndroidDriver getAndroidDriverApp(String appPackage,String appActivity) throws MalformedURLException {
+    public AndroidDriver getAndroidDriverApp(String appPackage,String appActivity,Boolean createAppATribute) throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
-        String APP="cloud:"+appPackage+"/"+appActivity;
-                dc.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
-                dc.setCapability("deviceQuery", "@os='android'");
+
+        dc.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
+        dc.setCapability("deviceQuery", "@os='android'");
 //                dc.setCapability("app", "cloud:com.experitest.ExperiBank/.LoginActivity");
-                dc.setCapability("app", APP);
-                dc.setCapability("fullReset", true);
-                dc.setCapability("appPackage", appPackage);
+        dc.setCapability("fullReset", true);
+        dc.setCapability("appPackage", appPackage);
 //                dc.setCapability("appPackage", "com.experitest.ExperiBank");
-                dc.setCapability("appActivity", appActivity);
+        dc.setCapability("appActivity", appActivity);
 //                dc.setCapability("appActivity", ".LoginActivity");
-                return new AndroidDriver(new URL("https://qacloud.experitest.com/wd/hub"), dc);}
+        if(createAppATribute){
+            String APP="cloud:"+appPackage+"/"+appActivity;
+            dc.setCapability("app", APP);
+        }
+        return new AndroidDriver(new URL("https://qacloud.experitest.com/wd/hub"), dc);}
 
 
     public IOSDriver getIOSDriverApp(String appPackage,String appActivity) throws MalformedURLException {
@@ -44,7 +47,7 @@ public class DriverFactory {
         return new IOSDriver(new URL("https://qacloud.experitest.com/wd/hub"), dc);
 
 
-        }
+    }
 
 
 }

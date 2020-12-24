@@ -1,0 +1,2 @@
+TEST AppStore Download passedTEST AppStore Download failed
+[Ljava.lang.StackTraceElement;@6419702

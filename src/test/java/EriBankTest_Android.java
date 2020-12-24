@@ -35,7 +35,7 @@ import java.lang.*;
             String pathToCsv = "src/test/Login data.csv";
 
             try {
-                DRIVER=(new DriverFactory()).getAndroidDriverApp("cloud:com.experitest.ExperiBank",".LoginActivity");
+                DRIVER=(new DriverFactory()).getAndroidDriverApp("cloud:com.experitest.ExperiBank",".LoginActivity",true);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 System.out.println("-----couldnt load DRIVER!------");
