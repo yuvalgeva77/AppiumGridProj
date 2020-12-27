@@ -12,3 +12,5 @@ MobileTest.java
  MobileTest
 AppStoreTest_Android.java
  AppStoreTest_Android
+AppStoreTest_ios.java
+ AppStoreTest_ios
