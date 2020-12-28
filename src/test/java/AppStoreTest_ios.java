@@ -87,8 +87,7 @@ public class AppStoreTest_ios {
             WebElement button=wait.until(ExpectedConditions.elementToBeClickable(appList.get(0)));
             String appName=button.findElement(By.xpath("./..")).getText();
             button.click();
-             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Install' and @class='UIAButton']")));
-            button.click();
+             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementsByXPath("//*[@text='Install']").get(1))).click();
             TimeUnit.SECONDS.sleep(60);
             //*[@text='open' and ./parent::*[@text='2, Roblox, Adventure']]
             wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='open' and ./parent::*[@text='"+appName+"']]")));
@@ -105,35 +104,40 @@ public class AppStoreTest_ios {
 
     }
 
-//    @Test
-//    public void Test2() {
-//        String TEST_NAME = "AppStore top10";
-//        try {
-//            // wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
-//            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
-//            List <String> appNames = new LinkedList<String>();
-//            while ( appNames.size() < 10) {
-//List<WebElement> appList = driver.findElementsByXPath("//*[@class='UIAButton' and @knownSuperClass='UIView']");
-//                for (int i = 0; i < appList.size(); i++) {
-//                    String app=getNameOfApp(appList.get(i));
-//                    if (!appNames.contains(app))
-//                        appNames.add(app);
-//                }
-//                swipeDown();
-//            }
-//            assertTrue(appNames.size()>=10);
-//            for (int i = 0; i < 10; i++) {
-//                System.out.println(String.valueOf(i+1)+"."+appNames.get(i)+"\n");}
-//
-//            System.out.println("-----------TEST " + TEST_NAME + " passed ------------\n");
-//            writeFile("TEST " + TEST_NAME + " passed");
-//        } catch(Exception e){
-//            System.out.println("-----------TEST " + TEST_NAME + " failed------------\n" + e.getStackTrace().toString() + "\n");
-//            writeFile("TEST " + TEST_NAME + " failed\n" + e.getStackTrace().toString() + "\n");
-//            throw e;
-//
-//        }
-//    }
+    @Test
+    public void Test2() {
+        String TEST_NAME = "AppStore top10";
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Games']"))).click();
+
+        try {
+            while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0) {
+                swipeDown();
+            }
+            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]"))).click();
+
+            List <String> appNames = new LinkedList<String>();
+            while ( appNames.size() < 10) {
+            List<WebElement> appList = driver.findElementsByXPath("//*[@text='AXStoreCollectionView' and  ./*[@text='Top Free iPad Apps']]/*[@knownSuperClass='UICollectionViewCell']");
+                for (int i = 0; i < appList.size(); i++) {
+                    String app=getNameOfApp((IOSElement) appList.get(i));
+                    if (!appNames.contains(app))
+                        appNames.add(app);
+                }
+                swipeDownonLeftScreeen();
+            }
+            assertTrue(appNames.size()>=10);
+            for (int i = 0; i < 10; i++) {
+                System.out.println(String.valueOf(i+1)+"."+appNames.get(i)+"\n");}
+
+            System.out.println("-----------TEST " + TEST_NAME + " passed ------------\n");
+            writeFile("TEST " + TEST_NAME + " passed");
+        } catch(Exception e){
+            System.out.println("-----------TEST " + TEST_NAME + " failed------------\n" + e.getStackTrace().toString() + "\n");
+            writeFile("TEST " + TEST_NAME + " failed\n" + e.getStackTrace().toString() + "\n");
+            throw e;
+
+        }
+    }
     public  void writeFile(String value){
         String PATH = "./";
         //crete RUN_CURRENT_TIME directory
@@ -171,10 +175,20 @@ public class AppStoreTest_ios {
         touch.press(PointOption.point(start_x, start_y)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1))).moveTo(PointOption.point(end_x, end_y)).release().perform();
 
     }
-    public String getNameOfApp(AndroidElement elem){
-        String appName = elem.getAttribute("contentDescription").toString();
-        String[] res = appName.split("\n");
-        String name = res[0].split("App: ")[1];
+    public void swipeDownonLeftScreeen ( ) {
+        Dimension dimension = driver.manage().window().getSize();
+        int start_x = (int) ( dimension.width * 0.3 );
+        int start_y = (int) ( dimension.height * 0.3 );
+        int end_x = (int) ( dimension.width * 0.3 );
+        int end_y = (int) ( dimension.height * 0.6 );
+        TouchAction touch = new TouchAction(driver);
+        touch.press(PointOption.point(start_x, start_y)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1))).moveTo(PointOption.point(end_x, end_y)).release().perform();
+
+    }
+    public String getNameOfApp(IOSElement elem){
+        String appName = elem.getText();
+        String[] res = appName.split(",");
+        String name = res[1];
         return name;
     }
     @AfterEach
