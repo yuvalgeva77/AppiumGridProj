@@ -62,6 +62,8 @@ public class AppStoreTest_ios {
 
 //        capabilities.setCapability(MobileCapabilityType.APP, "cloud:com.apple.AppStore");
         capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
+        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
+
         try {
             driver = new IOSDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
             wait = new WebDriverWait(driver, 120);
@@ -79,11 +81,18 @@ public class AppStoreTest_ios {
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Games']"))).click();
 
         try {
-            while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0) {
+            while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0||!checkVisable(driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).get(0))) {
                 swipeDown();
             }
+
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]"))).click();
             List<WebElement> appList = driver.findElementsByXPath("//*[contains(@text, \"get\")]");
+            while (appList.size() == 0 ||!checkVisable(appList.get(0))) {
+                swipeDownonLeftScreeen();
+                 appList = driver.findElementsByXPath("//*[contains(@text, \"get\")]");
+
+            }
+
             WebElement button=wait.until(ExpectedConditions.elementToBeClickable(appList.get(0)));
             String appName=button.findElement(By.xpath("./..")).getText();
             button.click();
@@ -178,11 +187,19 @@ public class AppStoreTest_ios {
     public void swipeDownonLeftScreeen ( ) {
         Dimension dimension = driver.manage().window().getSize();
         int start_x = (int) ( dimension.width * 0.3 );
-        int start_y = (int) ( dimension.height * 0.3 );
+        int start_y = (int) ( dimension.height * 0.9 );
         int end_x = (int) ( dimension.width * 0.3 );
         int end_y = (int) ( dimension.height * 0.6 );
         TouchAction touch = new TouchAction(driver);
         touch.press(PointOption.point(start_x, start_y)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1))).moveTo(PointOption.point(end_x, end_y)).release().perform();
+
+    }
+    public boolean checkVisable (WebElement button ) {
+       int minHight= wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath(" //*[@text='Tab Bar']"))).getRect().getY();
+        int buttonHight=button.getRect().getY()+button.getRect().getHeight();
+        if(minHight>buttonHight)
+            return true;
+        return false;
 
     }
     public String getNameOfApp(IOSElement elem){
