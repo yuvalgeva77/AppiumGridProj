@@ -28,6 +28,8 @@ public class EspnTest_Android extends MobileTest {
     static RemoteWebDriver driver;
     static WebDriverWait wait;
     static long CURRENT_TIME;
+    String DEVICE_NAME = "device1";
+
 
 
     public static void main(String[] args) {

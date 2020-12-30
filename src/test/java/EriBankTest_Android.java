@@ -25,6 +25,8 @@ import java.lang.*;
         AndroidDriver DRIVER;
         WebDriverWait WAIT;
         String pathToCsv;
+        String DEVICE_NAME = "device1";
+
 
         public static void main(String[] args) {
         }
