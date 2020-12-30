@@ -14,7 +14,9 @@ EriBankTest_ios.java
  EriBankTest_ios
 AppStoreTest_ios.java
  AppStoreTest_ios
-EriBankTest_Android.java
- EriBankTest_Android
 EspnTest_Android.java
  EspnTest_Android
+EspnTest_ios.java
+ EspnTest_ios
+EriBankTest_Android.java
+ EriBankTest_Android
