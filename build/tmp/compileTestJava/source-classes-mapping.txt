@@ -14,3 +14,5 @@ AppStoreTest_Android.java
  AppStoreTest_Android
 AppStoreTest_ios.java
  AppStoreTest_ios
+EriBankTest_ios.java
+ EriBankTest_ios

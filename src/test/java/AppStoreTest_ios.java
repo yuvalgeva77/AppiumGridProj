@@ -62,10 +62,11 @@ public class AppStoreTest_ios {
 
 //        capabilities.setCapability(MobileCapabilityType.APP, "cloud:com.apple.AppStore");
         capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
-        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
+
 
         try {
             driver = new IOSDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
+            driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
             wait = new WebDriverWait(driver, 120);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -98,6 +99,9 @@ public class AppStoreTest_ios {
             button.click();
              wait.until(ExpectedConditions.elementToBeClickable(driver.findElementsByXPath("//*[@text='Install']").get(1))).click();
             TimeUnit.SECONDS.sleep(60);
+            while (driver.findElementsByXPath("//*[@text='downloading']").size()>0||driver.findElementsByXPath("//*[@text='loading']").size()>0){
+                      TimeUnit.SECONDS.sleep(60);
+           }
             //*[@text='open' and ./parent::*[@text='2, Roblox, Adventure']]
             wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='open' and ./parent::*[@text='"+appName+"']]")));
             System.out.println("-----------TEST " + TEST_NAME + " passed ------------\n");
@@ -114,12 +118,12 @@ public class AppStoreTest_ios {
     }
 
     @Test
-    public void Test2() {
+    public void Test2() throws Exception {
         String TEST_NAME = "AppStore top10";
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Games']"))).click();
 
         try {
-            while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0) {
+            while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0||!checkVisable(driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).get(0))) {
                 swipeDown();
             }
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]"))).click();
@@ -127,6 +131,8 @@ public class AppStoreTest_ios {
             List <String> appNames = new LinkedList<String>();
             while ( appNames.size() < 10) {
             List<WebElement> appList = driver.findElementsByXPath("//*[@text='AXStoreCollectionView' and  ./*[@text='Top Free iPad Apps']]/*[@knownSuperClass='UICollectionViewCell']");
+            if(appList.size()==0){
+                throw new Exception("appList size == 0");}
                 for (int i = 0; i < appList.size(); i++) {
                     String app=getNameOfApp((IOSElement) appList.get(i));
                     if (!appNames.contains(app))
