@@ -32,7 +32,7 @@ import java.lang.*;
         @BeforeEach
         public void setUp() {
             TEST_NAME="EriBank Android";
-            String pathToCsv = "src/test/Login data.csv";
+             pathToCsv = "src/test/Login data.csv";
 
             try {
                 DRIVER=(new DriverFactory()).getAndroidDriverApp("cloud:com.experitest.ExperiBank",".LoginActivity",true);
@@ -135,37 +135,37 @@ import java.lang.*;
 
 
         public void insertInfo(String username, String password) {
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("com.experitest.ExperiBank:id/usernameTextField"))).sendKeys(username);
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("com.experitest.ExperiBank:id/passwordTextField"))).sendKeys(password);
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("com.experitest.ExperiBank:id/loginButton"))).click();
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("usernameTextField"))).sendKeys(username);
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("passwordTextField"))).sendKeys(password);
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("loginButton"))).click();
         }
 
         public Boolean checkErrorMessage() {
             try {
                 WAIT = new WebDriverWait(DRIVER, 100);
-                WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("android:id/parentPanel")));
-                return (DRIVER.findElementById("android:id/parentPanel").isDisplayed());
+                WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("parentPanel")));
+                return (DRIVER.findElementById("parentPanel").isDisplayed());
             }
             catch(Exception e){
                 return false;
             }
         }
         public void backToReister(){
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("android:id/button3"))).click();
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("com.experitest.ExperiBank:id/usernameTextField"))).clear();
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("com.experitest.ExperiBank:id/passwordTextField"))).clear();
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("button3"))).click();
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("usernameTextField"))).clear();
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("passwordTextField"))).clear();
         }
 
         public double makePayment(double sum){
             double sumT = checkAmount();
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("com.experitest.ExperiBank:id/makePaymentButton"))).click();
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("com.experitest.ExperiBank:id/phoneTextField"))).sendKeys("0528446598");
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("com.experitest.ExperiBank:id/nameTextField"))).sendKeys("Yuval");
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("com.experitest.ExperiBank:id/amountTextField"))).sendKeys( Double.toString(sum));
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("com.experitest.ExperiBank:id/countryButton"))).click();
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.ListView/android.widget.TextView[13]"))).click();
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("com.experitest.ExperiBank:id/sendPaymentButton"))).click();;
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("android:id/button1"))).click();;
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("makePaymentButton"))).click();
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("phoneTextField"))).sendKeys("0528446598");
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("nameTextField"))).sendKeys("Yuval");
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("amountTextField"))).sendKeys( Double.toString(sum));
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("countryButton"))).click();
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@text='USA']"))).click();
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("sendPaymentButton"))).click();;
+            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementById("button1"))).click();;
             return sumT;
 
         }
@@ -175,7 +175,7 @@ import java.lang.*;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            String sumText=   WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.webkit.WebView/android.webkit.WebView/android.view.View"))).getText();
+            String sumText=   WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[contains(text(),'Your balance is:') ]"))).getText();
             String sumT = sumText.split("Your balance is: ")[1].replaceFirst(".$","");
             return Double.parseDouble(sumT);
 

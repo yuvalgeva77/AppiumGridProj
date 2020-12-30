@@ -6,13 +6,13 @@ DriverFactory.java
  DriverFactory
 TapTheDotTest.java
  TapTheDotTest
-EriBankTest_Android.java
- EriBankTest_Android
-MobileTest.java
- MobileTest
 AppStoreTest_Android.java
  AppStoreTest_Android
-AppStoreTest_ios.java
- AppStoreTest_ios
+MobileTest.java
+ MobileTest
 EriBankTest_ios.java
  EriBankTest_ios
+AppStoreTest_ios.java
+ AppStoreTest_ios
+EriBankTest_Android.java
+ EriBankTest_Android

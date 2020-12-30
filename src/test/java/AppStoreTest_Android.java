@@ -44,6 +44,7 @@ public class AppStoreTest_Android {
     @BeforeEach
     public void setUp()  {
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("testName", "AppStoreTest_Android");
         capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
         capabilities.setCapability("deviceQuery", "@os='android'");
 //        capabilities.setCapability(MobileCapabilityType.FULL_RESET, true);
@@ -63,7 +64,7 @@ public class AppStoreTest_Android {
 
     @Test
     public void Test1() throws InterruptedException {
-        String TEST_NAME = "AppStore Download";
+        String TEST_NAME = "AppStore android Download";
         try {
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
             List<AndroidElement> appList = driver.findElementsByXPath("//*[contains(@contentDescription, \"App:\")]");
@@ -87,7 +88,7 @@ public class AppStoreTest_Android {
 
     @Test
     public void Test2() {
-        String TEST_NAME = "AppStore top10";
+        String TEST_NAME = "AppStore android top10";
         try {
             // wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
