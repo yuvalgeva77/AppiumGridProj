@@ -69,8 +69,8 @@ public class EriBankTest_ios extends MobileTest {
             e.printStackTrace();
 
         }
-         pathToCsv = "src/test/company.csv";
-//         pathToCsv = "src/test/Login data.csv";
+//         pathToCsv = "src/test/company.csv";
+         pathToCsv = "src/test/Login data.csv";
         System.out.println("Aplication Started");
     }
     @Test
