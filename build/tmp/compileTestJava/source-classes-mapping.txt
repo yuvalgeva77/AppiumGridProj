@@ -16,3 +16,5 @@ AppStoreTest_ios.java
  AppStoreTest_ios
 EriBankTest_Android.java
  EriBankTest_Android
+EspnTest_Android.java
+ EspnTest_Android
