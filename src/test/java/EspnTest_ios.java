@@ -59,11 +59,11 @@ public class EspnTest_ios extends MobileTest {
         aproveCondiotionsStart();
         System.out.println("Aplication Started");
     }
-    @BeforeAll
-    public static void resetTimer(){
-        CURRENT_TIME = System.currentTimeMillis();
-
-    }
+//    @BeforeAll
+//    public static void resetTimer(){
+//        CURRENT_TIME = System.currentTimeMillis();
+//
+//    }
     @Test
     public void Test1() {
         TEST_NAME="Espn Android";
@@ -128,7 +128,6 @@ public class EspnTest_ios extends MobileTest {
         String PATH = "/";
         String directoryName = PATH.concat("RUN_"+CURRENT_TIME);
         String fileName = DEVICE_NAME+ ".txt";
-
         File directory = new File(directoryName);
         if (! directory.exists()){
             directory.mkdir();

@@ -57,11 +57,11 @@ public class EspnTest_Android extends MobileTest {
         aproveCondiotionsStart();
         System.out.println("Aplication Started");
     }
-    @BeforeAll
-    public static void resetTimer(){
-        CURRENT_TIME = System.currentTimeMillis();
-
-    }
+//    @BeforeAll
+//    public static void resetTimer(){
+//        CURRENT_TIME = System.currentTimeMillis();
+//
+//    }
     @Test
     public void Test1() {
         TEST_NAME="Espn Android";

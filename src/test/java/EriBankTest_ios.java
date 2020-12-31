@@ -47,11 +47,11 @@ public class EriBankTest_ios extends MobileTest {
     public static void main(String[] args) {
 
     }
-    @BeforeAll
-    public static void resetTimer(){
-        CURRENT_TIME = System.currentTimeMillis();
-
-    }
+//    @BeforeAll
+//    public static void resetTimer(){
+//        CURRENT_TIME = System.currentTimeMillis();
+//
+//    }
     @BeforeEach
     public void setUp()  {
         DesiredCapabilities capabilities = new DesiredCapabilities();
