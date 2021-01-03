@@ -25,10 +25,6 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 public class EspnTest_Android extends MobileTest {
-    static RemoteWebDriver driver;
-    static WebDriverWait wait;
-    static long CURRENT_TIME;
-    String DEVICE_NAME = "device1";
 
 
 
@@ -37,40 +33,28 @@ public class EspnTest_Android extends MobileTest {
     }
 
     @BeforeEach
-    public void setUp() {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("accessKey","eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
-        capabilities.setCapability("deviceQuery", "@os='android'");
-        capabilities.setCapability("testName", "EspnTest Android");
-        capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
-        capabilities.setBrowserName(MobileBrowserType.CHROMIUM);
-        try {
+    public void setUp() throws MalformedURLException {
 
-            driver = new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
+        try {
+            driver =(new DriverFactory()).getAndroidDriverChrome("EspnTest Android",true);
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
-        } catch (MalformedURLException e) {
-            System.out.println(e.getCause());
-            System.out.println(e.getMessage());
+            device=new Device(driver);
+            System.out.println("----test Started----\n");
+        } catch (Exception e) {
+            System.out.println("-----couldnt load DRIVER!------");
             e.printStackTrace();
         }
-        aproveCondiotionsStart();
-        System.out.println("Aplication Started");
     }
-//    @BeforeAll
-//    public static void resetTimer(){
-//        CURRENT_TIME = System.currentTimeMillis();
-//
-//    }
+
     @Test
     public void Test1() {
-        TEST_NAME="Espn Android";
+        test_name="Espn Android";
         try{
+            aproveCondiotionsStart();
             for (int i=2;i<6;i++){
                 waitT();
-//            WebElement menu = driver.findElement(By.id( "global-nav-mobile-trigger"));
                 List<WebElement> menu = driver.findElements(By.xpath( "//*[@id='global-nav-mobile-trigger' and @nodeName='A']"));
-//                    wait.until(ExpectedConditions.visibilityOf(menu));
                 System.out.println(menu.get(0).isDisplayed());
                 waitT();
                 menu.get(0).click();
@@ -83,27 +67,22 @@ public class EspnTest_Android extends MobileTest {
                 WebElement el5 =   wait.until(ExpectedConditions.visibilityOf((driver.findElementByCssSelector(  "#global-nav-secondary > div > ul > li.sports.sub > span > a > span.link-text"))));
                 String title=el5.getText();
                 assertTrue(bTitle.equals(title));
+                System.out.println("test 1 finished");
+                writeRunFile("TEST "+test_name+" passed\n");
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            writeFile("TEST "+TEST_NAME+" failed\n"+e.getStackTrace());
+            test_status="TEST "+test_name+" failed\n"+e.getStackTrace().toString();
+//            System.out.println("TEST "+test_name+" failed\n"+e.getStackTrace());
+            writeRunFile(test_status);
+            assertTrue(test_status,false);
 
         }
-        System.out.println("test 1 finished");
-        writeFile("TEST "+TEST_NAME+" passed");
+
 
     }
 
 
-//    @Test
-//    public void Test2() {
-//
-//    }
 
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
-    }
     public void aproveCondiotionsStart(){
         waitT();
         try {
@@ -122,35 +101,5 @@ public class EspnTest_Android extends MobileTest {
         }
 
     }
-    public void writeFile(String value){
-        String PATH = "/";
-        String directoryName = PATH.concat("RUN_"+CURRENT_TIME);
-        String fileName = DEVICE_NAME+ ".txt";
 
-        File directory = new File(directoryName);
-        if (! directory.exists()){
-            directory.mkdir();
-            System.out.println("directory created at: "+PATH);
-
-            // If you require it to make the entire directory path including parents,
-            // use directory.mkdirs(); here instead.
-        }
-        File file = new File(directoryName + "/" + fileName);
-        try {
-            file.createNewFile(); // if file already exists will do nothing
-            FileOutputStream oFile = new FileOutputStream(file, false);
-
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(value);
-            System.out.println("file data written at: "+file);
-
-            bw.close();
-
-        }
-        catch (IOException e){
-            e.printStackTrace();
-            System.exit(-1);
-        }
-    }
 }

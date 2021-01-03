@@ -1,24 +1,26 @@
-EspnTest.java
- EspnTest
-AppStoreTest_Android.java
- AppStoreTest_Android
-EriBankTest.java
- EriBankTest
-DriverFactory.java
- DriverFactory
-TapTheDotTest.java
- TapTheDotTest
+Device.java
+ Device
 AppStoreTest_ios.java
  AppStoreTest_ios
-MobileTest.java
- MobileTest
-EriBankTest_ios.java
- EriBankTest_ios
-EspnTest_Android.java
- EspnTest_Android
-EspnTest_ios.java
- EspnTest_ios
-EriBankTest_Android.java
- EriBankTest_Android
+EriBankTest.java
+ EriBankTest
+EspnTest.java
+ EspnTest
+TapTheDotTest.java
+ TapTheDotTest
 temp.java
  temp
+AppStoreTest_Android.java
+ AppStoreTest_Android
+EspnTest_ios.java
+ EspnTest_ios
+EriBankTest_ios.java
+ EriBankTest_ios
+MobileTest.java
+ MobileTest
+DriverFactory.java
+ DriverFactory
+EriBankTest_Android.java
+ EriBankTest_Android
+EspnTest_Android.java
+ EspnTest_Android

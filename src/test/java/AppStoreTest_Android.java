@@ -27,8 +27,8 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class AppStoreTest_Android {
-    static AndroidDriver<AndroidElement> driver;
+public class AppStoreTest_Android extends MobileTest{
+//    static AndroidDriver<AndroidElement> driver;
     static WebDriverWait wait;
     String DEVICE_NAME = "device1";
     static long CURRENT_TIME;
@@ -36,11 +36,11 @@ public class AppStoreTest_Android {
     public static void main(String[] args) {
 
     }
-    @BeforeAll
-    public static void resetTimer(){
-        CURRENT_TIME = System.currentTimeMillis();
-
-    }
+//    @BeforeAll
+//    public static void resetTimer(){
+//        CURRENT_TIME = System.currentTimeMillis();
+//
+//    }
     @BeforeEach
     public void setUp()  {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -59,6 +59,8 @@ public class AppStoreTest_Android {
 
         }
         System.out.println("Aplication Started");
+        DEVICE_NAME=driver.getCapabilities().getCapability("deviceName").toString();
+        String VERSION=driver.getCapabilities().getCapability("CapabilityType.VERSION").toString();
     }
 
 
@@ -74,12 +76,12 @@ public class AppStoreTest_Android {
 //            wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@id='message']")));
             wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='Uninstall']")));
             System.out.println("-----------TEST " + TEST_NAME + " passed ------------\n");
-            writeFile("TEST " + TEST_NAME + " passed\n");
+            writeRunFile("TEST " + TEST_NAME + " passed\n");
             //*[@text=
 
         } catch (Exception e) {
             System.out.println("-----------TEST " + TEST_NAME + " failed------------\n" + e.getStackTrace().toString() + "\n");
-            writeFile("TEST " + TEST_NAME + " failed\n" + e.getStackTrace().toString() + "\n");
+            writeRunFile("TEST " + TEST_NAME + " failed\n" + e.getStackTrace().toString() + "\n");
             throw e;
 
         }
@@ -107,41 +109,41 @@ public class AppStoreTest_Android {
                 System.out.println(String.valueOf(i+1)+"."+appNames.get(i)+"\n");}
 
             System.out.println("-----------TEST " + TEST_NAME + " passed ------------\n");
-            writeFile("TEST " + TEST_NAME + " passed");
+            writeRunFile("TEST " + TEST_NAME + " passed");
         } catch(Exception e){
             System.out.println("-----------TEST " + TEST_NAME + " failed------------\n" + e.getStackTrace().toString() + "\n");
-            writeFile("TEST " + TEST_NAME + " failed\n" + e.getStackTrace().toString() + "\n");
+            writeRunFile("TEST " + TEST_NAME + " failed\n" + e.getStackTrace().toString() + "\n");
             throw e;
 
         }
     }
-    public  void writeFile(String value){
-        String PATH = "./";
-        //crete RUN_CURRENT_TIME directory
-        String directoryName = PATH.concat("RUN_"+CURRENT_TIME);
-        String fileName = DEVICE_NAME+ ".txt";
-        File directory = new File(directoryName);
-        if (! directory.exists()){
-            directory.mkdir();
-            System.out.println("directory created at: "+directory.getAbsolutePath());
-        }
-        //crete device_number file id doesnt exist and write the data
-        File file = new File(directoryName + "/" + fileName);
-        try {
-            file.createNewFile(); // if file already exists will do nothing
-            //Here true is to append the content to file
-            FileWriter fw = new FileWriter(file,true);
-            //BufferedWriter writer give better performance
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(value);
-            System.out.println("file data written at: "+file);
-            bw.close();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-            System.exit(-1);
-        }
-    }
+//    public  void writeFile(String value){
+//        String PATH = "./";
+//        //crete RUN_CURRENT_TIME directory
+//        String directoryName = PATH.concat("RUN_"+CURRENT_TIME);
+//        String fileName = DEVICE_NAME+ ".txt";
+//        File directory = new File(directoryName);
+//        if (! directory.exists()){
+//            directory.mkdir();
+//            System.out.println("directory created at: "+directory.getAbsolutePath());
+//        }
+//        //crete device_number file id doesnt exist and write the data
+//        File file = new File(directoryName + "/" + fileName);
+//        try {
+//            file.createNewFile(); // if file already exists will do nothing
+//            //Here true is to append the content to file
+//            FileWriter fw = new FileWriter(file,true);
+//            //BufferedWriter writer give better performance
+//            BufferedWriter bw = new BufferedWriter(fw);
+//            bw.write(value);
+//            System.out.println("file data written at: "+file);
+//            bw.close();
+//        }
+//        catch (IOException e){
+//            e.printStackTrace();
+//            System.exit(-1);
+//        }
+//    }
     public void swipeDown ( ) {
         Dimension dimension = driver.manage().window().getSize();
         int start_x = (int) ( dimension.width * 0.5 );
@@ -158,9 +160,9 @@ public class AppStoreTest_Android {
         String name = res[0].split("App: ")[1];
         return name;
     }
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
-    }
+//    @AfterEach
+//    public void tearDown() {
+//        driver.quit();
+//    }
 }
 

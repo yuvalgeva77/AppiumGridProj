@@ -23,13 +23,15 @@ public class temp extends MobileTest {
 
     @Test
     public void test1() {
-//        writeRunFile("cxvxvcxv");
+        writeRunFile("cxvxvcxv1");
         System.out.println("in test1 " + CURRENT_TIME);
     }
 
     @Test
     public void test2() {
 //        writeRunFile("cxvxvcxv");
+        writeRunFile("cxvxvcx66666666v2");
+
         System.out.println("in test2 + " + CURRENT_TIME);
     }
 }

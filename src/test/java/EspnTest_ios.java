@@ -66,7 +66,7 @@ public class EspnTest_ios extends MobileTest {
 //    }
     @Test
     public void Test1() {
-        TEST_NAME="Espn Android";
+        test_name="Espn Android";
         try{
             for (int i=2;i<6;i++){
                 waitT();
@@ -88,11 +88,11 @@ public class EspnTest_ios extends MobileTest {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            writeFile("TEST "+TEST_NAME+" failed\n"+e.getStackTrace());
+            writeFile("TEST "+test_name+" failed\n"+e.getStackTrace());
 
         }
         System.out.println("test 1 finished");
-        writeFile("TEST "+TEST_NAME+" passed");
+        writeFile("TEST "+test_name+" passed");
 
     }
 
