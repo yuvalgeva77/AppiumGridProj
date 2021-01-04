@@ -1,6 +1,6 @@
 //import org.junit.Before;
-//import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
+//import org.junit.Test; // junit 4
+import org.junit.jupiter.api.BeforeEach; // junit 5
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -24,14 +24,14 @@ public class temp extends MobileTest {
     @Test
     public void test1() {
 //        writeRunFile("cxvxvcxv1");
-        resetConfigurations();
+//        resetConfigurations();
         System.out.println("in test1 " + CURRENT_TIME);
     }
 
     @Test
     public void test2() {
 //        writeRunFile("cxvxvcxv");
-        writeRunFile("cxvxvcx66666666v2");
+//        writeRunFile("cxvxvcx66666666v2");
 
         System.out.println("in test2 + " + CURRENT_TIME);
     }
