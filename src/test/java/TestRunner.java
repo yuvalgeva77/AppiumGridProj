@@ -18,7 +18,9 @@ import java.util.List;
 
 
 public class TestRunner implements Runnable {
+    private String Device;
     private String name;
+
 
     public String getName() {
         return name;
@@ -35,7 +37,7 @@ public class TestRunner implements Runnable {
 
     @Override
     public void run() {
-
+        System.out.println(  Thread.currentThread().getName());
         final LauncherDiscoveryRequest request =
                 LauncherDiscoveryRequestBuilder.request()
                         .selectors(selectClass(EriBankTest_Android.class),selectMethod("temp#test2"))

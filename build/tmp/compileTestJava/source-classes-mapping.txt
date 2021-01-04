@@ -26,8 +26,6 @@ EspnTest_ios.java
  EspnTest_ios
 temp.java
  temp
-Task.java
- Task
 TestRunner.java
  TestRunner
 TestThreadPool.java
