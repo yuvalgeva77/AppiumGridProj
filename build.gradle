@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    compile 'com.google.code.gson:gson:2.7'
     implementation 'junit:junit:4.12'
     implementation 'org.junit.jupiter:junit-jupiter:5.6.0'
 //    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'

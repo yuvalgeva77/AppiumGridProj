@@ -36,7 +36,7 @@ public class EspnTest_Android extends MobileTest {
     public void setUp() throws MalformedURLException {
 
         try {
-            driver =(new DriverFactory()).getAndroidDriverChrome("EspnTest Android",true);
+            driver =(driverFactory.getAndroidDriverChrome("EspnTest Android",true));
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
             device=new Device(driver);

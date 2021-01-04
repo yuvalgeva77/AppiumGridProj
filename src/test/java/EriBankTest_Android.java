@@ -27,7 +27,7 @@ public class EriBankTest_Android extends MobileTest{
     public void setUp() {
         test_name="EriBank Android";
         try {
-            driver =(new DriverFactory()).getAndroidDriverApp("cloud:com.experitest.ExperiBank",".LoginActivity",true);
+            driver =(driverFactory.getAndroidDriverApp("cloud:com.experitest.ExperiBank",".LoginActivity",true));
         } catch (MalformedURLException e) {
             e.printStackTrace();
             System.out.println("-----couldnt load DRIVER!------");

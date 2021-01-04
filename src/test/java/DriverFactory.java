@@ -14,8 +14,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DriverFactory {
-    private String accessKey="eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4";
-    public AndroidDriver getAndroidDriverApp(String appPackage,String appActivity,Boolean createAppATribute) throws MalformedURLException {
+    private String accessKey;
+    private String cloudUrl;
+    private String serialNumber;
+
+    public DriverFactory(String accessKey, String cloudUrl, String serialNumber) {
+        this.accessKey = accessKey;
+        this.cloudUrl = cloudUrl;
+        this.serialNumber = serialNumber;
+    }
+
+
+    public AndroidDriver getAndroidDriverApp(String appPackage, String appActivity, Boolean createAppATribute) throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
 
         dc.setCapability("accessKey", accessKey);
@@ -30,7 +40,7 @@ public class DriverFactory {
             String APP="cloud:"+appPackage+"/"+appActivity;
             dc.setCapability("app", APP);
         }
-        return new AndroidDriver(new URL("https://qacloud.experitest.com/wd/hub"), dc);}
+        return new AndroidDriver(new URL(cloudUrl), dc);}
 
     public AndroidDriver getAndroidDriverChrome(String testName,Boolean fullReset) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -39,7 +49,7 @@ public class DriverFactory {
         capabilities.setCapability("testName", "EspnTest Android");
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
         capabilities.setBrowserName(MobileBrowserType.CHROMIUM);
-            return new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
+        return new AndroidDriver<>(new URL(cloudUrl), capabilities);
 
 
 //        if(createAppATribute){
@@ -52,7 +62,7 @@ public class DriverFactory {
     public IOSDriver getIOSDriverApp(String appPackage,String appActivity) throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
         String APP="cloud:"+appPackage+"/"+appActivity;
-        dc.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
+        dc.setCapability("accessKey", accessKey);
         dc.setCapability("deviceQuery", "@os='android'");
 //                dc.setCapability("app", "cloud:com.experitest.ExperiBank/.LoginActivity");
         dc.setCapability("app", APP);
@@ -61,7 +71,7 @@ public class DriverFactory {
 //                dc.setCapability("appPackage", "com.experitest.ExperiBank");
         dc.setCapability("appActivity", appActivity);
 //                dc.setCapability("appActivity", ".LoginActivity");
-        return new IOSDriver(new URL("https://qacloud.experitest.com/wd/hub"), dc);
+        return new IOSDriver(new URL(cloudUrl), dc);
 
 
     }

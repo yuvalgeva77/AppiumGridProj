@@ -23,7 +23,8 @@ public class temp extends MobileTest {
 
     @Test
     public void test1() {
-        writeRunFile("cxvxvcxv1");
+//        writeRunFile("cxvxvcxv1");
+        resetConfigurations();
         System.out.println("in test1 " + CURRENT_TIME);
     }
 

@@ -1,3 +1,4 @@
+import com.google.gson.Gson;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -19,19 +20,22 @@ import java.sql.Driver;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class  MobileTest {
-    AppiumDriver driver;
-    String test_status;
-
-    WebDriverWait wait;
-    Device device;
+    protected AppiumDriver driver;
+    protected String test_status;
+    protected  Configuration testConfiguration;
+    protected DriverFactory driverFactory;
+    protected WebDriverWait wait;
+    protected Device device;
     protected String test_name;
     protected long CURRENT_TIME;
     protected String pathToCsv = "src/test/Login data.csv";
+    protected String configurationPath="src/test/configuration file.txt";
 
     @BeforeAll
     public void resetTimer(){
         System.out.println("--------Test suite started-----");
         CURRENT_TIME = System.currentTimeMillis();
+        resetConfigurations();
 
     }
     public void writeRunFile(String value){
@@ -63,9 +67,12 @@ public class  MobileTest {
     public void resetConfigurations(){
         BufferedReader csvReader = null;
         try {
-            csvReader = new BufferedReader(new FileReader(pathToCsv));
+            csvReader = new BufferedReader(new FileReader(configurationPath));
+             testConfiguration = new Gson().fromJson(csvReader, Configuration.class);
+            driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl(),testConfiguration.getSerialNumber());
+            System.out.println(testConfiguration.toString());
         } catch (FileNotFoundException e) {
-            System.out.println("failed to open csv");
+            System.out.println("failed to open configuration csv");
             e.printStackTrace();
         }
     }
