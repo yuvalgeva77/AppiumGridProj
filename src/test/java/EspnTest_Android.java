@@ -67,14 +67,10 @@ public class EspnTest_Android extends MobileTest {
                 WebElement el5 =   wait.until(ExpectedConditions.visibilityOf((driver.findElementByCssSelector(  "#global-nav-secondary > div > ul > li.sports.sub > span > a > span.link-text"))));
                 String title=el5.getText();
                 assertTrue(bTitle.equals(title));
-                System.out.println("test 1 finished");
-                writeRunFile("TEST "+test_name+" passed\n");
+                printSeccess();
             }
         } catch (Exception e) {
-            test_status="TEST "+test_name+" failed\n"+e.getStackTrace().toString();
-//            System.out.println("TEST "+test_name+" failed\n"+e.getStackTrace());
-            writeRunFile(test_status);
-            assertTrue(test_status,false);
+     printExeption(e);
 
         }
 

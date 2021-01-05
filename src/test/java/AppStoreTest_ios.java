@@ -39,22 +39,23 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class AppStoreTest_ios {
-    static IOSDriver<WebElement> driver;
-    static WebDriverWait wait;
-    String DEVICE_NAME = "device1";
-    static long CURRENT_TIME;
+public class AppStoreTest_ios extends MobileTest{
+//    static IOSDriver<WebElement> driver;
+//    static WebDriverWait wait;
+//    String DEVICE_NAME = "device1";
+//    static long CURRENT_TIME;
 
     public static void main(String[] args) {
 
     }
-    @BeforeAll
-    public static void resetTimer(){
-        CURRENT_TIME = System.currentTimeMillis();
-
-    }
+    //    @BeforeAll
+//    public static void resetTimer(){
+//        CURRENT_TIME = System.currentTimeMillis();
+//
+//    }
     @BeforeEach
     public void setUp()  {
+        test_name="App Store ios";
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
         capabilities.setCapability("deviceQuery", "@os='ios'");
@@ -62,7 +63,6 @@ public class AppStoreTest_ios {
 
 //        capabilities.setCapability(MobileCapabilityType.APP, "cloud:com.apple.AppStore");
         capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
-
 
         try {
             driver = new IOSDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
@@ -77,12 +77,11 @@ public class AppStoreTest_ios {
 
 
     @Test
-    public void Test1() throws InterruptedException {
-        String TEST_NAME = "AppStore Download";
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Games']"))).click();
-
+    public void Test1()  {
+        test_name = "AppStore ios Download";
         try {
-            while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0||!checkVisable(driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).get(0))) {
+            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Games']"))).click();
+            while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0||!checkVisable((WebElement) driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).get(0))) {
                 swipeDown();
             }
 
@@ -90,29 +89,24 @@ public class AppStoreTest_ios {
             List<WebElement> appList = driver.findElementsByXPath("//*[contains(@text, \"get\")]");
             while (appList.size() == 0 ||!checkVisable(appList.get(0))) {
                 swipeDownonLeftScreeen();
-                 appList = driver.findElementsByXPath("//*[contains(@text, \"get\")]");
+                appList = driver.findElementsByXPath("//*[contains(@text, \"get\")]");
 
             }
 
             WebElement button=wait.until(ExpectedConditions.elementToBeClickable(appList.get(0)));
             String appName=button.findElement(By.xpath("./..")).getText();
             button.click();
-             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementsByXPath("//*[@text='Install']").get(1))).click();
+            wait.until(ExpectedConditions.elementToBeClickable((WebElement) driver.findElementsByXPath("//*[@text='Install']").get(1))).click();
             TimeUnit.SECONDS.sleep(60);
             while (driver.findElementsByXPath("//*[@text='downloading']").size()>0||driver.findElementsByXPath("//*[@text='loading']").size()>0){
-                      TimeUnit.SECONDS.sleep(60);
-           }
+                TimeUnit.SECONDS.sleep(60);
+            }
             //*[@text='open' and ./parent::*[@text='2, Roblox, Adventure']]
             wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='open' and ./parent::*[@text='"+appName+"']]")));
-            System.out.println("-----------TEST " + TEST_NAME + " passed ------------\n");
-            writeFile("TEST " + TEST_NAME + " passed\n");
-            //*[@text=
+            printSeccess();
 
         } catch (Exception e) {
-            System.out.println("-----------TEST " + TEST_NAME + " failed------------\n" + e.getStackTrace().toString() + "\n");
-            writeFile("TEST " + TEST_NAME + " failed\n" + e.getStackTrace().toString() + "\n");
-            throw e;
-
+            printExeption(e);
         }
 
     }
@@ -120,19 +114,17 @@ public class AppStoreTest_ios {
     @Test
     public void Test2() throws Exception {
         String TEST_NAME = "AppStore top10";
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Games']"))).click();
-
         try {
-            while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0||!checkVisable(driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).get(0))) {
+            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Games']"))).click();
+            while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0||!checkVisable((WebElement) driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).get(0))) {
                 swipeDown();
             }
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]"))).click();
-
             List <String> appNames = new LinkedList<String>();
             while ( appNames.size() < 10) {
-            List<WebElement> appList = driver.findElementsByXPath("//*[@text='AXStoreCollectionView' and  ./*[@text='Top Free iPad Apps']]/*[@knownSuperClass='UICollectionViewCell']");
-            if(appList.size()==0){
-                throw new Exception("appList size == 0");}
+                List<WebElement> appList = driver.findElementsByXPath("//*[@text='AXStoreCollectionView' and  ./*[@text='Top Free iPad Apps']]/*[@knownSuperClass='UICollectionViewCell']");
+                if(appList.size()==0){
+                    throw new Exception("appList size == 0");}
                 for (int i = 0; i < appList.size(); i++) {
                     String app=getNameOfApp((IOSElement) appList.get(i));
                     if (!appNames.contains(app))
@@ -144,42 +136,39 @@ public class AppStoreTest_ios {
             for (int i = 0; i < 10; i++) {
                 System.out.println(String.valueOf(i+1)+"."+appNames.get(i)+"\n");}
 
-            System.out.println("-----------TEST " + TEST_NAME + " passed ------------\n");
-            writeFile("TEST " + TEST_NAME + " passed");
+            printSeccess();
         } catch(Exception e){
-            System.out.println("-----------TEST " + TEST_NAME + " failed------------\n" + e.getStackTrace().toString() + "\n");
-            writeFile("TEST " + TEST_NAME + " failed\n" + e.getStackTrace().toString() + "\n");
-            throw e;
+            printExeption(e);
 
         }
     }
-    public  void writeFile(String value){
-        String PATH = "./";
-        //crete RUN_CURRENT_TIME directory
-        String directoryName = PATH.concat("RUN_"+CURRENT_TIME);
-        String fileName = DEVICE_NAME+ ".txt";
-        File directory = new File(directoryName);
-        if (! directory.exists()){
-            directory.mkdir();
-            System.out.println("directory created at: "+directory.getAbsolutePath());
-        }
-        //crete device_number file id doesnt exist and write the data
-        File file = new File(directoryName + "/" + fileName);
-        try {
-            file.createNewFile(); // if file already exists will do nothing
-            //Here true is to append the content to file
-            FileWriter fw = new FileWriter(file,true);
-            //BufferedWriter writer give better performance
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(value);
-            System.out.println("file data written at: "+file);
-            bw.close();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-            System.exit(-1);
-        }
-    }
+    //    public  void writeFile(String value){
+//        String PATH = "./";
+//        //crete RUN_CURRENT_TIME directory
+//        String directoryName = PATH.concat("RUN_"+CURRENT_TIME);
+//        String fileName = DEVICE_NAME+ ".txt";
+//        File directory = new File(directoryName);
+//        if (! directory.exists()){
+//            directory.mkdir();
+//            System.out.println("directory created at: "+directory.getAbsolutePath());
+//        }
+//        //crete device_number file id doesnt exist and write the data
+//        File file = new File(directoryName + "/" + fileName);
+//        try {
+//            file.createNewFile(); // if file already exists will do nothing
+//            //Here true is to append the content to file
+//            FileWriter fw = new FileWriter(file,true);
+//            //BufferedWriter writer give better performance
+//            BufferedWriter bw = new BufferedWriter(fw);
+//            bw.write(value);
+//            System.out.println("file data written at: "+file);
+//            bw.close();
+//        }
+//        catch (IOException e){
+//            e.printStackTrace();
+//            System.exit(-1);
+//        }
+//    }
     public void swipeDown ( ) {
         Dimension dimension = driver.manage().window().getSize();
         int start_x = (int) ( dimension.width * 0.9 );
@@ -201,7 +190,7 @@ public class AppStoreTest_ios {
 
     }
     public boolean checkVisable (WebElement button ) {
-       int minHight= wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath(" //*[@text='Tab Bar']"))).getRect().getY();
+        int minHight= wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath(" //*[@text='Tab Bar']"))).getRect().getY();
         int buttonHight=button.getRect().getY()+button.getRect().getHeight();
         if(minHight>buttonHight)
             return true;

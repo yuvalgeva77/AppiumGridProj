@@ -37,11 +37,11 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 public class EriBankTest_ios extends MobileTest {
-    static IOSDriver<WebElement> DRIVER;
-    static WebDriverWait WAIT;
-    String DEVICE_NAME = "device1";
-    static long CURRENT_TIME;
-    String pathToCsv;
+//    static IOSDriver<WebElement> DRIVER;
+//    static WebDriverWait WAIT;
+//    String DEVICE_NAME = "device1";
+//    static long CURRENT_TIME;
+//    String pathToCsv;
 
 
     public static void main(String[] args) {
@@ -62,9 +62,9 @@ public class EriBankTest_ios extends MobileTest {
         capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.experitest.ExperiBank");
 
         try {
-            DRIVER = new IOSDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
-            DRIVER.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
-            WAIT = new WebDriverWait(DRIVER, 120);
+            driver = new IOSDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
+            driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
+            wait = new WebDriverWait(driver, 120);
         } catch (MalformedURLException e) {
             e.printStackTrace();
 
@@ -158,7 +158,7 @@ public class EriBankTest_ios extends MobileTest {
         String PATH = "./";
         //crete RUN_CURRENT_TIME directory
         String directoryName = PATH.concat("RUN_"+CURRENT_TIME);
-        String fileName = DEVICE_NAME+ ".txt";
+        String fileName = device.getName()+ ".txt";
         File directory = new File(directoryName);
         if (! directory.exists()){
             directory.mkdir();
@@ -182,42 +182,42 @@ public class EriBankTest_ios extends MobileTest {
         }
     }
     @AfterEach
-    public void tearDown() {
-        DRIVER.quit();
-    }
+//    public void tearDown() {
+//        driver.quit();
+//    }
 
     public void insertInfo(String username, String password) {
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@placeholder='Username']"))).sendKeys(username);
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@placeholder='Password']"))).sendKeys(password);
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@text='loginButton']"))).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@placeholder='Username']"))).sendKeys(username);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@placeholder='Password']"))).sendKeys(password);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='loginButton']"))).click();
     }
 
     public Boolean checkErrorMessage() {
         try {
-            WAIT = new WebDriverWait(DRIVER, 100);
-            WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@text='Invalid username or password!']")));
-            return (DRIVER.findElementByXPath("//*[@class='UIAView' and ./*[@class='UIAStaticText']]").isDisplayed());
+            wait = new WebDriverWait(driver, 100);
+            wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='Invalid username or password!']")));
+            return (driver.findElementByXPath("//*[@class='UIAView' and ./*[@class='UIAStaticText']]").isDisplayed());
         }
         catch(Exception e){
             return false;
         }
     }
     public void backToReister(){
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@text='Dismiss']"))).click();
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@placeholder='Username']"))).clear();
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@placeholder='Password']"))).clear();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='Dismiss']"))).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@placeholder='Username']"))).clear();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@placeholder='Password']"))).clear();
     }
 
     public double makePayment(double sum){
         double sumT = checkAmount();
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@text='makePaymentButton']"))).click();
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@placeholder='Phone']"))).sendKeys("0528446598");
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@placeholder='Name']"))).sendKeys("Yuval");
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@placeholder='Amount']"))).sendKeys( Double.toString(sum));
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@text='countryButton']"))).click();
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@text='USA']"))).click();
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@text='sendPaymentButton']"))).click();
-        WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[@text='Yes']"))).click();;
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='makePaymentButton']"))).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@placeholder='Phone']"))).sendKeys("0528446598");
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@placeholder='Name']"))).sendKeys("Yuval");
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@placeholder='Amount']"))).sendKeys( Double.toString(sum));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='countryButton']"))).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='USA']"))).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='sendPaymentButton']"))).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='Yes']"))).click();;
         return sumT;
 
     }
@@ -227,7 +227,7 @@ public class EriBankTest_ios extends MobileTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        String sumText=   WAIT.until(ExpectedConditions.visibilityOf(DRIVER.findElementByXPath("//*[contains(@id,'Your balance is:') and @value='1'  ]"))).getText();
+        String sumText=   wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[contains(@id,'Your balance is:') and @value='1'  ]"))).getText();
         String sumT = sumText.split("Your balance is: ")[1].replaceFirst(".$","");
         return Double.parseDouble(sumT);
 

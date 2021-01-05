@@ -1,4 +1,12 @@
-public class Configuration {
+import com.google.gson.Gson;
+import com.google.gson.InstanceCreator;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.lang.reflect.Type;
+
+public class Configuration  implements InstanceCreator {
     private String cloudUrl;
     private String username;
     private String  accessKey;
@@ -6,6 +14,8 @@ public class Configuration {
     private String serialNumber;
     private String testToRun;
     private int repeat;
+    private static String allTests="AppStoreTest_Android,AppStoreTest_ios,EriBankTest_Android,EriBankTest_ios,EspnTest_Android,EspnTest_ios,TapTheDotTest";
+
 
 
     @Override
@@ -29,6 +39,10 @@ public class Configuration {
         this.serialNumber = serialNumber;
         this.testToRun = testToRun;
         this.repeat = repeat;
+        if(testToRun.equals("all")){
+            this.testToRun=allTests;
+        }
+
     }
 
     public String getCloudUrl() {
@@ -88,5 +102,11 @@ public class Configuration {
     }
 
 
-
+    @Override
+    public Object createInstance(Type type) {
+        if(testToRun.equals("all")){
+            this.testToRun=allTests;
+        }
+        return null;
+    }
 }

@@ -1,21 +1,17 @@
-Configuration.java
- Configuration
-Device.java
- Device
-AppStoreTest_ios.java
- AppStoreTest_ios
-MobileTest.java
- MobileTest
-EriBankTest_Android.java
- EriBankTest_Android
-EspnTest.java
- EspnTest
-AppStoreTest_Android.java
- AppStoreTest_Android
-EriBankTest.java
- EriBankTest
 DriverFactory.java
  DriverFactory
+Device.java
+ Device
+TestRunner.java
+ TestRunner
+Configuration.java
+ Configuration
+AppStoreTest_ios.java
+ AppStoreTest_ios
+temp.java
+ temp
+AppStoreTest_Android.java
+ AppStoreTest_Android
 TapTheDotTest.java
  TapTheDotTest
 EriBankTest_ios.java
@@ -24,9 +20,9 @@ EspnTest_Android.java
  EspnTest_Android
 EspnTest_ios.java
  EspnTest_ios
-temp.java
- temp
-TestRunner.java
- TestRunner
+MobileTest.java
+ MobileTest
+EriBankTest_Android.java
+ EriBankTest_Android
 TestThreadPool.java
  TestThreadPool

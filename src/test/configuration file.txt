@@ -1,9 +1,9 @@
 {cloudUrl:"https://qacloud.experitest.com",
-username:"maayan_user",
+username:"yuval_user",
 accessKey:"eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo4MDAwNDAsInhwLnAiOjM5NDkwNDUsInhwLm0iOjE1Mzg2Mzg3MDY3NzYsImV4cCI6MTkyMDg4NDYxOCwiaXNzIjoiY29tjdsjfaXRlc3QifQ.J0wJtDZr2TDDaxqPrhCqobZjIxWNp36XqJjtxftWF0c",
 numOfDevices:3,
 serialNumber:"29cbec617d04",
-testToRun:"all/spcific test name",
+testToRun:"all",
 repeat:30
 }
 

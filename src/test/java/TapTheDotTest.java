@@ -21,14 +21,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class TapTheDotTest {
-    static AndroidDriver<AndroidElement> driver;
-    static WebDriverWait wait;
+public class TapTheDotTest extends MobileTest{
+    //    static AndroidDriver<AndroidElement> driver;
+//    static WebDriverWait wait;
     public static void main(String[] args) {
     }
 
     @BeforeEach
     public void setUp() {
+        test_name="Tap The Dot Android";
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("accessKey","eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
         capabilities.setCapability("deviceQuery", "@os='android' and @category='TABLET' and @serialnumber='32e0d2a20377e920'");
@@ -52,85 +54,80 @@ public class TapTheDotTest {
         }
 
         System.out.println("Application Started");
-        aproveConditions();
     }
 
     @Test
     public void Test1() {
-        String pathToCsv = "C:\\Users\\YuvalGeva\\IdeaProjects\\FirstAutomationProj\\src\\test\\Login data.csv";
-        BufferedReader csvReader = null;
-
+        test_name="Tap The Dot Android Login";
         try {
+//        String pathToCsv = "C:\\Users\\YuvalGeva\\IdeaProjects\\FirstAutomationProj\\src\\test\\Login data.csv";
+            BufferedReader csvReader = null;
             csvReader = new BufferedReader(new FileReader(pathToCsv));
-        } catch (FileNotFoundException var8) {
-            System.out.println("failed to open csv");
-            var8.printStackTrace();
-        }
-
-        String log = "";
-
-        while(true) {
-            try {
-                if ((log = csvReader.readLine()) == null) {
-                    break;
+            String log = "";
+            while(true) {
+                if (( log = csvReader.readLine() ) == null) {
+                    break;}
+                String[] logData = log.split(",");
+                String name = logData[0];
+                String verifyName = "";
+                if (logData.length == 2) {
+                    verifyName = logData[1];
                 }
-            } catch (IOException var9) {
-                System.out.println("no line");
-                var9.printStackTrace();
-            }
-
-            String[] logData = log.split(",");
-            String name = logData[0];
-            String verifyName = "";
-            if (logData.length == 2) {
-                verifyName = logData[1];
-            }
-
-            this.insertInfo(name, verifyName);
-            if (name.equals(verifyName) && name!="") {
+                this.insertInfo(name, verifyName);
+                if (name.equals(verifyName) && name != "") {
 //                Assert.assertFalse("name==verifyName && name not empty pops Erorr message", this.checkErrorMessage());
-                backToReister();
-            } else {
-                Assert.assertTrue(name + ", " + verifyName + "didnt pop Erorr message", this.checkErrorMessage());
-                clearReister();
+                    backToReister();
+                } else {
+                    Assert.assertTrue(name + ", " + verifyName + "didnt pop Erorr message", this.checkErrorMessage());
+                    clearReister();
+                }
             }
-        }
 
-        try {
             csvReader.close();
-        } catch (IOException var7) {
-            System.out.println("cant close file");
-            var7.printStackTrace();
+            System.out.println("-----" + test_name + " finished-----\n");
+            writeRunFile("TEST " + test_name + " passed");
         }
+        catch (FileNotFoundException e) {
+            System.out.println("TEST "+test_name+" failed: FileNotFoundException:failed to open csv");
+            printExeption(e);
+        }
+        catch (IOException e) {
+            System.out.println("TEST "+test_name+" failed: IOException -invalid file:cant close file or no line to read"+e.getStackTrace());
+            printExeption(e);
 
-        System.out.println("test 1 finished");
+        }
+        catch (Exception e) {
+            printExeption(e);
+
+        }
     }
 
     @Test
     public void Test2() {
-        insertInfo("Yuval","Yuval");
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@text='PLAY!']")))).click();
-        for (int i=0;i<3;i++){
-            try{
-                driver.findElement(By.xpath("//*[@text='TAP']")).click();
+        test_name="Tap The Dot Android play 3 taps";
+        try {
+            insertInfo("Yuval", "Yuval");
+            wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@text='PLAY!']")))).click();
+            for (int i = 0; i < 3; i++) {
+                try {
+                    driver.findElement(By.xpath("//*[@text='TAP']")).click();
+                } catch (Exception e) {
+                    System.out.println("failed to catch the button on the:" + i + "'s try");
+                }
             }
-            catch (Exception e) {
-                System.out.println("failed to catch the button on the:"+i+"'s try");
 
-            }
-
-
+            wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@text='FINISH']")))).click();
+            printSeccess();
         }
-
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@text='FINISH']")))).click();
-
-
+        catch (Exception e) {
+            printExeption(e);
+        }
     }
-
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
-    }
+//
+//    @AfterEach
+//    public void tearDown() {
+//        driver.quit();
+//    }
 
     public void insertInfo(String username, String verifyName) {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id='nameTextBox']")))).sendKeys(username);

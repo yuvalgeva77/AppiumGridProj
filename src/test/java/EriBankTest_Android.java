@@ -19,7 +19,6 @@ import java.lang.*;
 
 public class EriBankTest_Android extends MobileTest{
 
-
     public static void main(String[] args) {
     }
 
@@ -41,8 +40,8 @@ public class EriBankTest_Android extends MobileTest{
 
     @Test
     public void Test1() {
-        test_name="EriBank Login";
-             pathToCsv = "C:\\Users\\YuvalGeva\\IdeaProjects\\AppiumGridProj\\src\\test\\Login data.csv";
+        test_name="EriBank android Login";
+//             pathToCsv = "C:\\Users\\YuvalGeva\\IdeaProjects\\AppiumGridProj\\src\\test\\Login data.csv";
         try {
             BufferedReader csvReader = null;
             csvReader = new BufferedReader(new FileReader(pathToCsv));
@@ -65,36 +64,36 @@ public class EriBankTest_Android extends MobileTest{
 
             }
             csvReader.close();
-            System.out.println("-----" + test_name + " finished-----\n");
-            writeRunFile("TEST " + test_name + " passed");
+            printSeccess();
         }
         catch (FileNotFoundException e) {
-            System.out.println("failed to open csv");
-            e.printStackTrace();
+            System.out.println("FileNotFoundException:failed to open csv");
+            printExeption(e);
         }
         catch (IOException e) {
             System.out.println("IOException -invalid file");
-            e.printStackTrace();}
+            printExeption(e);
+        }
         catch (Exception e) {
-            System.out.println("------"+"TEST "+test_name+" failed:\n"+e.getStackTrace());
-            writeRunFile("TEST "+test_name+" failed:\n"+e.getStackTrace());
-            throw e;
-
-    }
+            printExeption(e);
+        }
     }
 
 
 
     @Test
     public void Test2() {
-        String TEST_NAME="EriBank Payment";
-        insertInfo("company","company");
-        double payedAmount=50;
-        double firstAmount=makePayment(payedAmount);
-        double finalAmount=checkAmount();
-        assertTrue("error:checkAmount!=firstAmount-payedAmount",finalAmount==firstAmount-payedAmount);
-        writeRunFile("TEST "+TEST_NAME+" passed");
-
+         test_name="EriBank android Payment";
+        try {
+            insertInfo("company", "company");
+            double payedAmount = 50;
+            double firstAmount = makePayment(payedAmount);
+            double finalAmount = checkAmount();
+            assertTrue("error:checkAmount!=firstAmount-payedAmount", finalAmount == firstAmount - payedAmount);
+            printSeccess();
+        } catch (Exception e) {
+            printExeption(e);
+        }
 
 
     }

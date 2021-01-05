@@ -29,20 +29,21 @@ import static org.junit.Assert.assertTrue;
 
 public class AppStoreTest_Android extends MobileTest{
 //    static AndroidDriver<AndroidElement> driver;
-    static WebDriverWait wait;
-    String DEVICE_NAME = "device1";
-    static long CURRENT_TIME;
+//    static WebDriverWait wait;
+//    String DEVICE_NAME = "device1";
+//    static long CURRENT_TIME;
 
     public static void main(String[] args) {
 
     }
-//    @BeforeAll
+    //    @BeforeAll
 //    public static void resetTimer(){
 //        CURRENT_TIME = System.currentTimeMillis();
 //
 //    }
     @BeforeEach
     public void setUp()  {
+        test_name = "AppStore android ";
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("testName", "AppStoreTest_Android");
         capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
@@ -59,14 +60,14 @@ public class AppStoreTest_Android extends MobileTest{
 
         }
         System.out.println("Aplication Started");
-        DEVICE_NAME=driver.getCapabilities().getCapability("deviceName").toString();
-        String VERSION=driver.getCapabilities().getCapability("CapabilityType.VERSION").toString();
+//        DEVICE_NAME=driver.getCapabilities().getCapability("deviceName").toString();
+//        String VERSION=driver.getCapabilities().getCapability("CapabilityType.VERSION").toString();
     }
 
 
     @Test
-    public void Test1() throws InterruptedException {
-        String TEST_NAME = "AppStore android Download";
+    public void Test1()  {
+        test_name = "AppStore android Download";
         try {
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
             List<AndroidElement> appList = driver.findElementsByXPath("//*[contains(@contentDescription, \"App:\")]");
@@ -75,14 +76,11 @@ public class AppStoreTest_Android extends MobileTest{
             TimeUnit.SECONDS.sleep(30);
 //            wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@id='message']")));
             wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='Uninstall']")));
-            System.out.println("-----------TEST " + TEST_NAME + " passed ------------\n");
-            writeRunFile("TEST " + TEST_NAME + " passed\n");
+            printSeccess();
             //*[@text=
 
         } catch (Exception e) {
-            System.out.println("-----------TEST " + TEST_NAME + " failed------------\n" + e.getStackTrace().toString() + "\n");
-            writeRunFile("TEST " + TEST_NAME + " failed\n" + e.getStackTrace().toString() + "\n");
-            throw e;
+            printExeption(e);
 
         }
 
@@ -90,7 +88,7 @@ public class AppStoreTest_Android extends MobileTest{
 
     @Test
     public void Test2() {
-        String TEST_NAME = "AppStore android top10";
+        test_name = "AppStore android top10";
         try {
             // wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
@@ -108,16 +106,13 @@ public class AppStoreTest_Android extends MobileTest{
             for (int i = 0; i < 10; i++) {
                 System.out.println(String.valueOf(i+1)+"."+appNames.get(i)+"\n");}
 
-            System.out.println("-----------TEST " + TEST_NAME + " passed ------------\n");
-            writeRunFile("TEST " + TEST_NAME + " passed");
+            printSeccess();
         } catch(Exception e){
-            System.out.println("-----------TEST " + TEST_NAME + " failed------------\n" + e.getStackTrace().toString() + "\n");
-            writeRunFile("TEST " + TEST_NAME + " failed\n" + e.getStackTrace().toString() + "\n");
-            throw e;
+            printExeption(e);
 
         }
     }
-//    public  void writeFile(String value){
+    //    public  void writeFile(String value){
 //        String PATH = "./";
 //        //crete RUN_CURRENT_TIME directory
 //        String directoryName = PATH.concat("RUN_"+CURRENT_TIME);

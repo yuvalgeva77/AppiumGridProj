@@ -18,11 +18,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Driver;
 
+import static org.junit.Assert.assertTrue;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class  MobileTest {
     protected AppiumDriver driver;
     protected String test_status;
-    protected  Configuration testConfiguration;
+    public static  Configuration testConfiguration;
     protected DriverFactory driverFactory;
     protected WebDriverWait wait;
     protected Device device;
@@ -31,11 +33,15 @@ public class  MobileTest {
     protected String pathToCsv = "src/test/Login data.csv";
     protected String configurationPath="src/test/configuration file.txt";
 
+    public static void setTestConfiguration(Configuration testConfiguration) {
+        MobileTest.testConfiguration = testConfiguration;
+    }
+
     @BeforeAll
     public void resetTimer(){
         System.out.println("--------Test suite started-----");
         CURRENT_TIME = System.currentTimeMillis();
-        resetConfigurations();
+        driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl(),testConfiguration.getSerialNumber());
 
     }
     public void writeRunFile(String value){
@@ -60,7 +66,7 @@ public class  MobileTest {
     @AfterEach
     public void tearDown() {
         driver.quit();
-        System.out.println(test_name+" finished\n");
+        System.out.println("-----"+test_name+" finished\n");
 
     }
 
@@ -76,8 +82,16 @@ public class  MobileTest {
             e.printStackTrace();
         }
     }
-
-
+public void printExeption(Exception e){
+    test_status="TEST "+test_name+" failed\n"+e.getStackTrace().toString();
+    writeRunFile(test_status);
+    assertTrue(test_status,false);
+}
+    public void printSeccess(){
+        test_status="TEST "+test_name+" passed\n";
+        writeRunFile(test_status);
+        System.out.println(test_status);
+    }
 
 };
 
