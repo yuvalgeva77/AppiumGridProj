@@ -65,8 +65,10 @@ public class EriBankTest_ios extends MobileTest {
             driver = new IOSDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
             driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
             wait = new WebDriverWait(driver, 120);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+            device=new Device(driver);
+        } catch (Exception e) {
+            System.out.println("TEST "+test_name+" failed in setUp");
+            printExeption(e);
 
         }
 //         pathToCsv = "src/test/company.csv";

@@ -67,6 +67,7 @@ public class AppStoreTest_ios extends MobileTest{
         try {
             driver = new IOSDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
             driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
+            device=new Device(driver);
             wait = new WebDriverWait(driver, 120);
         } catch (MalformedURLException e) {
             e.printStackTrace();

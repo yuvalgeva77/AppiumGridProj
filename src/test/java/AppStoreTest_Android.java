@@ -44,17 +44,19 @@ public class AppStoreTest_Android extends MobileTest{
     @BeforeEach
     public void setUp()  {
         test_name = "AppStore android ";
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("testName", "AppStoreTest_Android");
-        capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
-        capabilities.setCapability("deviceQuery", "@os='android'");
-//        capabilities.setCapability(MobileCapabilityType.FULL_RESET, true);
-        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.android.vending");
-        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".AssetBrowserActivity");
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("testName", "AppStoreTest_Android");
+//        capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
+//        capabilities.setCapability("deviceQuery", "@os='android'");
+////        capabilities.setCapability(MobileCapabilityType.FULL_RESET, true);
+//        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.android.vending");
+//        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".AssetBrowserActivity");
         try {
-//            driver=(new DriverFactory()).getAndroidDriverApp("com.android.vending",".AssetBrowserActivity",false);
-            driver = new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
+            driver=(driverFactory).getAndroidDriverApp("com.android.vending",".AssetBrowserActivity",false);
+//            driver = new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
             wait = new WebDriverWait(driver, 120);
+            device=new Device(driver);
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
 

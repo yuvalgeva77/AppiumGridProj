@@ -38,7 +38,7 @@ public class Device {
         name=driver.getCapabilities().getCapability("device.name").toString();
         category=driver.getCapabilities().getCapability("device.category").toString();
         version =driver.getCapabilities().getCapability("device.version").toString();
-        os=        version =driver.getCapabilities().getCapability("device.os").toString();
+        os =driver.getCapabilities().getCapability("device.os").toString();
 
     }
 

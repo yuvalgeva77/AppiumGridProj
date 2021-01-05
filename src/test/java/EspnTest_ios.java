@@ -52,10 +52,11 @@ public class EspnTest_ios extends MobileTest {
             driver = new IOSDriver<IOSElement>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
-        } catch (MalformedURLException e) {
-            System.out.println(e.getCause());
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+            device=new Device(driver);
+        } catch (Exception e) {
+            System.out.println("TEST "+test_name+" failed in setUp");
+            printExeption(e);
+
         }
         System.out.println("Aplication Started");
     }

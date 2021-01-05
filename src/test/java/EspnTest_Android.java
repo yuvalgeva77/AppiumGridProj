@@ -42,8 +42,9 @@ public class EspnTest_Android extends MobileTest {
             device=new Device(driver);
             System.out.println("----test Started----\n");
         } catch (Exception e) {
-            System.out.println("-----couldnt load DRIVER!------");
-            e.printStackTrace();
+            System.out.println("TEST "+test_name+" failed in setUp");
+            printExeption(e);
+
         }
     }
 

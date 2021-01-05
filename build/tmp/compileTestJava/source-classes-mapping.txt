@@ -6,14 +6,14 @@ TestRunner.java
  TestRunner
 Configuration.java
  Configuration
-AppStoreTest_ios.java
- AppStoreTest_ios
+TestThreadPool.java
+ TestThreadPool
 temp.java
  temp
-AppStoreTest_Android.java
- AppStoreTest_Android
-TapTheDotTest.java
- TapTheDotTest
+EriBankTest_Android.java
+ EriBankTest_Android
+AppStoreTest_ios.java
+ AppStoreTest_ios
 EriBankTest_ios.java
  EriBankTest_ios
 EspnTest_Android.java
@@ -22,7 +22,7 @@ EspnTest_ios.java
  EspnTest_ios
 MobileTest.java
  MobileTest
-EriBankTest_Android.java
- EriBankTest_Android
-TestThreadPool.java
- TestThreadPool
+AppStoreTest_Android.java
+ AppStoreTest_Android
+TapTheDotTest.java
+ TapTheDotTest

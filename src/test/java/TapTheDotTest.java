@@ -30,27 +30,26 @@ public class TapTheDotTest extends MobileTest{
     @BeforeEach
     public void setUp() {
         test_name="Tap The Dot Android";
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("accessKey","eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
-        capabilities.setCapability("deviceQuery", "@os='android' and @category='TABLET' and @serialnumber='32e0d2a20377e920'");
-        capabilities.setCapability("platformVersion", "8");
-        capabilities.setCapability(MobileCapabilityType.APP,"cloud:com.example.tapthedot/.MainActivity");
-        capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
-        capabilities.setCapability("appPackage", "com.example.tapthedot");
-        capabilities.setCapability("appActivity", ".MainActivity");
-
-
-
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("accessKey","eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
+//        capabilities.setCapability("deviceQuery", "@os='android' and @category='TABLET' and @serialnumber='32e0d2a20377e920'");
+//        capabilities.setCapability("platformVersion", "8");
+//        capabilities.setCapability(MobileCapabilityType.APP,"cloud:com.example.tapthedot/.MainActivity");
+//        capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
+//        capabilities.setCapability("appPackage", "com.example.tapthedot");
+//        capabilities.setCapability("appActivity", ".MainActivity");
         try {
+            driver =(driverFactory.getAndroidDriverApp("com.example.tapthedot",".MainActivity",true));
 
-            driver = new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
+//            driver = new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
 //            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
             wait = new WebDriverWait(driver, 10L);
-        } catch (MalformedURLException var3) {
-            System.out.println(var3.getCause());
-            System.out.println(var3.getMessage());
-            var3.printStackTrace();
+            device=new Device(driver);
+
+        }   catch (Exception e) {
+            System.out.println("TEST "+test_name+" failed in setUp");
+            printExeption(e);
+
         }
 
         System.out.println("Application Started");
@@ -84,8 +83,7 @@ public class TapTheDotTest extends MobileTest{
             }
 
             csvReader.close();
-            System.out.println("-----" + test_name + " finished-----\n");
-            writeRunFile("TEST " + test_name + " passed");
+            printSeccess();
         }
         catch (FileNotFoundException e) {
             System.out.println("TEST "+test_name+" failed: FileNotFoundException:failed to open csv");

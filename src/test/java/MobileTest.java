@@ -41,6 +41,9 @@ public class  MobileTest {
     public void resetTimer(){
         System.out.println("--------Test suite started-----");
         CURRENT_TIME = System.currentTimeMillis();
+        if(testConfiguration==null){
+            resetConfigurations();
+        }
         driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl(),testConfiguration.getSerialNumber());
 
     }
@@ -83,7 +86,7 @@ public class  MobileTest {
         }
     }
 public void printExeption(Exception e){
-    test_status="TEST "+test_name+" failed\n"+e.getStackTrace().toString();
+    test_status="TEST "+test_name+" failed\n"+e.getStackTrace().toString()+"\n";
     writeRunFile(test_status);
     assertTrue(test_status,false);
 }

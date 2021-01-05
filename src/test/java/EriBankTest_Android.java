@@ -27,13 +27,15 @@ public class EriBankTest_Android extends MobileTest{
         test_name="EriBank Android";
         try {
             driver =(driverFactory.getAndroidDriverApp("cloud:com.experitest.ExperiBank",".LoginActivity",true));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            System.out.println("-----couldnt load DRIVER!------");
+            wait = new WebDriverWait(driver, 10);
+            device=new Device(driver);
+
+        } catch (Exception e) {
+            System.out.println("TEST "+test_name+" failed in setUp");
+            printExeption(e);
 
         }
-        wait = new WebDriverWait(driver, 10);
-        device=new Device(driver);
+
         System.out.println("----test Started----\n");
     }
 

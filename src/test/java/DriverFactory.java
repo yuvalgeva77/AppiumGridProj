@@ -27,9 +27,10 @@ public class DriverFactory {
 
     public AndroidDriver getAndroidDriverApp(String appPackage, String appActivity, Boolean createAppATribute) throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
-
         dc.setCapability("accessKey", accessKey);
         dc.setCapability("deviceQuery", "@os='android'");
+        if (!serialNumber.equals(""))
+            dc.setCapability("deviceQuery", "@os='android' and @serialNumber=\'"+serialNumber+"\'");
 //                dc.setCapability("app", "cloud:com.experitest.ExperiBank/.LoginActivity");
         dc.setCapability("fullReset", true);
         dc.setCapability("appPackage", appPackage);
@@ -46,6 +47,8 @@ public class DriverFactory {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("accessKey",accessKey);
         capabilities.setCapability("deviceQuery", "@os='android'");
+        if (!serialNumber.equals(""))
+            capabilities.setCapability("deviceQuery", "@os='android' and @serialNumber=\'"+serialNumber+"\'");
         capabilities.setCapability("testName", "EspnTest Android");
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
         capabilities.setBrowserName(MobileBrowserType.CHROMIUM);
@@ -63,8 +66,11 @@ public class DriverFactory {
         DesiredCapabilities dc = new DesiredCapabilities();
         String APP="cloud:"+appPackage+"/"+appActivity;
         dc.setCapability("accessKey", accessKey);
-        dc.setCapability("deviceQuery", "@os='android'");
-//                dc.setCapability("app", "cloud:com.experitest.ExperiBank/.LoginActivity");
+        dc.setCapability("deviceQuery", "@os='ios'");
+        if (!serialNumber.equals(""))
+            dc.setCapability("deviceQuery", "@os='ios' and @serialNumber=\'"+serialNumber+"\'");
+//
+//      dc.setCapability("app", "cloud:com.experitest.ExperiBank/.LoginActivity");
         dc.setCapability("app", APP);
         dc.setCapability("fullReset", true);
         dc.setCapability("appPackage", appPackage);

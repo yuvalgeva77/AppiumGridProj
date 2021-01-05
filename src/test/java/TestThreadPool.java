@@ -17,20 +17,24 @@ public class TestThreadPool {
     protected static   Configuration testConfiguration;
     protected static String configurationPath="src/test/configuration file.txt";
     private static List<String> testNames;
+    private static List<String> machines;
+
 
 
     public static void main(String[] args) {
+        //run the all suite chosen in testNames on a selected number of devices
+        // ( thread= device.  tasks in size of thread->each thread will run a task)
         resetConfigurations();
-            ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(testNames.size());
-            for (String testClassName : testNames) {
-                List<String> testC = new LinkedList<>();
-                testC.add(testClassName);
-                TestRunner test = new TestRunner(testC);
+        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(testNames.size());
+        for (int i=0;i<testConfiguration.getNumOfDevices();i++) {
+//            List<String> testC = new LinkedList<>();
+//            testC.add(testClassName);
+            TestRunner test = new TestRunner(testNames);
 //                System.out.println("-------Created : " + i+"---------\n");
-                executor.execute(test);
-            }
-            executor.shutdown();
+            executor.execute(test);
         }
+        executor.shutdown();
+    }
 
 
 
@@ -47,11 +51,10 @@ public class TestThreadPool {
             }
             else
                 testNames = Arrays.asList(testConfiguration.getTestToRun().split(",").clone());
-
         } catch (FileNotFoundException e) {
             System.out.println("-------failed to open configuration csv!--------");
             e.printStackTrace();
         }
     }
-    }
+}
 
