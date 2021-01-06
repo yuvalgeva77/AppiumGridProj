@@ -1,2 +1,0 @@
-TEST AppStore ios Download passed
-TEST App Store ios passed

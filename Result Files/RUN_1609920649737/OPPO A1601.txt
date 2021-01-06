@@ -1,3 +1,0 @@
-TEST AppStore android Download failed
-[Ljava.lang.StackTraceElement;@1135f6da
-TEST AppStore android top10 passed

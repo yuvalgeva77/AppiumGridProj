@@ -18,6 +18,7 @@ public class TestThreadPool {
     protected static String configurationPath="src/test/configuration file.txt";
     private static List<String> testNames;
     private static List<String> machines;
+    protected long CURRENT_TIME;
 
 
 
@@ -25,6 +26,7 @@ public class TestThreadPool {
         //run the all suite chosen in testNames on a selected number of devices
         // ( thread= device.  tasks in size of thread->each thread will run a task)
         resetConfigurations();
+        MobileTest.setCURRENT_TIME();
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(testNames.size());
         for (int i=0;i<testConfiguration.getNumOfDevices();i++) {
 //            List<String> testC = new LinkedList<>();

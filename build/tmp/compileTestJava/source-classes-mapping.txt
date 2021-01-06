@@ -2,6 +2,8 @@ Configuration.java
  Configuration
 Device.java
  Device
+DriverFactory.java
+ DriverFactory
 TestRunner.java
  TestRunner
 TestThreadPool.java
@@ -10,8 +12,6 @@ temp.java
  temp
 AppStoreTest_Android.java
  AppStoreTest_Android
-DriverFactory.java
- DriverFactory
 TapTheDotTest.java
  TapTheDotTest
 EriBankTest_ios.java
@@ -26,3 +26,5 @@ EriBankTest_Android.java
  EriBankTest_Android
 AppStoreTest_ios.java
  AppStoreTest_ios
+TestLogger.java
+ TestLogger

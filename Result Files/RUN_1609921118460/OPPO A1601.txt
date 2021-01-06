@@ -1,2 +1,0 @@
-TEST EriBank android Login failed
-[Ljava.lang.StackTraceElement;@7d922e1b

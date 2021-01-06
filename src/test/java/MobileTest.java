@@ -29,7 +29,7 @@ public class  MobileTest {
     protected WebDriverWait wait;
     protected Device device;
     protected String test_name;
-    protected long CURRENT_TIME;
+    protected static long CURRENT_TIME;
     protected String pathToCsv = "src/test/Login data.csv";
     protected String configurationPath="src/test/configuration file.txt";
 
@@ -37,9 +37,14 @@ public class  MobileTest {
         MobileTest.testConfiguration = testConfiguration;
     }
 
+    public static void setCURRENT_TIME() {
+        MobileTest.CURRENT_TIME = System.currentTimeMillis();
+    }
+
     @BeforeAll
     public void resetTimer(){
         System.out.println("--------Test suite started-----");
+        if(CURRENT_TIME==0)
         CURRENT_TIME = System.currentTimeMillis();
         if(testConfiguration==null){
             resetConfigurations();
@@ -86,7 +91,7 @@ public class  MobileTest {
         }
     }
 public void printExeption(Exception e){
-    test_status="TEST "+test_name+" failed\n"+e.getStackTrace().toString()+"\n";
+    test_status="TEST "+test_name+" failed\n"+e.toString()+"\n";
     writeRunFile(test_status);
     assertTrue(test_status,false);
 }

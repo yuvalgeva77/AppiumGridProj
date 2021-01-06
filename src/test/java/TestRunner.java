@@ -12,6 +12,13 @@ import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
 import org.junit.platform.launcher.listeners.TestExecutionSummary;
 import org.junit.platform.launcher.listeners.TestExecutionSummary.Failure;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,6 +28,8 @@ public class TestRunner implements Runnable {
     private String name;
     private List<ClassSelector> testSelectors;
     private List<String> testNames;
+    protected long CURRENT_TIME;
+
 
 
     public String getName() {
@@ -64,5 +73,27 @@ public class TestRunner implements Runnable {
         System.out.println("getTestsSucceededCount() - " + summary.getTestsSucceededCount());
         failures.forEach(failure -> System.out.println("failure - " + failure.getException()));
     }
+
+    public void writeSummaryFile(String value){
+        String fileName = "Result Files/RUN_"+CURRENT_TIME+"/"+ "Overall Summary.txt";
+        try {
+            Path pathToFile = Paths.get(fileName);
+            Files.createDirectories(pathToFile.getParent());
+            File file = new File(String.valueOf(pathToFile));
+            file.createNewFile(); // if file already exists will do nothing
+            FileWriter fw = new FileWriter(file,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(value);
+            System.out.println("file data written at: "+file);
+            bw.close();
+        }
+        catch (IOException e){
+            System.out.println("couldnt write to file");
+            e.printStackTrace();
+            System.exit(-1);
+        }
+    }
+
+
 
 }

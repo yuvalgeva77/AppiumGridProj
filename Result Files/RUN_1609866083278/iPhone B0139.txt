@@ -1,4 +1,0 @@
-TEST AppStore ios Download failed
-[Ljava.lang.StackTraceElement;@35529b9c
-TEST App Store ios failed
-[Ljava.lang.StackTraceElement;@160e1f21
