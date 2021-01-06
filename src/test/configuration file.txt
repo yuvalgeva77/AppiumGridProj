@@ -1,9 +1,9 @@
 {cloudUrl:"https://qacloud.experitest.com/wd/hub",
 username:"yuval_user",
 accessKey:"eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4",
-numOfDevices:3,
+numOfDevices:1,
 serialNumber:"",
-testToRun:"all",
+testToRun:"EriBankTest_Android",
 repeat:30
 }
 

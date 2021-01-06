@@ -25,6 +25,7 @@ public class  MobileTest {
     protected AppiumDriver driver;
     protected String test_status;
     public static  Configuration testConfiguration;
+    public static TestLogger testLogger;
     protected DriverFactory driverFactory;
     protected WebDriverWait wait;
     protected Device device;
@@ -32,6 +33,14 @@ public class  MobileTest {
     protected static long CURRENT_TIME;
     protected String pathToCsv = "src/test/Login data.csv";
     protected String configurationPath="src/test/configuration file.txt";
+
+    public static TestLogger getTestLogger() {
+        return testLogger;
+    }
+
+    public static void setTestLogger(TestLogger testLogger) {
+        MobileTest.testLogger = testLogger;
+    }
 
     public static void setTestConfiguration(Configuration testConfiguration) {
         MobileTest.testConfiguration = testConfiguration;
@@ -45,9 +54,12 @@ public class  MobileTest {
     public void resetTimer(){
         System.out.println("--------Test suite started-----");
         if(CURRENT_TIME==0)
-        CURRENT_TIME = System.currentTimeMillis();
+            CURRENT_TIME = System.currentTimeMillis();
         if(testConfiguration==null){
             resetConfigurations();
+            if (testLogger==null){
+                resetLogger();
+            }
         }
         driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl(),testConfiguration.getSerialNumber());
 
@@ -70,11 +82,34 @@ public class  MobileTest {
             e.printStackTrace();
             System.exit(-1);
         }
+    }  public static void writeLogFile(){
+        String fileName = "Result Files/RUN_"+CURRENT_TIME+"/"+"Summery Log.txt";
+        try {
+            Path pathToFile = Paths.get(fileName);
+            Files.createDirectories(pathToFile.getParent());
+            File file = new File(String.valueOf(pathToFile));
+            file.createNewFile(); // if file already exists will do nothing
+            FileWriter fw = new FileWriter(file,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(testLogger.toString());
+            bw.close();
+        }
+        catch (IOException e){
+            System.out.println("couldnt write to file");
+            e.printStackTrace();
+            System.exit(-1);
+        }
     }
+
     @AfterEach
     public void tearDown() {
         driver.quit();
         System.out.println("-----"+test_name+" finished\n");
+
+    }
+    public static TestLogger resetLogger(){
+        testLogger=new TestLogger();
+        return testLogger;
 
     }
 
@@ -82,7 +117,7 @@ public class  MobileTest {
         BufferedReader csvReader = null;
         try {
             csvReader = new BufferedReader(new FileReader(configurationPath));
-             testConfiguration = new Gson().fromJson(csvReader, Configuration.class);
+            testConfiguration = new Gson().fromJson(csvReader, Configuration.class);
             driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl(),testConfiguration.getSerialNumber());
             System.out.println(testConfiguration.toString());
         } catch (FileNotFoundException e) {
@@ -90,15 +125,17 @@ public class  MobileTest {
             e.printStackTrace();
         }
     }
-public void printExeption(Exception e){
-    test_status="TEST "+test_name+" failed\n"+e.toString()+"\n";
-    writeRunFile(test_status);
-    assertTrue(test_status,false);
-}
+    public void printExeption(Exception e){
+        test_status="TEST "+test_name+" failed\n"+e.toString()+"\n";
+        writeRunFile(test_status);
+        testLogger.addDFail(device,e.toString()+"\n");
+        assertTrue(test_status,false);
+    }
     public void printSeccess(){
         test_status="TEST "+test_name+" passed\n";
         writeRunFile(test_status);
         System.out.println(test_status);
+        testLogger.addDPassed(device);
     }
 
 };

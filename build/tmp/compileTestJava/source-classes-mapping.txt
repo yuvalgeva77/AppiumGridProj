@@ -6,6 +6,9 @@ DriverFactory.java
  DriverFactory
 TestRunner.java
  TestRunner
+TestLogger.java
+ TestLogger
+ TestLogger$device_log
 TestThreadPool.java
  TestThreadPool
 temp.java
@@ -26,5 +29,3 @@ EriBankTest_Android.java
  EriBankTest_Android
 AppStoreTest_ios.java
  AppStoreTest_ios
-TestLogger.java
- TestLogger

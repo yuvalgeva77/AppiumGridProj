@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class TestThreadPool {
     private static String allTests="AppStoreTest_Android,AppStoreTest_ios,EriBankTest_Android,EriBankTest_ios,EspnTest_Android,EspnTest_ios,TapTheDotTest";
@@ -22,11 +23,12 @@ public class TestThreadPool {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         //run the all suite chosen in testNames on a selected number of devices
         // ( thread= device.  tasks in size of thread->each thread will run a task)
         resetConfigurations();
         MobileTest.setCURRENT_TIME();
+        MobileTest.resetLogger();
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(testNames.size());
         for (int i=0;i<testConfiguration.getNumOfDevices();i++) {
 //            List<String> testC = new LinkedList<>();
@@ -36,6 +38,8 @@ public class TestThreadPool {
             executor.execute(test);
         }
         executor.shutdown();
+        executor.awaitTermination(60, TimeUnit.DAYS);
+        MobileTest.writeLogFile();
     }
 
 
