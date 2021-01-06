@@ -47,143 +47,124 @@ public class EriBankTest_ios extends MobileTest {
     public static void main(String[] args) {
 
     }
-//    @BeforeAll
+    //    @BeforeAll
 //    public static void resetTimer(){
 //        CURRENT_TIME = System.currentTimeMillis();
 //
 //    }
     @BeforeEach
     public void setUp()  {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("testName", "Eri Bank ios Test");
-        capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
-        capabilities.setCapability("deviceQuery", "@os='ios'");
-        capabilities.setCapability(MobileCapabilityType.APP, "cloud:com.experitest.ExperiBank");
-        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.experitest.ExperiBank");
+        test_name="EriBank Ios";
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("testName", "Eri Bank ios Test");
+//        capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
+//        capabilities.setCapability("deviceQuery", "@os='ios'");
+//        capabilities.setCapability(MobileCapabilityType.APP, "cloud:com.experitest.ExperiBank");
+//        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.experitest.ExperiBank");
 
         try {
-            driver = new IOSDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
+            driver = driverFactory.getIOSDriverApp("com.experitest.ExperiBank");
+//            driver = new IOSDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
             driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
             wait = new WebDriverWait(driver, 120);
             device=new Device(driver);
         } catch (Exception e) {
             System.out.println("TEST "+test_name+" failed in setUp");
             printExeption(e);
-
         }
 //         pathToCsv = "src/test/company.csv";
-         pathToCsv = "src/test/Login data.csv";
         System.out.println("Aplication Started");
     }
     @Test
     public void Test1() {
-        test_name="EriBank Login";
-        BufferedReader csvReader = null;
+        test_name="EriBank ios Login";
         try {
+            BufferedReader csvReader = null;
             csvReader = new BufferedReader(new FileReader(pathToCsv));
-        } catch (FileNotFoundException e) {
-            System.out.println("failed to open csv");
-            e.printStackTrace();
-        }
-        String log = "";
-        while (true) {
-            try {
+            String log = "";
+            while (true) {
                 if (((log = csvReader.readLine()) == null)) break;
-            } catch (IOException e) {
-                System.out.println("no line");
-                e.printStackTrace();
-                writeFile("TEST "+test_name+" failed\n"+e.getStackTrace());
-
-            }
-            String[] logData = log.split(",");
-            String name = logData[0];
-            String password = "";
-            if(logData.length==2){
-                password = logData[1];
-            }
-
-
-//            System.out.println(logData[0]+logData[1]+"\n");
-
-            // do something with the data
-            insertInfo(name,password);
-            if(name.equals("company")&&password.equals("company")){
-                try {
-                    assertFalse("company company pops Erorr message",checkErrorMessage());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    writeFile("TEST "+test_name+" failed\n"+e.getStackTrace());
-                    throw e;
+                String[] logData = log.split(",");
+                String name = logData[0];
+                String password = "";
+                if(logData.length==2){
+                    password = logData[1];
                 }
-
-            }
-            else {
-                try {
+//            System.out.println(logData[0]+logData[1]+"\n");
+                // do something with the data
+                insertInfo(name,password);
+                if(name.equals("company")&&password.equals("company")){
+                    assertFalse("company company pops Erorr message",checkErrorMessage());
+                }
+                else {
                     assertTrue(name+", "+password+"didnt pop Erorr message",checkErrorMessage());
                     backToReister();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    writeFile("TEST "+test_name+" failed\n"+e.getStackTrace());
-                    throw e;
                 }
             }
-        }
-
-        try {
             csvReader.close();
-        } catch (IOException e) {
-            System.out.println("cant close file");
-            e.printStackTrace();
-            writeFile("TEST "+test_name+" failed\n"+e.getStackTrace());
-
+            printSeccess();
         }
-
-        System.out.println("test 1 finished");
-        writeFile("TEST "+test_name+" passed");
+        catch (FileNotFoundException e) {
+            System.out.println("FileNotFoundException:failed to open csv");
+            printExeption(e);
+        }
+        catch (IOException e) {
+            System.out.println("IOException -invalid file");
+            printExeption(e);
+        }
+        catch (Exception e) {
+            printExeption(e);
+        }
     }
 
     @Test
     public void Test2() {
-        String TEST_NAME="EriBank Payment";
-        insertInfo("company","company");
-        double payedAmount=50;
-        double firstAmount=makePayment(payedAmount);
-        double finalAmount=checkAmount();
-        assertTrue("error:checkAmount!=firstAmount-payedAmount",finalAmount==firstAmount-payedAmount);
-        writeFile("TEST "+TEST_NAME+" passed");
-
-
-
-    }
-
-    public  void writeFile(String value){
-        String PATH = "./";
-        //crete RUN_CURRENT_TIME directory
-        String directoryName = PATH.concat("RUN_"+CURRENT_TIME);
-        String fileName = device.getName()+ ".txt";
-        File directory = new File(directoryName);
-        if (! directory.exists()){
-            directory.mkdir();
-            System.out.println("directory created at: "+directory.getAbsolutePath());
-        }
-        //crete device_number file id doesnt exist and write the data
-        File file = new File(directoryName + "/" + fileName);
+        String TEST_NAME="EriBank ios Payment";
         try {
-            file.createNewFile(); // if file already exists will do nothing
-            //Here true is to append the content to file
-            FileWriter fw = new FileWriter(file,true);
-            //BufferedWriter writer give better performance
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(value);
-            System.out.println("file data written at: "+file);
-            bw.close();
+            insertInfo("company","company");
+            double payedAmount=50;
+            double firstAmount=makePayment(payedAmount);
+            double finalAmount=checkAmount();
+            assertTrue("error:checkAmount!=firstAmount-payedAmount",finalAmount==firstAmount-payedAmount);
+
         }
-        catch (IOException e){
-            e.printStackTrace();
-            System.exit(-1);
+        catch (Exception e) {
+            printExeption(e);
+
         }
     }
-    @AfterEach
+
+
+
+
+    //    public  void writeFile(String value){
+//        String PATH = "./";
+//        //crete RUN_CURRENT_TIME directory
+//        String directoryName = PATH.concat("RUN_"+CURRENT_TIME);
+//        String fileName = device.getName()+ ".txt";
+//        File directory = new File(directoryName);
+//        if (! directory.exists()){
+//            directory.mkdir();
+//            System.out.println("directory created at: "+directory.getAbsolutePath());
+//        }
+//        //crete device_number file id doesnt exist and write the data
+//        File file = new File(directoryName + "/" + fileName);
+//        try {
+//            file.createNewFile(); // if file already exists will do nothing
+//            //Here true is to append the content to file
+//            FileWriter fw = new FileWriter(file,true);
+//            //BufferedWriter writer give better performance
+//            BufferedWriter bw = new BufferedWriter(fw);
+//            bw.write(value);
+//            System.out.println("file data written at: "+file);
+//            bw.close();
+//        }
+//        catch (IOException e){
+//            e.printStackTrace();
+//            System.exit(-1);
+//        }
+//    }
+//    @AfterEach
 //    public void tearDown() {
 //        driver.quit();
 //    }

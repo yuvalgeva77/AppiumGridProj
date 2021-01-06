@@ -1,0 +1,3 @@
+TEST AppStore ios Download passed
+TEST App Store ios failed
+[Ljava.lang.StackTraceElement;@f6f7ff0

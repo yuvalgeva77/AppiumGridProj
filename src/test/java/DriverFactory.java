@@ -32,7 +32,7 @@ public class DriverFactory {
         if (!serialNumber.equals(""))
             dc.setCapability("deviceQuery", "@os='android' and @serialNumber=\'"+serialNumber+"\'");
 //                dc.setCapability("app", "cloud:com.experitest.ExperiBank/.LoginActivity");
-        dc.setCapability("fullReset", true);
+//        dc.setCapability("fullReset", true);
         dc.setCapability("appPackage", appPackage);
 //                dc.setCapability("appPackage", "com.experitest.ExperiBank");
         dc.setCapability("appActivity", appActivity);
@@ -61,23 +61,36 @@ public class DriverFactory {
 //    }
     }
 
-
-    public IOSDriver getIOSDriverApp(String appPackage,String appActivity) throws MalformedURLException {
+    //        test_name="App Store ios";
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
+//        capabilities.setCapability("deviceQuery", "@os='ios'");
+////        capabilities.setCapability(MobileCapabilityType.FULL_RESET, true);
+//
+////        capabilities.setCapability(MobileCapabilityType.APP, "cloud:com.apple.AppStore");
+//        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
+    public IOSDriver getIOSDriverApp(String bundle_id) throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
-        String APP="cloud:"+appPackage+"/"+appActivity;
+        String APP="cloud:"+bundle_id;
         dc.setCapability("accessKey", accessKey);
         dc.setCapability("deviceQuery", "@os='ios'");
         if (!serialNumber.equals(""))
             dc.setCapability("deviceQuery", "@os='ios' and @serialNumber=\'"+serialNumber+"\'");
-//
-//      dc.setCapability("app", "cloud:com.experitest.ExperiBank/.LoginActivity");
-        dc.setCapability("app", APP);
-        dc.setCapability("fullReset", true);
-        dc.setCapability("appPackage", appPackage);
-//                dc.setCapability("appPackage", "com.experitest.ExperiBank");
-        dc.setCapability("appActivity", appActivity);
-//                dc.setCapability("appActivity", ".LoginActivity");
-        return new IOSDriver(new URL(cloudUrl), dc);
+//        dc.setCapability(MobileCapabilityType.APP, APP);
+        dc.setCapability(MobileCapabilityType.FULL_RESET, true);
+        dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, bundle_id);
+//        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
+        return new IOSDriver<>(new URL(cloudUrl), dc);
+
+
+    }
+    public IOSDriver getIOSDriverSAFARI(Boolean fullReset) throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("accessKey", accessKey);
+        capabilities.setCapability("deviceQuery", "@os='ios'");
+        capabilities.setCapability(MobileCapabilityType.FULL_RESET,fullReset);
+        capabilities.setBrowserName(MobileBrowserType.SAFARI);
+        return new IOSDriver(new URL(cloudUrl), capabilities);
 
 
     }

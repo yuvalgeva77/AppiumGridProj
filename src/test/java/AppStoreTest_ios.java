@@ -56,21 +56,22 @@ public class AppStoreTest_ios extends MobileTest{
     @BeforeEach
     public void setUp()  {
         test_name="App Store ios";
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
-        capabilities.setCapability("deviceQuery", "@os='ios'");
-//        capabilities.setCapability(MobileCapabilityType.FULL_RESET, true);
-
-//        capabilities.setCapability(MobileCapabilityType.APP, "cloud:com.apple.AppStore");
-        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
+//        capabilities.setCapability("deviceQuery", "@os='ios'");
+////        capabilities.setCapability(MobileCapabilityType.FULL_RESET, true);
+//
+////        capabilities.setCapability(MobileCapabilityType.APP, "cloud:com.apple.AppStore");
+//        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
 
         try {
-            driver = new IOSDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
+            driver = driverFactory.getIOSDriverApp("com.apple.AppStore");
             driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
             device=new Device(driver);
             wait = new WebDriverWait(driver, 120);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("TEST "+test_name+" failed in setUp");
+            printExeption(e);
 
         }
         System.out.println("Aplication Started");

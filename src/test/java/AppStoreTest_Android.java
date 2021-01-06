@@ -52,7 +52,7 @@ public class AppStoreTest_Android extends MobileTest{
 //        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.android.vending");
 //        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".AssetBrowserActivity");
         try {
-            driver=(driverFactory).getAndroidDriverApp("com.android.vending",".AssetBrowserActivity",false);
+            driver=driverFactory.getAndroidDriverApp("com.android.vending",".AssetBrowserActivity",false);
 //            driver = new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
             wait = new WebDriverWait(driver, 120);
             device=new Device(driver);

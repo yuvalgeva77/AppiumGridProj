@@ -41,15 +41,14 @@ public class EspnTest_ios extends MobileTest {
     @BeforeEach
     public void setUp() {
         test_name="Espn ios";
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("accessKey","eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
-        capabilities.setCapability("deviceQuery", "@os='ios'");
-        capabilities.setCapability("testName", "EspnTest ios");
-        capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
-        capabilities.setBrowserName(MobileBrowserType.SAFARI);
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("accessKey","eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
+//        capabilities.setCapability("deviceQuery", "@os='ios'");
+//        capabilities.setCapability("testName", "EspnTest ios");
+//        capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
+//        capabilities.setBrowserName(MobileBrowserType.SAFARI);
         try {
-
-            driver = new IOSDriver<IOSElement>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
+            driver = driverFactory.getIOSDriverSAFARI(true);
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
             device=new Device(driver);

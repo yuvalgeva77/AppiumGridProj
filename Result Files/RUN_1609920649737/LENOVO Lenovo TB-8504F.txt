@@ -1,0 +1,2 @@
+TEST AppStore android top10 failed
+[Ljava.lang.StackTraceElement;@557a88

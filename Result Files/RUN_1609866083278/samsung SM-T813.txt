@@ -1,0 +1,4 @@
+TEST Tap The Dot Android Login failed
+[Ljava.lang.StackTraceElement;@3138dfcd
+TEST Tap The Dot Android play 3 taps failed
+[Ljava.lang.StackTraceElement;@39bbdefd
