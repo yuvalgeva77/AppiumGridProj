@@ -1,38 +1,79 @@
 //import org.junit.Before;
 //import org.junit.Test; // junit 4
-import org.junit.jupiter.api.BeforeEach; // junit 5
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 public class temp extends MobileTest {
-//    @BeforeAll
-//    public static void resetTimer(){
-//        this.CURRENT_TIME = System.currentTimeMillis();
-//
-//    }
-    public static void main(String[] args) {
-        System.out.println("main");
 
-    }
     @BeforeEach
     public void setUp() {
-        System.out.println("in subclass before");
+        test_name = "temp android";
+        try {
+            driver = ( driverFactory.getAndroidDriverApp("com.experitest.ExperiBank", ".LoginActivity", true) );
+            wait = new WebDriverWait(driver, 10);
+            device = new Device(driver);
+
+        } catch (Exception e) {
+            System.out.println("TEST " + test_name + " failed in setUp");
+            printExeption(e);
+
+        }
+
+        System.out.println("----test Started----\n");
+    }
+
+
+    @Test
+    public void Test1() {
+        test_name = "temp android 1";
+
+        try {
+                 printSeccess();
+        }
+         catch (Exception e) {
+            printExeption(e);
+        }
     }
 
     @Test
-    public void test1() {
-//        writeRunFile("cxvxvcxv1");
-//        resetConfigurations();
-        System.out.println("in test1 " + CURRENT_TIME);
+    public void Test2() {
+        test_name = "temp android 2";
+        try {
+            Assertions.assertTrue(false, "error:false in assert print");
+            throw new Exception("Exception message");
+        } catch (Exception e) {
+            printExeption(e);
+        }
     }
 
-    @Test
-    public void test2() {
-//        writeRunFile("cxvxvcxv");
-//        writeRunFile("cxvxvcx66666666v2");
+        @Test
+        public void Test3() {
+            test_name = "temp android 3";
+            try {
+                printSeccess();
+            }
+            catch (Exception e) {
+                printExeption(e);
+            }
+        }
 
-        System.out.println("in test2 + " + CURRENT_TIME);
-    }
+
+//
+//        @AfterEach
+//        public void tearDown() {
+//            driver.quit();
+//        }
+
+
 }
