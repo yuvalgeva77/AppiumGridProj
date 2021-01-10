@@ -76,7 +76,7 @@ public class EriBankTest_ios extends MobileTest {
         System.out.println("Aplication Started");
     }
     @Test
-    public void Test1() {
+    public void EriBankLogin() {
         test_name="EriBank ios Login";
         try {
             BufferedReader csvReader = null;
@@ -118,8 +118,8 @@ public class EriBankTest_ios extends MobileTest {
     }
 
     @Test
-    public void Test2() {
-        String TEST_NAME="EriBank ios Payment";
+    public void EriBankPayment() {
+        test_name ="EriBank ios Payment";
         try {
             insertInfo("company","company");
             double payedAmount=50;

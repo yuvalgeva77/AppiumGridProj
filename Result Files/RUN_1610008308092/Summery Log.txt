@@ -1,1 +1,0 @@
-1. Device{name='OnePlus ONEPLUS A6013', category='PHONE', version='9', os='Android'}, passed=2, failed=0

@@ -14,8 +14,8 @@ public class Configuration  implements InstanceCreator {
     private String serialNumber;
     private String testToRun;
     private int repeat;
-    private static String allTests="AppStoreTest_Android,AppStoreTest_ios,EriBankTest_Android,EriBankTest_ios,EspnTest_Android,EspnTest_ios,TapTheDotTest";
-
+    private static String suite_Andtoid="AppStoreTest_ios#AppStoreDownload,AppStoreTest_ios#AppStoreTop10,EriBankTest_ios#EriBankLogin,EriBankTest_ios#EriBankPayment,EspnTest_ios#Espn,TapTheDotLogin";
+    private static String suite_ios="AppStoreTest_Android#AppStoreDownload,AppStoreTest_Android#AppStoreTop10,EriBankTest_Android#EriBankLogin,EriBankTest_Android#EriBankPayment,EspnTest_Android#Espn,TapTheDotTest#TapTheDotLogin,TapTheDotTest#TapTheDotPlay";
 
 
     @Override
@@ -40,7 +40,7 @@ public class Configuration  implements InstanceCreator {
         this.testToRun = testToRun;
         this.repeat = repeat;
         if(testToRun.equals("all")){
-            this.testToRun=allTests;
+//            this.testToRun=allTests;
         }
 
     }
@@ -105,7 +105,7 @@ public class Configuration  implements InstanceCreator {
     @Override
     public Object createInstance(Type type) {
         if(testToRun.equals("all")){
-            this.testToRun=allTests;
+//            this.testToRun=allTests;
         }
         return null;
     }

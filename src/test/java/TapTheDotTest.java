@@ -56,7 +56,7 @@ public class TapTheDotTest extends MobileTest{
     }
 
     @Test
-    public void Test1() {
+    public void TapTheDotLogin() {
         test_name="Tap The Dot Android Login";
         try {
 //        String pathToCsv = "C:\\Users\\YuvalGeva\\IdeaProjects\\FirstAutomationProj\\src\\test\\Login data.csv";
@@ -101,7 +101,7 @@ public class TapTheDotTest extends MobileTest{
     }
 
     @Test
-    public void Test2() {
+    public void TapTheDotPlay() {
         test_name="Tap The Dot Android play 3 taps";
         try {
             insertInfo("Yuval", "Yuval");

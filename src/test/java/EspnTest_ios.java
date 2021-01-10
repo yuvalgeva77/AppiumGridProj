@@ -65,7 +65,7 @@ public class EspnTest_ios extends MobileTest {
 //
 //    }
     @Test
-    public void Test1() {
+    public void Espn() {
         test_name="Espn ios menu";
         try{
             aproveCondiotionsStart();

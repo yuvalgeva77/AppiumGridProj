@@ -79,7 +79,7 @@ public class AppStoreTest_ios extends MobileTest{
 
 
     @Test
-    public void Test1()  {
+    public void AppStoreDownload()  {
         test_name = "AppStore ios Download";
         try {
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Games']"))).click();
@@ -114,8 +114,8 @@ public class AppStoreTest_ios extends MobileTest{
     }
 
     @Test
-    public void Test2() throws Exception {
-        String TEST_NAME = "AppStore top10";
+    public void AppStoreTop10() throws Exception {
+        String TEST_NAME = "AppStore ios top10";
         try {
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Games']"))).click();
             while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0||!checkVisable((WebElement) driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).get(0))) {

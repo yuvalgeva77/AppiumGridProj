@@ -68,7 +68,7 @@ public class AppStoreTest_Android extends MobileTest{
 
 
     @Test
-    public void Test1()  {
+    public void AppStoreDownload()  {
         test_name = "AppStore android Download";
         try {
             wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
@@ -89,7 +89,7 @@ public class AppStoreTest_Android extends MobileTest{
     }
 
     @Test
-    public void Test2() {
+    public void AppStoreTop10() {
         test_name = "AppStore android top10";
         try {
             // wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();

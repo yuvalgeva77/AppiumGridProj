@@ -49,7 +49,7 @@ public class EspnTest_Android extends MobileTest {
     }
 
     @Test
-    public void Test1() {
+    public void Espn() {
         test_name="Espn Android";
         try{
             aproveCondiotionsStart();

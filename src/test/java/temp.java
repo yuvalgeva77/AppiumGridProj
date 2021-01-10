@@ -35,7 +35,7 @@ public class temp extends MobileTest {
 
 
     @Test
-    public void Test1() {
+    public void TestAAA() {
         test_name = "temp android 1";
 
         try {

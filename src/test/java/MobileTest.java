@@ -52,7 +52,7 @@ public class  MobileTest {
 
     @BeforeAll
     public void resetTimer(){
-        System.out.println("--------Test suite started-----");
+//        System.out.println("--------Test suite started-----");
         if(CURRENT_TIME==0)
             CURRENT_TIME = System.currentTimeMillis();
         if(testConfiguration==null){

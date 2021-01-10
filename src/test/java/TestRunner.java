@@ -1,7 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.platform.engine.discovery.ClassSelector;
+import org.junit.platform.engine.discovery.MethodSelector;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
@@ -26,7 +26,7 @@ import java.util.List;
 public class TestRunner implements Runnable {
     private String Device;
     private String name;
-    private List<ClassSelector> testSelectors;
+    private List<MethodSelector> testSelectors;
     private List<String> testNames;
     protected long CURRENT_TIME;
 
@@ -46,11 +46,14 @@ public class TestRunner implements Runnable {
 
     public TestRunner(List<String> testNames) {
         this.testNames = testNames;
-        testSelectors=new LinkedList<ClassSelector>() ;
+        testSelectors=new LinkedList<org.junit.platform.engine.discovery.MethodSelector>() ;
         for (String name:testNames)
-        {testSelectors.add(selectClass(name));
+//        {testSelectors.add(selectClass(name));
+            testSelectors.add(selectMethod(name));
+
         }
-    }
+
+
 
 
 
@@ -92,6 +95,7 @@ public class TestRunner implements Runnable {
             e.printStackTrace();
             System.exit(-1);
         }
+
     }
 
 
