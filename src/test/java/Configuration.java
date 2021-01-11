@@ -32,7 +32,7 @@ public class Configuration  implements InstanceCreator {
     }
 
     public Configuration(String cloudUrl, String username, String accessKey, int numOfDevices, String serialNumber, String testToRun, int repeat) {
-        this.cloudUrl = cloudUrl;
+        this.cloudUrl = cloudUrl+"/wd/hub";
         this.username = username;
         this.accessKey = accessKey;
         this.numOfDevices = numOfDevices;

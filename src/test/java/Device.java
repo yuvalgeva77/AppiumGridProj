@@ -28,14 +28,27 @@ public class Device{
     public String region;
     public String currentStatus;
     public String statusTooltip;
-    public Date lastUsedDateTime;
+    public String lastUsedDateTime;
     public String previousStatus;
     public String statusAgeInMinutes;
     public String statusModifiedAt;
-    public Date statusModifiedAtDateTime;
+    public String statusModifiedAtDateTime;
     public String displayStatus;
     public boolean whitelistCleanup;
     public String defaultDeviceLanguage;
+
+    public String getUdid() {
+        return udid;
+    }
+
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
+    public String getCurrentStatus() {
+        return currentStatus;
+    }
+
     public String defaultDeviceRegion;
     public int screenWidth;
     public int screenHeight;
@@ -77,7 +90,9 @@ public class Device{
                 '}';
     }
 
-
+    public String getDisplayStatus() {
+        return displayStatus;
+    }
 //    public Device(AppiumDriver driver) {
 //        name=driver.getCapabilities().getCapability("device.name").toString();
 //        category=driver.getCapabilities().getCapability("device.category").toString();

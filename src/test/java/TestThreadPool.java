@@ -4,10 +4,10 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.*;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -29,7 +29,7 @@ public class TestThreadPool {
         //run the all suite chosen in testNames on a selected number of devices
         // ( thread= device.  tasks in size of thread->each thread will run a task)
         resetConfigurations();
-        new RestProjectAPI().getApplications();
+        List<Device> freeDevs=new RestProjectAPI().getFreeDevices();
         MobileTest.setCURRENT_TIME();
         MobileTest.resetLogger();
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(testNames.size());
@@ -49,32 +49,73 @@ public class TestThreadPool {
 //    }
 
     public static class RestProjectAPI {
+        List<Device> devArray;
+        List<Device> mydevLst;
+
         private com.mashape.unirest.http.HttpResponse<JsonNode> responseString;
         private HttpResponse<InputStream> responseInputStream;
-//        private String urlBase = "https://qacloud.experitest.com/";   //TODO: modify hostname and port of your Reporter
-//        private String user = "user";  //TODO: user name
-//        private String password = ".....";  //TODO: user password
-//        private String accessKey= ".....";  //TODO: user access key
-//        String projectName = "projectName";//TODO: project name is here
-//        String projectID = "projectID";//TODO: project ID is here
-        public void getApplications() throws UnirestException, JSONException {
-            String url = "https://qacloud.experitest.com" + "/api/v1/devices";
-            responseString = Unirest.get(url).header("Authorization", "Bearer "+testConfiguration.getAccessKey()).header("content-type", "application/json").asJson();
-           System.out.println(responseString);
-           JSONArray arry = (JSONArray) responseString.getBody().getObject().get("data");
 
-//            for (Object o: jsonArray) {
-//                JSONObject deviceJson = (JSONObject) o;
-//                if (deviceJson.getString("udid").equals(serialNumber)) {
-//                    return deviceJson.getString("deviceOs");
-//                }
+        public List<Device> getDevices() throws UnirestException, JSONException {
+            String url = testConfiguration.getCloudUrl() + "/api/v1/devices";
+            responseString = Unirest.get(url).header("Authorization", "Bearer " + testConfiguration.getAccessKey()).header("content-type", "application/json").asJson();
+            System.out.println(responseString);
+            JSONArray jsonArray = (JSONArray) responseString.getBody().getObject().get("data");
+//                Gson gson = ;
+//            List<Device> devLst = new ArrayList<Device>();
+//
+//            int i=0;
+//            for (Object jdev:jsonArray) {
+//                Device dev=gson.fromJson(String.valueOf(jsonArray.get(i)), Device.class);
+//                devLst.add(dev);
+//                i++;
+//
 //            }
+            devArray = new ArrayList<>(Arrays.asList(new Gson().fromJson(String.valueOf(jsonArray), Device[].class)));
 
-//            responseString.getBody()
-            //com.mashape.unirest.http.HttpResponse<JsonNode> responseString = Unirest.get(url).header("Authorization", "Bearer "+testConfiguration.getAccessKey()).header("content-type", "application/json").asJson();
-//         //   JSONArray jsonArray = (JSONArray) responseString.getBody().getObject().get("data");
+            if(!testConfiguration.getSerialNumber().equals("")){
+                devArray.removeIf(dev -> (!dev.getUdid().equals(testConfiguration.getSerialNumber())));
+//                for (Device dev:devArray) {
+//                    if(!dev.getUdid().equals(testConfiguration.getSerialNumber())){
+//                        devArray.remove(dev);
+//                    }
+                }
+//                Device dev=gson.fromJson(String.valueOf(jsonArray.get(i)), Device.class);
+//                devLst.add(dev);
+//                i++;
+
+
+            return devArray;
         }
+        public List<Device> getFreeDevices() throws UnirestException {
+            int num=testConfiguration.getNumOfDevices();
+            getDevices();
+            mydevLst=new ArrayList<Device>();
+            if(num<=0)
+                return null;
+            for (Device dev:devArray) {
+                if(dev.getCurrentUser().equals(testConfiguration.getUsername())){
+                    mydevLst.add(dev);
+                    num--;
+                    if(num<=0)
+                        return mydevLst;}
+
+            }
+            for (Device dev:devArray) {
+                if(dev.getDisplayStatus().equals("Available")){
+                    mydevLst.add(dev);
+                    num--;
+                    if(num<=0)
+                        return mydevLst;}
+
+            }
+            return mydevLst;
+
+
+        }
+
     }
+
+
 
 
     public static void resetConfigurations(){
