@@ -39,7 +39,6 @@ public class EspnTest_Android extends MobileTest {
             driver =(driverFactory.getAndroidDriverChrome("EspnTest Android",true));
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
-            device=new Device(driver);
             System.out.println("----test Started----\n");
         } catch (Exception e) {
             System.out.println("TEST "+test_name+" failed in setUp");

@@ -55,7 +55,6 @@ public class AppStoreTest_Android extends MobileTest{
             driver=driverFactory.getAndroidDriverApp("com.android.vending",".AssetBrowserActivity",false);
 //            driver = new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
             wait = new WebDriverWait(driver, 120);
-            device=new Device(driver);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

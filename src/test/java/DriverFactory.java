@@ -17,22 +17,26 @@ public class DriverFactory {
     private String accessKey;
     private String cloudUrl;
     private String serialNumber;
+    private Device device;
 
-    public DriverFactory(String accessKey, String cloudUrl, String serialNumber) {
+    public DriverFactory(String accessKey, String cloudUrl) {
         this.accessKey = accessKey;
-        this.cloudUrl = cloudUrl;
-        this.serialNumber = serialNumber;
+        this.cloudUrl = cloudUrl+"/wd/hub";
     }
 
+    public void setDevice(Device device) {
+        this.device = device;
+    }
 
     public AndroidDriver getAndroidDriverApp(String appPackage, String appActivity, Boolean createAppATribute) throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
+        dc.setCapability(MobileCapabilityType.UDID, device.getUdid());
         dc.setCapability("accessKey", accessKey);
-        dc.setCapability("deviceQuery", "@os='android'");
-        if (!serialNumber.equals(""))
-            dc.setCapability("deviceQuery", "@os='android' and @serialNumber=\'"+serialNumber+"\'");
-//                dc.setCapability("app", "cloud:com.experitest.ExperiBank/.LoginActivity");
-//        dc.setCapability("fullReset", true);
+//        dc.setCapability("deviceQuery", "@os='android'");
+//        if (!serialNumber.equals(""))
+//            dc.setCapability("deviceQuery", "@os='android' and @serialNumber=\'"+serialNumber+"\'");
+////                dc.setCapability("app", "cloud:com.experitest.ExperiBank/.LoginActivity");
+////        dc.setCapability("fullReset", true);
         dc.setCapability("appPackage", appPackage);
 //                dc.setCapability("appPackage", "com.experitest.ExperiBank");
         dc.setCapability("appActivity", appActivity);
@@ -45,11 +49,12 @@ public class DriverFactory {
 
     public AndroidDriver getAndroidDriverChrome(String testName,Boolean fullReset) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability(MobileCapabilityType.UDID, device.getUdid());
         capabilities.setCapability("accessKey",accessKey);
-        capabilities.setCapability("deviceQuery", "@os='android'");
-        if (!serialNumber.equals(""))
-            capabilities.setCapability("deviceQuery", "@os='android' and @serialNumber=\'"+serialNumber+"\'");
-        capabilities.setCapability("testName", "EspnTest Android");
+//        capabilities.setCapability("deviceQuery", "@os='android'");
+//        if (!serialNumber.equals(""))
+//            capabilities.setCapability("deviceQuery", "@os='android' and @serialNumber=\'"+serialNumber+"\'");
+//        capabilities.setCapability("testName", "EspnTest Android");
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
         capabilities.setBrowserName(MobileBrowserType.CHROMIUM);
         return new AndroidDriver<>(new URL(cloudUrl), capabilities);
@@ -73,10 +78,11 @@ public class DriverFactory {
         DesiredCapabilities dc = new DesiredCapabilities();
         String APP="cloud:"+bundle_id;
         dc.setCapability("accessKey", accessKey);
-        dc.setCapability("deviceQuery", "@os='ios'");
-        if (!serialNumber.equals(""))
-            dc.setCapability("deviceQuery", "@os='ios' and @serialNumber=\'"+serialNumber+"\'");
-//        dc.setCapability(MobileCapabilityType.APP, APP);
+//        dc.setCapability("deviceQuery", "@os='ios'");
+//        if (!serialNumber.equals(""))
+//            dc.setCapability("deviceQuery", "@os='ios' and @serialNumber=\'"+serialNumber+"\'");
+////        dc.setCapability(MobileCapabilityType.APP, APP);
+        dc.setCapability(MobileCapabilityType.UDID, device.getUdid());
         dc.setCapability(MobileCapabilityType.FULL_RESET, true);
         dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, bundle_id);
 //        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
@@ -87,7 +93,8 @@ public class DriverFactory {
     public IOSDriver getIOSDriverSAFARI(Boolean fullReset) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("accessKey", accessKey);
-        capabilities.setCapability("deviceQuery", "@os='ios'");
+//        capabilities.setCapability("deviceQuery", "@os='ios'");
+        capabilities.setCapability(MobileCapabilityType.UDID, device.getUdid());
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,fullReset);
         capabilities.setBrowserName(MobileBrowserType.SAFARI);
         return new IOSDriver(new URL(cloudUrl), capabilities);

@@ -19,9 +19,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class TestRunner extends Thread {
@@ -31,9 +29,24 @@ public class TestRunner extends Thread {
     private List<String> testNames;
     protected long CURRENT_TIME;
     protected Configuration configuration;
-    private static String suite_ios="AppStoreTest_ios#AppStoreDownload,AppStoreTest_ios#AppStoreTop10,EriBankTest_ios#EriBankLogin,EriBankTest_ios#EriBankPayment,EspnTest_ios#Espn,TapTheDotTest#TapTheDotLogin";
+//    private static String suite_ios="AppStoreTest_ios#AppStoreDownload,AppStoreTest_ios#AppStoreTop10,EriBankTest_ios#EriBankLogin,EriBankTest_ios#EriBankPayment,EspnTest_ios#";
 //    private static String suite_Andtoid ="AppStoreTest_Android#AppStoreDownload,AppStoreTest_Android#AppStoreTop10,EriBankTest_Android#EriBankLogin,EriBankTest_Android#EriBankPayment,EspnTest_Android#Espn,TapTheDotTest#TapTheDotLogin,TapTheDotTest#TapTheDotPlay";
-    private static String suite_Andtoid ="AppStoreTest_Android#AppStoreDownload";
+    Map<String, String> suite_ios = new HashMap<String, String>() {{
+        put("AppStoreDownload", "AppStoreTest_ios#AppStoreDownload");
+        put("AppStoreTop10", "AppStoreTest_ios#AppStoreTop10");
+        put("EriBankLogin", "EriBankTest_ios#EriBankLogin");
+        put("EriBankPayment", "EriBankTest_ios#EriBankPayment");
+        put("Espn", "EspnTest_ios#Espn");
+    }};
+    Map<String, String> suite_Andtoid = new HashMap<String, String>() {{
+        put("AppStoreDownload", "AppStoreTest_Android#AppStoreDownload");
+        put("AppStoreTop10", "AppStoreTest_Android#AppStoreTop10");
+        put("EriBankLogin", "EriBankTest_Android#EriBankLogin");
+        put("EriBankPayment", "EriBankTest_Android#EriBankPayment");
+        put("Espn", "EspnTest_Android#Espn");
+        put("TapTheDotLogin", "TapTheDotTest#TapTheDotLogin");
+        put("TapTheDotPlay", "TapTheDotTest#TapTheDotPlay");
+    }};
 
 
     public static void main(String[] args) {
@@ -49,22 +62,18 @@ public class TestRunner extends Thread {
     }
 
     public TestRunner(String testTitle, Device device) {
-        this.device=device;
-        if(testTitle.equals("all")){
-            if(device.getOs().equals("Android")){
-                testTitle=suite_Andtoid;
-            }
-            else
-                testTitle=suite_ios;
-        }
-        testNames = Arrays.asList(testTitle.split(",").clone());
-        testSelectors=new LinkedList<org.junit.platform.engine.discovery.MethodSelector>() ;
-        for (String name:testNames)
+        this.device = device;
+        if (testTitle.equals("all")) {
+            seAlltSuite();
+        } else {
+            testNames = Arrays.asList(testTitle.split(",").clone());
+            testSelectors = new LinkedList<org.junit.platform.engine.discovery.MethodSelector>();
+            for (String name : testNames)
 //        {testSelectors.add(selectClass(name));
-            testSelectors.add(selectMethod(name));
+                testSelectors.add(selectMethod(name));
 
+        }
     }
-
 
     @Override
     public void run() {
@@ -106,7 +115,13 @@ public class TestRunner extends Thread {
         }
 
     }
-
+protected void seAlltSuite(){
+    if(device.getOs().equals("Android")){
+        for (String name:suite_Andtoid.values())
+            testSelectors.add(selectMethod(name));            }
+    else
+        for (String name:suite_ios.values())
+            testSelectors.add(selectMethod(name));        }
 
 
 }

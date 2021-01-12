@@ -44,7 +44,6 @@ public class TapTheDotTest extends MobileTest{
 //            driver = new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
 //            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
             wait = new WebDriverWait(driver, 10L);
-            device=new Device(driver);
 
         }   catch (Exception e) {
             System.out.println("TEST "+test_name+" failed in setUp");

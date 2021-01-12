@@ -1,0 +1,9 @@
+TEST EriBank Ios failed
+org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: session not created (requested iOS platform but specified a query for an Android device (query=@serialnumber='5LFU49SOD6DISC75') (reportUrl=https://qacloud.experitest.com:443/reporter/#/test/7262/project/new employees/))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 27.87 seconds
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: IOSDriver
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: IOSDriver

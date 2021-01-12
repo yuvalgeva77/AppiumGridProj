@@ -51,7 +51,6 @@ public class EspnTest_ios extends MobileTest {
             driver = driverFactory.getIOSDriverSAFARI(true);
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
-            device=new Device(driver);
         } catch (Exception e) {
             System.out.println("TEST "+test_name+" failed in setUp");
             printExeption(e);

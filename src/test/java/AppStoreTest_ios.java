@@ -67,7 +67,6 @@ public class AppStoreTest_ios extends MobileTest{
         try {
             driver = driverFactory.getIOSDriverApp("com.apple.AppStore");
             driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
-            device=new Device(driver);
             wait = new WebDriverWait(driver, 120);
         } catch (Exception e) {
             System.out.println("TEST "+test_name+" failed in setUp");
