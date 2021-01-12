@@ -26,9 +26,10 @@ public class EriBankTest_Android extends MobileTest{
     public void setUp() {
         test_name="EriBank Android";
         try {
-            driver =(driverFactory.getAndroidDriverApp("com.experitest.ExperiBank",".LoginActivity",true));
+            driver =driverFactory.getAndroidDriverApp("com.experitest.ExperiBank",".LoginActivity",true);
             wait = new WebDriverWait(driver, 10);
-            device=new Device(driver);
+//            device=new Device(driver);
+            //get driver from Test Runner
 
         } catch (Exception e) {
             System.out.println("TEST "+test_name+" failed in setUp");

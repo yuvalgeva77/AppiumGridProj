@@ -19,29 +19,36 @@ public class TestThreadPool {
     private static String allTests="AppStoreTest_Android,AppStoreTest_ios,EriBankTest_Android,EriBankTest_ios,EspnTest_Android,EspnTest_ios,TapTheDotTest";
     protected static   Configuration testConfiguration;
     protected static String configurationPath="src/test/configuration file.txt";
-    private static List<String> testNames;
+//    private static List<String> testNames;
     private static List<String> machines;
+    private static List<Device> freeDevs;
     protected long CURRENT_TIME;
-
-
 
     public static void main(String[] args) throws InterruptedException, UnirestException, JSONException {
         //run the all suite chosen in testNames on a selected number of devices
         // ( thread= device.  tasks in size of thread->each thread will run a task)
         resetConfigurations();
-        List<Device> freeDevs=new RestProjectAPI().getFreeDevices();
+        freeDevs=new RestProjectAPI().getFreeDevices();
         MobileTest.setCURRENT_TIME();
         MobileTest.resetLogger();
-        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(testNames.size());
-        for (int i=0;i<testConfiguration.getNumOfDevices();i++) {
+//        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(freeDevs.size());
+//        for (int i=0;i<freeDevs.size();i++) {
+        List<TestRunner> testRunners=new ArrayList<>();
+        for (Device dev:freeDevs)
+             {
 //            List<String> testC = new LinkedList<>();
 //            testC.add(testClassName);
-            TestRunner test = new TestRunner(testNames);
+            TestRunner test = new TestRunner(testConfiguration.getTestToRun(),dev);
+                 testRunners.add(test);
+            test.start();
 //                System.out.println("-------Created : " + i+"---------\n");
-            executor.execute(test);
+//            executor.execute(test);
         }
-        executor.shutdown();
-        executor.awaitTermination(60, TimeUnit.DAYS);
+//        executor.shutdown();
+//        executor.awaitTermination(60, TimeUnit.DAYS);
+        for (TestRunner test:testRunners) {
+            test.join();
+        }
         MobileTest.writeLogFile();
     }
 //    public List<String> getDevices(){
@@ -126,11 +133,7 @@ public class TestThreadPool {
             MobileTest.setTestConfiguration(testConfiguration);
             System.out.println(testConfiguration.toString());
             //get testClasses
-            if(testConfiguration.getTestToRun().equals("all")){
-                testNames = Arrays.asList(allTests.split(","));
-            }
-            else
-                testNames = Arrays.asList(testConfiguration.getTestToRun().split(",").clone());
+
         } catch (FileNotFoundException e) {
             System.out.println("-------failed to open configuration csv!--------");
             e.printStackTrace();

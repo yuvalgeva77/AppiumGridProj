@@ -3,6 +3,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.Before;
@@ -30,6 +31,11 @@ public class  MobileTest {
     protected WebDriverWait wait;
     protected Device device;
     protected String test_name;
+
+    public void setDevice(Device device) {
+        this.device = device;
+    }
+
     protected static long CURRENT_TIME;
     protected String pathToCsv = "src/test/Login data.csv";
     protected String configurationPath="src/test/configuration file.txt";
@@ -52,7 +58,7 @@ public class  MobileTest {
 
     @BeforeAll
     public void resetTimer(){
-//        System.out.println("--------Test suite started-----");
+       System.out.println("--------Test suite started-----");
         if(CURRENT_TIME==0)
             CURRENT_TIME = System.currentTimeMillis();
         if(testConfiguration==null){
@@ -61,9 +67,13 @@ public class  MobileTest {
                 resetLogger();
             }
         }
-        driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl(),testConfiguration.getSerialNumber());
+        driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl());
+        device=((TestRunner)Thread.currentThread()).getDevice();
+        driverFactory.setDevice(device);
+
 
     }
+
     public void writeRunFile(String value){
         String fileName = "Result Files/RUN_"+CURRENT_TIME+"/"+device.getName()+ ".txt";
         try {
@@ -118,7 +128,7 @@ public class  MobileTest {
         try {
             csvReader = new BufferedReader(new FileReader(configurationPath));
             testConfiguration = new Gson().fromJson(csvReader, Configuration.class);
-            driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl(),testConfiguration.getSerialNumber());
+            driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl());
             System.out.println(testConfiguration.toString());
         } catch (FileNotFoundException e) {
             System.out.println("failed to open configuration csv");

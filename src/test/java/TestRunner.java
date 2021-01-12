@@ -19,22 +19,22 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 
-public class TestRunner implements Runnable {
-    private String Device;
+public class TestRunner extends Thread {
+    private Device device;
     private String name;
     private List<MethodSelector> testSelectors;
     private List<String> testNames;
     protected long CURRENT_TIME;
+    protected Configuration configuration;
+    private static String suite_ios="AppStoreTest_ios#AppStoreDownload,AppStoreTest_ios#AppStoreTop10,EriBankTest_ios#EriBankLogin,EriBankTest_ios#EriBankPayment,EspnTest_ios#Espn,TapTheDotTest#TapTheDotLogin";
+//    private static String suite_Andtoid ="AppStoreTest_Android#AppStoreDownload,AppStoreTest_Android#AppStoreTop10,EriBankTest_Android#EriBankLogin,EriBankTest_Android#EriBankPayment,EspnTest_Android#Espn,TapTheDotTest#TapTheDotLogin,TapTheDotTest#TapTheDotPlay";
+    private static String suite_Andtoid ="AppStoreTest_Android#AppStoreDownload";
 
-
-
-    public String getName() {
-        return name;
-    }
 
     public static void main(String[] args) {
     }
@@ -44,22 +44,31 @@ public class TestRunner implements Runnable {
 //        Throwable throwable = assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "a message");
 //        assertEquals("a message", throwable.getMessage());
 
-    public TestRunner(List<String> testNames) {
-        this.testNames = testNames;
+    public Device getDevice() {
+        return device;
+    }
+
+    public TestRunner(String testTitle, Device device) {
+        this.device=device;
+        if(testTitle.equals("all")){
+            if(device.getOs().equals("Android")){
+                testTitle=suite_Andtoid;
+            }
+            else
+                testTitle=suite_ios;
+        }
+        testNames = Arrays.asList(testTitle.split(",").clone());
         testSelectors=new LinkedList<org.junit.platform.engine.discovery.MethodSelector>() ;
         for (String name:testNames)
 //        {testSelectors.add(selectClass(name));
             testSelectors.add(selectMethod(name));
 
-        }
-
-
-
+    }
 
 
     @Override
     public void run() {
-        System.out.println(  Thread.currentThread().getName());
+        System.out.println("Thread name: "+  Thread.currentThread().getName()+" Device Name: "+device.getName());
         final LauncherDiscoveryRequest request =
                 LauncherDiscoveryRequestBuilder.request()
 //                        .selectors(selectClass(EriBankTest_Android.class),selectMethod("temp#test2"))
