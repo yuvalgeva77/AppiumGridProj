@@ -85,8 +85,9 @@ public class EspnTest_ios extends MobileTest {
                 WebElement el5 =   wait.until(ExpectedConditions.visibilityOf((driver.findElementByCssSelector(  "#global-nav-secondary > div > ul > li.sports.sub > span > a > span.link-text"))));
                 String title=el5.getText();
                 assertTrue(bTitle.equals(title));
-                printSeccess();
             }
+            printSeccess();
+
         }
         catch (Exception e) {
             printExeption(e);
