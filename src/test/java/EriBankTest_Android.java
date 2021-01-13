@@ -42,7 +42,7 @@ public class EriBankTest_Android extends MobileTest{
 
 
     @Test
-    public void EriBankLogin() {
+    public void EriBankLogin() throws Exception {
         test_name="EriBank android Login";
 //             pathToCsv = "C:\\Users\\YuvalGeva\\IdeaProjects\\AppiumGridProj\\src\\test\\Login data.csv";
         try {
@@ -90,7 +90,7 @@ public class EriBankTest_Android extends MobileTest{
 
 
     @Test
-    public void EriBankPayment() {
+    public void EriBankPayment() throws Exception {
          test_name="EriBank android Payment";
         try {
             insertInfo("company", "company");

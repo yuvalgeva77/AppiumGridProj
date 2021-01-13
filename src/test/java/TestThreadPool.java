@@ -22,38 +22,39 @@ public class TestThreadPool {
 //    private static List<String> testNames;
     private static List<String> machines;
     private static List<Device> freeDevs;
-    protected long CURRENT_TIME;
+    protected static long CURRENT_TIME;
 
     public static void main(String[] args) throws InterruptedException, UnirestException, JSONException {
         //run the all suite chosen in testNames on a selected number of devices
         // ( thread= device.  tasks in size of thread->each thread will run a task)
         resetConfigurations();
-        freeDevs=new RestProjectAPI().getFreeDevices();
-        MobileTest.setCURRENT_TIME();
-        MobileTest.resetLogger();
+        while (!hasTimePassed()) {
+            freeDevs = new RestProjectAPI().getFreeDevices();
+            MobileTest.setCURRENT_TIME();
+            MobileTest.resetLogger();
 //        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(freeDevs.size());
 //        for (int i=0;i<freeDevs.size();i++) {
-        List<TestRunner> testRunners=new ArrayList<>();
-        for (Device dev:freeDevs)
-             {
+            List<TestRunner> testRunners = new ArrayList<>();
+            for (Device dev : freeDevs) {
 //            List<String> testC = new LinkedList<>();
 //            testC.add(testClassName);
-            TestRunner test = new TestRunner(testConfiguration.getTestToRun(),dev);
-                 testRunners.add(test);
-            test.start();
+                TestRunner test = new TestRunner(testConfiguration.getTestToRun(), dev);
+                testRunners.add(test);
+                test.start();
 //                System.out.println("-------Created : " + i+"---------\n");
 //            executor.execute(test);
-        }
+            }
 //        executor.shutdown();
 //        executor.awaitTermination(60, TimeUnit.DAYS);
-        for (TestRunner test:testRunners) {
-            test.join();
+            for (TestRunner test : testRunners) {
+                test.join();
+            }
+            MobileTest.writeLogFile();
         }
-        MobileTest.writeLogFile();
-    }
 //    public List<String> getDevices(){
 //
 //    }
+    }
 
     public static class RestProjectAPI {
         List<Device> devArray;
@@ -139,5 +140,13 @@ public class TestThreadPool {
             e.printStackTrace();
         }
     }
+    public static boolean hasTimePassed(){
+        Long thisTime= System.currentTimeMillis();
+        Long timePassed=System.currentTimeMillis()-CURRENT_TIME;
+        Long min=  TimeUnit.MILLISECONDS.toMinutes(thisTime);
+        Long minPassed=  TimeUnit.MILLISECONDS.toMinutes(timePassed);
+        return (minPassed<testConfiguration.getRepeat());
+    }
+
 }
 

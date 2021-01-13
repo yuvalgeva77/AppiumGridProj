@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 import java.sql.Driver;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class  MobileTest {
@@ -141,10 +142,12 @@ public class  MobileTest {
         testLogger.addDFail(device,e.toString()+"\n");
         assertTrue(test_status,false);
     }
-    public void printAssertionError(AssertionError e){
+    public void printAssertionError(AssertionError e) {
         test_status="TEST "+test_name+" failed \n"+e.toString()+"\n";
         writeRunFile(test_status);
         testLogger.addDFail(device,e.toString()+"\n");
+        fail(test_status);
+
     }
     public void printSeccess(){
         test_status="TEST "+test_name+" passed\n";
