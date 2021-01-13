@@ -141,12 +141,18 @@ public class  MobileTest {
         testLogger.addDFail(device,e.toString()+"\n");
         assertTrue(test_status,false);
     }
+    public void printAssertionError(AssertionError e){
+        test_status="TEST "+test_name+" failed \n"+e.toString()+"\n";
+        writeRunFile(test_status);
+        testLogger.addDFail(device,e.toString()+"\n");
+    }
     public void printSeccess(){
         test_status="TEST "+test_name+" passed\n";
         writeRunFile(test_status);
         System.out.println(test_status);
         testLogger.addDPassed(device);
     }
+
 
 };
 

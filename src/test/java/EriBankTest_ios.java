@@ -71,6 +71,10 @@ public class EriBankTest_ios extends MobileTest {
             System.out.println("TEST "+test_name+" failed in setUp");
             printExeption(e);
         }
+        catch (AssertionError e) {
+            System.out.println("AssertionError ");
+            printAssertionError(e);
+        }
 //         pathToCsv = "src/test/company.csv";
         System.out.println("Aplication Started");
     }
@@ -114,6 +118,10 @@ public class EriBankTest_ios extends MobileTest {
         catch (Exception e) {
             printExeption(e);
         }
+        catch (AssertionError e) {
+            System.out.println("AssertionError ");
+            printAssertionError(e);
+        }
     }
 
     @Test
@@ -130,6 +138,10 @@ public class EriBankTest_ios extends MobileTest {
         catch (Exception e) {
             printExeption(e);
 
+        }
+        catch (AssertionError e) {
+            System.out.println("AssertionError ");
+            printAssertionError(e);
         }
     }
 

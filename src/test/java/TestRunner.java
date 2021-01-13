@@ -29,7 +29,7 @@ public class TestRunner extends Thread {
     private List<String> testNames;
     protected long CURRENT_TIME;
     protected Configuration configuration;
-//    private static String suite_ios="AppStoreTest_ios#AppStoreDownload,AppStoreTest_ios#AppStoreTop10,EriBankTest_ios#EriBankLogin,EriBankTest_ios#EriBankPayment,EspnTest_ios#";
+    //    private static String suite_ios="AppStoreTest_ios#AppStoreDownload,AppStoreTest_ios#AppStoreTop10,EriBankTest_ios#EriBankLogin,EriBankTest_ios#EriBankPayment,EspnTest_ios#";
 //    private static String suite_Andtoid ="AppStoreTest_Android#AppStoreDownload,AppStoreTest_Android#AppStoreTop10,EriBankTest_Android#EriBankLogin,EriBankTest_Android#EriBankPayment,EspnTest_Android#Espn,TapTheDotTest#TapTheDotLogin,TapTheDotTest#TapTheDotPlay";
     Map<String, String> suite_ios = new HashMap<String, String>() {{
         put("AppStoreDownload", "AppStoreTest_ios#AppStoreDownload");
@@ -62,15 +62,12 @@ public class TestRunner extends Thread {
     }
 
     public TestRunner(String testTitle, Device device) {
+        testSelectors=new LinkedList<MethodSelector>();
         this.device = device;
         if (testTitle.equals("all")) {
             seAlltSuite();
         } else {
-            testNames = Arrays.asList(testTitle.split(",").clone());
-            testSelectors = new LinkedList<org.junit.platform.engine.discovery.MethodSelector>();
-            for (String name : testNames)
-//        {testSelectors.add(selectClass(name));
-                testSelectors.add(selectMethod(name));
+            getTestForOs(testTitle);
 
         }
     }
@@ -115,13 +112,26 @@ public class TestRunner extends Thread {
         }
 
     }
-protected void seAlltSuite(){
-    if(device.getOs().equals("Android")){
-        for (String name:suite_Andtoid.values())
-            testSelectors.add(selectMethod(name));            }
-    else
-        for (String name:suite_ios.values())
-            testSelectors.add(selectMethod(name));        }
+    protected void seAlltSuite(){
+        if(device.getOs().equals("Android")){
+            for (String name:suite_Andtoid.values())
+                testSelectors.add(selectMethod(name));
+        }
+        else
+            for (String name:suite_ios.values())
+                testSelectors.add(selectMethod(name));
+    }
+    protected void getTestForOs(String testTitle) {
+        testNames = Arrays.asList(testTitle.split(",").clone());
+
+        for (String name : testNames) {
+            if (device.getOs().equals("Android")) {
+                testSelectors.add(selectMethod(suite_Andtoid.get(name)));
+            } else {
+                testSelectors.add(selectMethod(suite_ios.get(name)));
+            }
 
 
+        }
+    }
 }

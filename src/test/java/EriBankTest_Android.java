@@ -77,6 +77,11 @@ public class EriBankTest_Android extends MobileTest{
             System.out.println("IOException -invalid file");
             printExeption(e);
         }
+        catch (AssertionError e) {
+            System.out.println("AssertionError ");
+            printAssertionError(e);
+        }
+
         catch (Exception e) {
             printExeption(e);
         }
@@ -94,7 +99,12 @@ public class EriBankTest_Android extends MobileTest{
             double finalAmount = checkAmount();
             assertTrue("error:checkAmount!=firstAmount-payedAmount", finalAmount == firstAmount - payedAmount);
             printSeccess();
-        } catch (Exception e) {
+        }
+        catch (AssertionError e) {
+            System.out.println("AssertionError ");
+            printAssertionError(e);
+        }
+        catch (Exception e) {
             printExeption(e);
         }
 

@@ -48,7 +48,10 @@ public class TapTheDotTest extends MobileTest{
         }   catch (Exception e) {
             System.out.println("TEST "+test_name+" failed in setUp");
             printExeption(e);
-
+        }
+        catch (AssertionError e) {
+            System.out.println("AssertionError ");
+            printAssertionError(e);
         }
 
         System.out.println("Application Started");
@@ -97,6 +100,10 @@ public class TapTheDotTest extends MobileTest{
             printExeption(e);
 
         }
+        catch (AssertionError e) {
+            System.out.println("AssertionError ");
+            printAssertionError(e);
+        }
     }
 
     @Test
@@ -118,6 +125,10 @@ public class TapTheDotTest extends MobileTest{
         }
         catch (Exception e) {
             printExeption(e);
+        }
+        catch (AssertionError e) {
+            System.out.println("AssertionError ");
+            printAssertionError(e);
         }
     }
 //

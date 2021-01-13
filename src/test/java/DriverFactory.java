@@ -76,7 +76,7 @@ public class DriverFactory {
 //        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
     public IOSDriver getIOSDriverApp(String bundle_id) throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
-        String APP="cloud:"+bundle_id;
+        String APP="cloud:";
         dc.setCapability("accessKey", accessKey);
 //        dc.setCapability("deviceQuery", "@os='ios'");
 //        if (!serialNumber.equals(""))

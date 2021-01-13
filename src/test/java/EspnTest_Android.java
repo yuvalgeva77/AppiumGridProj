@@ -70,8 +70,11 @@ public class EspnTest_Android extends MobileTest {
                 printSeccess();
             }
         } catch (Exception e) {
-     printExeption(e);
-
+            printExeption(e);
+        }
+        catch (AssertionError e) {
+            System.out.println("AssertionError ");
+            printAssertionError(e);
         }
 
 

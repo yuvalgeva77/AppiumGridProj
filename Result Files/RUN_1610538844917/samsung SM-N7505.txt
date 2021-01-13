@@ -1,0 +1,2 @@
+TEST EriBank android Login failed 
+java.lang.AssertionError: one, companydidnt pop Erorr message

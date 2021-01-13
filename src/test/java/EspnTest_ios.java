@@ -92,6 +92,10 @@ public class EspnTest_ios extends MobileTest {
             printExeption(e);
 
         }
+        catch (AssertionError e) {
+            System.out.println("AssertionError ");
+            printAssertionError(e);
+        }
     }
 
 
