@@ -33,6 +33,10 @@ public class  MobileTest {
     protected Device device;
     protected String test_name;
 
+    public static long getCurrentTime() {
+        return CURRENT_TIME;
+    }
+
     public void setDevice(Device device) {
         this.device = device;
     }
@@ -53,8 +57,9 @@ public class  MobileTest {
         MobileTest.testConfiguration = testConfiguration;
     }
 
-    public static void setCURRENT_TIME() {
+    public static long setCURRENT_TIME() {
         MobileTest.CURRENT_TIME = System.currentTimeMillis();
+        return CURRENT_TIME;
     }
 
     @BeforeAll

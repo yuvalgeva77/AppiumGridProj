@@ -25,22 +25,24 @@ public class TestThreadPool {
     private static List<Device> freeDevs;
     protected static long CURRENT_TIME;
     protected static Instant startTime,thisTime;;
+    int iteration=1;
 
     public static void main(String[] args) throws InterruptedException, UnirestException, JSONException {
         //run the all suite chosen in testNames on a selected number of devices
         // ( thread= device.  tasks in size of thread->each thread will run a task)
         resetConfigurations();
-        while (!hasTimePassed()) {
+//        while (toContinue()) {
             freeDevs = new RestProjectAPI().getFreeDevices();
-            MobileTest.setCURRENT_TIME();
+            long startTestTims=MobileTest.setCURRENT_TIME();
             MobileTest.resetLogger();
+       TestRunner.startRunResetInfo(startTestTims,testConfiguration);
 //        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(freeDevs.size());
 //        for (int i=0;i<freeDevs.size();i++) {
             List<TestRunner> testRunners = new ArrayList<>();
             for (Device dev : freeDevs) {
 //            List<String> testC = new LinkedList<>();
 //            testC.add(testClassName);
-                TestRunner test = new TestRunner(testConfiguration.getTestToRun(), dev);
+                TestRunner test = new TestRunner(testConfiguration.getTestToRun(), dev,testConfiguration.getRepeat());
                 testRunners.add(test);
                 test.start();
 //                System.out.println("-------Created : " + i+"---------\n");
@@ -56,7 +58,7 @@ public class TestThreadPool {
 //    public List<String> getDevices(){
 //
 //    }
-    }
+//    }
 
     public static class RestProjectAPI {
         List<Device> devArray;
@@ -136,20 +138,20 @@ public class TestThreadPool {
             MobileTest.setTestConfiguration(testConfiguration);
             System.out.println(testConfiguration.toString());
             //get testClasses
-            startTime= Instant.now();
+//            startTime= Instant.now();
         } catch (FileNotFoundException e) {
             System.out.println("-------failed to open configuration csv!--------");
             e.printStackTrace();
         }
-        CURRENT_TIME=System.currentTimeMillis();
+//        CURRENT_TIME=System.currentTimeMillis();
     }
-    public static boolean hasTimePassed(){
-        Long thisTime= System.currentTimeMillis();
-        Long timePassed=System.currentTimeMillis()-CURRENT_TIME;
-//        Long min=  TimeUnit.MILLISECONDS.toMinutes(thisTime);
-        Long minPassed=  (timePassed)/60000;
-        return (minPassed<testConfiguration.getRepeat());
-    }
+//    public static boolean toContinue(){
+//        Long thisTime= System.currentTimeMillis();
+//        Long timePassed=System.currentTimeMillis()-CURRENT_TIME;
+////        Long min=  TimeUnit.MILLISECONDS.toMinutes(thisTime);
+//        Long minPassed=  (timePassed)/60000;
+//        return (minPassed<testConfiguration.getRepeat());
+//    }
 
 }
 
