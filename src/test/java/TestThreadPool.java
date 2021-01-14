@@ -7,6 +7,7 @@ import org.json.JSONException;
 
 import java.io.*;
 import java.net.http.HttpResponse;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +24,7 @@ public class TestThreadPool {
     private static List<String> machines;
     private static List<Device> freeDevs;
     protected static long CURRENT_TIME;
+    protected static Instant startTime,thisTime;;
 
     public static void main(String[] args) throws InterruptedException, UnirestException, JSONException {
         //run the all suite chosen in testNames on a selected number of devices
@@ -134,17 +136,18 @@ public class TestThreadPool {
             MobileTest.setTestConfiguration(testConfiguration);
             System.out.println(testConfiguration.toString());
             //get testClasses
-
+            startTime= Instant.now();
         } catch (FileNotFoundException e) {
             System.out.println("-------failed to open configuration csv!--------");
             e.printStackTrace();
         }
+        CURRENT_TIME=System.currentTimeMillis();
     }
     public static boolean hasTimePassed(){
         Long thisTime= System.currentTimeMillis();
         Long timePassed=System.currentTimeMillis()-CURRENT_TIME;
-        Long min=  TimeUnit.MILLISECONDS.toMinutes(thisTime);
-        Long minPassed=  TimeUnit.MILLISECONDS.toMinutes(timePassed);
+//        Long min=  TimeUnit.MILLISECONDS.toMinutes(thisTime);
+        Long minPassed=  (timePassed)/60000;
         return (minPassed<testConfiguration.getRepeat());
     }
 
