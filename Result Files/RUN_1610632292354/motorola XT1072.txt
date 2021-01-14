@@ -1,0 +1,6 @@
+-----iteration-----: 1
+TEST EriBank android Login passed
+-----iteration-----: 2
+TEST EriBank android Login passed
+-----iteration-----: 3
+TEST EriBank android Login passed

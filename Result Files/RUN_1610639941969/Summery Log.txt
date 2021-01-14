@@ -1,0 +1,19 @@
+--------iteration:1--------
+
+Device{name='OPPO A1601', category='PHONE', version='5.1', os='Android'}, passed=0, failed=1
+, errorList=[org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (ID='passwordTextField'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {app: cloud:com.experitest.Experi..., appActivity: .LoginActivity, appBuildVersion: , appPackage: com.experitest.ExperiBank, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, cloudViewLink: https://qacloud.experitest...., commandTimeouts: 120000, desired: {app: cloud:com.experitest.Experi..., appActivity: .LoginActivity, appPackage: com.experitest.ExperiBank, platformName: Android, udid: 5LFU49SOD6DISC75}, device.category: PHONE, device.majorVersion: 5, device.manufacture: OPPO, device.model: A1601, device.name: OPPO A1601, device.os: Android, device.screenSize: 720x1280, device.serialNumber: 5LFU49SOD6DISC75, device.version: 5.1, deviceUDID: 5LFU49SOD6DISC75, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3419115, ehmUrl: https://qacloud.experitest...., fullReset: false, gridNodePort: 7839, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 7358, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/14/21 06:00 PM, udid: 5LFU49SOD6DISC75, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-14_17-59-00-81d58eec-d6bf-42b8-a205-f535b307f287
+*** Element info: {Using=id, value=passwordTextField}
+]
+
+Device{name='Xiaomi POCOPHONE F1', category='PHONE', version='9', os='Android'}, passed=1, failed=0
+
+Device{name='samsung SM-N7505', category='PHONE', version='5.1.1', os='Android'}, passed=1, failed=0
+
+Device{name='motorola XT1072', category='PHONE', version='6.0', os='Android'}, passed=1, failed=0

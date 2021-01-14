@@ -69,13 +69,14 @@ public class  MobileTest {
             CURRENT_TIME = System.currentTimeMillis();
         if(testConfiguration==null){
             resetConfigurations();
-            if (testLogger==null){
-                resetLogger();
-            }
+//            if (testLogger==null){
+//                resetLogger();
+//            }
         }
         driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl());
         device=((TestRunner)Thread.currentThread()).getDevice();
         driverFactory.setDevice(device);
+        testLogger=TestLogger.getTestLogger();
 
 
     }
@@ -107,7 +108,7 @@ public class  MobileTest {
             file.createNewFile(); // if file already exists will do nothing
             FileWriter fw = new FileWriter(file,true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(testLogger.toString());
+            bw.write(testLogger.printIterationLog());
             bw.close();
         }
         catch (IOException e){
@@ -123,11 +124,11 @@ public class  MobileTest {
         System.out.println("-----"+test_name+" finished\n");
 
     }
-    public static TestLogger resetLogger(){
-        testLogger=new TestLogger();
-        return testLogger;
-
-    }
+//    public static TestLogger resetLogger(){
+//        testLogger=TestLogger.getTestLogger();
+//        return testLogger;
+//
+//    }
 
     public void resetConfigurations(){
         BufferedReader csvReader = null;

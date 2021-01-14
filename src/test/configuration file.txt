@@ -4,6 +4,6 @@ accessKey:"eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5t
 numOfDevices:4,
 serialNumber:"",
 testToRun:"EriBankLogin",
-repeat:10
+repeat:7
 }
 

@@ -4,9 +4,6 @@ Device.java
  Device
 DriverFactory.java
  DriverFactory
-TestLogger.java
- TestLogger
- TestLogger$device_log
 TestRunner.java
  TestRunner
  TestRunner$1
@@ -32,3 +29,6 @@ EriBankTest_Android.java
  EriBankTest_Android
 AppStoreTest_ios.java
  AppStoreTest_ios
+TestLogger.java
+ TestLogger
+ TestLogger$device_log

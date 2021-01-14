@@ -20,11 +20,12 @@ public class TestThreadPool {
     private static String allTests="AppStoreTest_Android,AppStoreTest_ios,EriBankTest_Android,EriBankTest_ios,EspnTest_Android,EspnTest_ios,TapTheDotTest";
     protected static   Configuration testConfiguration;
     protected static String configurationPath="src/test/configuration file.txt";
-//    private static List<String> testNames;
+    //    private static List<String> testNames;
     private static List<String> machines;
     private static List<Device> freeDevs;
     protected static long CURRENT_TIME;
     protected static Instant startTime,thisTime;;
+    protected static TestLogger testLogger;
     int iteration=1;
 
     public static void main(String[] args) throws InterruptedException, UnirestException, JSONException {
@@ -32,29 +33,32 @@ public class TestThreadPool {
         // ( thread= device.  tasks in size of thread->each thread will run a task)
         resetConfigurations();
 //        while (toContinue()) {
-            freeDevs = new RestProjectAPI().getFreeDevices();
-            long startTestTims=MobileTest.setCURRENT_TIME();
-            MobileTest.resetLogger();
-       TestRunner.startRunResetInfo(startTestTims,testConfiguration);
+        freeDevs = new RestProjectAPI().getFreeDevices();
+        long startTestTims=MobileTest.setCURRENT_TIME();
+        testLogger=TestLogger.getTestLogger();
+//            MobileTest.resetLogger();
+        TestRunner.startRunResetInfo(startTestTims,testConfiguration);
 //        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(freeDevs.size());
 //        for (int i=0;i<freeDevs.size();i++) {
-            List<TestRunner> testRunners = new ArrayList<>();
-            for (Device dev : freeDevs) {
+        testLogger.setDevrequested(testConfiguration.getNumOfDevices());
+        testLogger.setNumDevices(freeDevs.size());
+        List<TestRunner> testRunners = new ArrayList<>();
+        for (Device dev : freeDevs) {
 //            List<String> testC = new LinkedList<>();
 //            testC.add(testClassName);
-                TestRunner test = new TestRunner(testConfiguration.getTestToRun(), dev,testConfiguration.getRepeat());
-                testRunners.add(test);
-                test.start();
+            TestRunner test = new TestRunner(testConfiguration.getTestToRun(), dev,testConfiguration.getRepeat());
+            testRunners.add(test);
+            test.start();
 //                System.out.println("-------Created : " + i+"---------\n");
 //            executor.execute(test);
-            }
+        }
 //        executor.shutdown();
 //        executor.awaitTermination(60, TimeUnit.DAYS);
-            for (TestRunner test : testRunners) {
-                test.join();
-            }
-            MobileTest.writeLogFile();
+        for (TestRunner test : testRunners) {
+            test.join();
         }
+        MobileTest.writeLogFile();
+    }
 //    public List<String> getDevices(){
 //
 //    }
@@ -90,7 +94,7 @@ public class TestThreadPool {
 //                    if(!dev.getUdid().equals(testConfiguration.getSerialNumber())){
 //                        devArray.remove(dev);
 //                    }
-                }
+            }
 //                Device dev=gson.fromJson(String.valueOf(jsonArray.get(i)), Device.class);
 //                devLst.add(dev);
 //                i++;

@@ -98,6 +98,7 @@ public class TestRunner extends Thread {
             List<Failure> failures = summary.getFailures();
             System.out.println("getTestsSucceededCount() - " + summary.getTestsSucceededCount());
             failures.forEach(failure -> System.out.println("failure - " + failure.getException()));
+           TestLogger.getTestLogger().finishIteration(iteration,device);
         }
     }
 
