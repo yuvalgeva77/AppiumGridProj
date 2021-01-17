@@ -36,7 +36,12 @@ dependencies {
 
 //Appium - Junit specific
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile group: 'com.experitest', name: 'seetest-client', version: "20.10"
+    compile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'io.appium', name: 'java-client', version: '5.0.4'
+    compile group: 'org.webjars.npm', name: 'css-in-js-utils', version: '2.0.0'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+//    testCompile group: 'com.experitest', name: 'seetest-client', version: "20.10"
+    compile group: 'com.experitest', name: 'appium-seetest-extension', version: '+'
 
 }
 

@@ -1,4 +1,5 @@
 
+import com.experitest.appium.SeeTestClient;
 import io.appium.java_client.android.AndroidDriver;
 
 import org.junit.jupiter.api.AfterEach;
@@ -17,22 +18,23 @@ import java.lang.*;
 
 
 
-public class EriBankTest_Android extends MobileTest{
+public class EriBankTest_Android extends MobileTest {
 
     public static void main(String[] args) {
     }
 
     @BeforeEach
     public void setUp() {
-        test_name="EriBank Android";
+        test_name = "EriBank Android";
         try {
-            driver =driverFactory.getAndroidDriverApp("com.experitest.ExperiBank",".LoginActivity",true);
+            driver = driverFactory.getAndroidDriverApp("com.experitest.ExperiBank", ".LoginActivity", true);
             wait = new WebDriverWait(driver, 10);
+            seeTestClient = new SeeTestClient(driver);
 //            device=new Device(driver);
             //get driver from Test Runner
 
         } catch (Exception e) {
-            System.out.println("TEST "+test_name+" failed in setUp");
+            System.out.println("TEST " + test_name + " failed in setUp");
             printExeption(e);
 
         }
@@ -43,55 +45,55 @@ public class EriBankTest_Android extends MobileTest{
 
     @Test
     public void EriBankLogin() throws Exception {
-        test_name="EriBank android Login";
+        test_name = "EriBank android Login";
 //             pathToCsv = "C:\\Users\\YuvalGeva\\IdeaProjects\\AppiumGridProj\\src\\test\\Login data.csv";
-        try {
-            BufferedReader csvReader = null;
-            csvReader = new BufferedReader(new FileReader(pathToCsv));
-            String log = "";
-            while (true) {
-                if (( ( log = csvReader.readLine() ) == null )) break;
-                String[] logData = log.split(",");
-                String name = logData[0];
-                String password = "";
-                if (logData.length == 2) {
-                    password = logData[1];
-                }
-                insertInfo(name, password);
-                if (name.equals("company") && password.equals("company")) {
-                    assertFalse("company company pops Erorr message", checkErrorMessage());
-                } else {
-                    assertTrue(name + ", " + password + "didnt pop Erorr message", checkErrorMessage());
-                    backToReister();
-                }
+        do {
+            try {
+                System.out.println("failures: "+ failures+"\n");
+                BufferedReader csvReader = null;
+                csvReader = new BufferedReader(new FileReader(pathToCsv));
+                String log = "";
+                while (true) {
+                    if (( ( log = csvReader.readLine() ) == null )) break;
+                    String[] logData = log.split(",");
+                    String name = logData[0];
+                    String password = "";
+                    if (logData.length == 2) {
+                        password = logData[1];
+                    }
+                    insertInfo(name, password);
+                    if (name.equals("company") && password.equals("company")) {
+                        assertFalse("company company pops Erorr message", checkErrorMessage());
+                    } else {
+                        assertTrue(name + ", " + password + "didnt pop Erorr message", checkErrorMessage());
+                        backToReister();
+                    }
 
+                }
+                csvReader.close();
+                printSeccess();
+            } catch (FileNotFoundException e) {
+                System.out.println("FileNotFoundException:failed to open csv");
+                printExeption(e);
+            } catch (IOException e) {
+                System.out.println("IOException -invalid file");
+                printExeption(e);
+            } catch (AssertionError e) {
+                System.out.println("AssertionError ");
+                printAssertionError(e);
+            } catch (Exception e) {
+                printExeption(e);
             }
-            csvReader.close();
-            printSeccess();
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("FileNotFoundException:failed to open csv");
-            printExeption(e);
-        }
-        catch (IOException e) {
-            System.out.println("IOException -invalid file");
-            printExeption(e);
-        }
-        catch (AssertionError e) {
-            System.out.println("AssertionError ");
-            printAssertionError(e);
         }
 
-        catch (Exception e) {
-            printExeption(e);
-        }
+        while(failures>=1&&failures<3);
+        failures=0;
     }
-
 
 
     @Test
     public void EriBankPayment() throws Exception {
-         test_name="EriBank android Payment";
+        test_name="EriBank android Payment";
         try {
             insertInfo("company", "company");
             double payedAmount = 50;

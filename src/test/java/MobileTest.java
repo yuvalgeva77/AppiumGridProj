@@ -1,3 +1,4 @@
+import com.experitest.appium.SeeTestClient;
 import com.google.gson.Gson;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -18,7 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Driver;
-
+import com.experitest.client.*;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -32,7 +33,8 @@ public class  MobileTest {
     protected WebDriverWait wait;
     protected Device device;
     protected String test_name;
-
+    protected SeeTestClient seeTestClient ;
+    protected int failures;
     public static long getCurrentTime() {
         return CURRENT_TIME;
     }
@@ -64,23 +66,41 @@ public class  MobileTest {
 
     @BeforeAll
     public void resetTimer(){
-       System.out.println("--------Test suite started-----");
+        System.out.println("--------Test suite started-----");
         if(CURRENT_TIME==0)
             CURRENT_TIME = System.currentTimeMillis();
         if(testConfiguration==null){
             resetConfigurations();
-//            if (testLogger==null){
-//                resetLogger();
-//            }
+            //            if (testLogger==null){
+            //                resetLogger();
+            //            }
         }
         driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl());
         device=((TestRunner)Thread.currentThread()).getDevice();
         driverFactory.setDevice(device);
         testLogger=TestLogger.getTestLogger();
-
-
+        failures=0;
     }
-
+    public void writeSupportData(){
+        String fileName = "Result Files/RUN_"+CURRENT_TIME+"/supportData.zip";
+            Path pathToFile = Paths.get(fileName);
+        try {
+            Files.createDirectories(pathToFile.getParent());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        File file = new File(String.valueOf(pathToFile));
+        try {
+            file.createNewFile(); // if file already exists will do nothing
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            seeTestClient.collectSupportData(fileName, null, null, null, null, null);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
     public void writeRunFile(String value){
         String fileName = "Result Files/RUN_"+CURRENT_TIME+"/"+device.getName()+ ".txt";
         try {
@@ -124,11 +144,11 @@ public class  MobileTest {
         System.out.println("-----"+test_name+" finished\n");
 
     }
-//    public static TestLogger resetLogger(){
-//        testLogger=TestLogger.getTestLogger();
-//        return testLogger;
-//
-//    }
+    //    public static TestLogger resetLogger(){
+    //        testLogger=TestLogger.getTestLogger();
+    //        return testLogger;
+    //
+    //    }
 
     public void resetConfigurations(){
         BufferedReader csvReader = null;
@@ -143,17 +163,37 @@ public class  MobileTest {
         }
     }
     public void printExeption(Exception e){
-        test_status="TEST "+test_name+" failed\n"+e.toString()+"\n";
+        failures++;
+        test_status="TEST "+test_name+" failed "+failures+" of times: "+e.toString()+"\n";
         writeRunFile(test_status);
         testLogger.addDFail(device,e.toString()+"\n");
-        assertTrue(test_status,false);
-    }
-    public void printAssertionError(AssertionError e) {
-        test_status="TEST "+test_name+" failed \n"+e.toString()+"\n";
-        writeRunFile(test_status);
-        testLogger.addDFail(device,e.toString()+"\n");
-        fail(test_status);
+        writeSupportData();
+        if(failures==2){
+                // reboot and wait 3 minutes for the device to reload
+                // unlock the device after reboot
+                if(seeTestClient.reboot(180000)){
+                    seeTestClient.deviceAction("Unlock");
+                }
 
+
+        }
+//        fail(test_status);
+    }
+
+    public void printAssertionError(AssertionError e) {
+        failures++;
+        test_status="TEST "+test_name+" failed "+e.toString()+failures+" of times"+"\n";
+        writeRunFile(test_status);
+        testLogger.addDFail(device,e.toString()+"\n");
+        writeSupportData();
+//        fail(test_status);
+        if(failures==2){
+            // reboot and wait 3 minutes for the device to reload
+            // unlock the device after reboot
+            if(seeTestClient.reboot(180000)){
+                seeTestClient.deviceAction("Unlock");
+            }
+        }
     }
     public void printSeccess(){
         test_status="TEST "+test_name+" passed\n";

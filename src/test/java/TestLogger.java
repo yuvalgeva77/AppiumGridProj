@@ -64,11 +64,11 @@ public class TestLogger {
     }
     public  String printIterationLog(){
         String report=
-                "Summary View Report\n"+
+                "Summary Report\n"+
                         "Number of devices that were requested to run:"+ devrequested+"\n"+
                         "Number of Devices that actually ran:"+ numDevices+"\n"+
                         "Total number of tests passed:"+ Totalpassed+"\n"+
-                        "Total number of tests failed:"+ Totalfailed+"\n---------------------------\n";
+                        "Total number of tests failed:"+ Totalfailed+"\n------------------------------------------------------------\n";
         for (String iterString:iterationMap.values()) {
             report=report+iterString;
         }
@@ -110,7 +110,7 @@ public class TestLogger {
 
     private void addIteration(Integer iter) {
         if(!iterationMap.containsKey(iter)){
-            iterationMap.put(iter, "--------iteration:" + iter + "--------\n");
+            iterationMap.put(iter, "\n--------iteration" + iter + ":--------\n");
         }
     }
 

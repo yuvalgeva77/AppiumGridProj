@@ -1,3 +1,4 @@
+import com.experitest.appium.SeeTestClient;
 import io.appium.java_client.FindsByAndroidViewTag;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
@@ -67,6 +68,7 @@ public class EriBankTest_ios extends MobileTest {
 //            driver = new IOSDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
             driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
             wait = new WebDriverWait(driver, 120);
+            seeTestClient = new SeeTestClient(driver);
         } catch (Exception e) {
             System.out.println("TEST "+test_name+" failed in setUp");
             printExeption(e);
@@ -81,47 +83,47 @@ public class EriBankTest_ios extends MobileTest {
     @Test
     public void EriBankLogin() {
         test_name="EriBank ios Login";
-        try {
-            BufferedReader csvReader = null;
-            csvReader = new BufferedReader(new FileReader(pathToCsv));
-            String log = "";
-            while (true) {
-                if (((log = csvReader.readLine()) == null)) break;
-                String[] logData = log.split(",");
-                String name = logData[0];
-                String password = "";
-                if(logData.length==2){
-                    password = logData[1];
-                }
+        do {
+            try {
+                System.out.println("failures: "+ failures+"\n");
+                BufferedReader csvReader = null;
+                csvReader = new BufferedReader(new FileReader(pathToCsv));
+                String log = "";
+                while (true) {
+                    if (( ( log = csvReader.readLine() ) == null )) break;
+                    String[] logData = log.split(",");
+                    String name = logData[0];
+                    String password = "";
+                    if (logData.length == 2) {
+                        password = logData[1];
+                    }
 //            System.out.println(logData[0]+logData[1]+"\n");
-                // do something with the data
-                insertInfo(name,password);
-                if(name.equals("company")&&password.equals("company")){
-                    assertFalse("company company pops Erorr message",checkErrorMessage());
+                    // do something with the data
+                    insertInfo(name, password);
+                    if (name.equals("company") && password.equals("company")) {
+                        assertFalse("company company pops Erorr message", checkErrorMessage());
+                    } else {
+                        assertTrue(name + ", " + password + "didnt pop Erorr message", checkErrorMessage());
+                        backToReister();
+                    }
                 }
-                else {
-                    assertTrue(name+", "+password+"didnt pop Erorr message",checkErrorMessage());
-                    backToReister();
-                }
+                csvReader.close();
+                printSeccess();
+            } catch (FileNotFoundException e) {
+                System.out.println("FileNotFoundException:failed to open csv");
+                printExeption(e);
+            } catch (IOException e) {
+                System.out.println("IOException -invalid file");
+                printExeption(e);
+            } catch (Exception e) {
+                printExeption(e);
+            } catch (AssertionError e) {
+                System.out.println("AssertionError ");
+                printAssertionError(e);
             }
-            csvReader.close();
-            printSeccess();
         }
-        catch (FileNotFoundException e) {
-            System.out.println("FileNotFoundException:failed to open csv");
-            printExeption(e);
-        }
-        catch (IOException e) {
-            System.out.println("IOException -invalid file");
-            printExeption(e);
-        }
-        catch (Exception e) {
-            printExeption(e);
-        }
-        catch (AssertionError e) {
-            System.out.println("AssertionError ");
-            printAssertionError(e);
-        }
+        while(failures>=1&&failures<3);
+        failures=0;
     }
 
     @Test

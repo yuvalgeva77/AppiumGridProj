@@ -69,22 +69,23 @@ public class AppStoreTest_Android extends MobileTest{
     @Test
     public void AppStoreDownload()  {
         test_name = "AppStore android Download";
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
-            List<AndroidElement> appList = driver.findElementsByXPath("//*[contains(@contentDescription, \"App:\")]");
-            wait.until(ExpectedConditions.elementToBeClickable(appList.get(0))).click();
-            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Install']"))).click();
-            TimeUnit.SECONDS.sleep(30);
+        while (failures>=1&&failures<3) {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
+                List<AndroidElement> appList = driver.findElementsByXPath("//*[contains(@contentDescription, \"App:\")]");
+                wait.until(ExpectedConditions.elementToBeClickable(appList.get(0))).click();
+                wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Install']"))).click();
+                TimeUnit.SECONDS.sleep(30);
 //            wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@id='message']")));
-            wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='Uninstall']")));
-            printSeccess();
-            //*[@text=
+                wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='Uninstall']")));
+                printSeccess();
+                //*[@text=
 
-        } catch (Exception e) {
-            printExeption(e);
+            } catch (Exception e) {
+                printExeption(e);
 
+            }
         }
-
     }
 
     @Test

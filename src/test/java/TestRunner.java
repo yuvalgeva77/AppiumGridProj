@@ -82,7 +82,7 @@ public class TestRunner extends Thread {
         while (toContinue()) {
             iteration++;
             writeRunFile("-----iteration-----: "+iteration+"\n");
-            System.out.println("Thread name: " + Thread.currentThread().getName() + " Device Name: " + device.getName()+" iteration number"+iteration);
+            System.out.println("Thread name: " + Thread.currentThread().getName() + " Device Name: " + device.getName()+" iteration number: "+iteration);
             final LauncherDiscoveryRequest request =
                     LauncherDiscoveryRequestBuilder.request()
 //                        .selectors(selectClass(EriBankTest_Android.class),selectMethod("temp#test2"))
