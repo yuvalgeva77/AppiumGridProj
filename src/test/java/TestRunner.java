@@ -41,14 +41,16 @@ public class TestRunner extends Thread {
         put("AppStoreTop10", "AppStoreTest_ios#AppStoreTop10");
         put("EriBankLogin", "EriBankTest_ios#EriBankLogin");
         put("EriBankPayment", "EriBankTest_ios#EriBankPayment");
-        put("Espn", "EspnTest_ios#Espn");
+        put("EspnMenu", "EspnTest_ios#EspnMenuButtons");
+        put("EspnMenuButtons", "EspnTest_ios#TapTheDotLogin");
     }};
     Map<String, String> suite_Andtoid = new HashMap<String, String>() {{
         put("AppStoreDownload", "AppStoreTest_Android#AppStoreDownload");
         put("AppStoreTop10", "AppStoreTest_Android#AppStoreTop10");
         put("EriBankLogin", "EriBankTest_Android#EriBankLogin");
         put("EriBankPayment", "EriBankTest_Android#EriBankPayment");
-        put("Espn", "EspnTest_Android#Espn");
+        put("EspnMenu", "EspnTest_Android#EspnMenu");
+        put("EspnMenuButtons", "EspnTest_Android#EspnMenuButtons");
         put("TapTheDotLogin", "TapTheDotTest#TapTheDotLogin");
         put("TapTheDotPlay", "TapTheDotTest#TapTheDotPlay");
     }};

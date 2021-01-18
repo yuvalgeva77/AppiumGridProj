@@ -66,24 +66,24 @@ public class  MobileTest {
 
     @BeforeAll
     public void resetTimer(){
-        System.out.println("--------Test suite started-----");
         if(CURRENT_TIME==0)
             CURRENT_TIME = System.currentTimeMillis();
         if(testConfiguration==null){
             resetConfigurations();
-            //            if (testLogger==null){
-            //                resetLogger();
-            //            }
         }
         driverFactory=new DriverFactory(testConfiguration.getAccessKey(),testConfiguration.getCloudUrl());
         device=((TestRunner)Thread.currentThread()).getDevice();
         driverFactory.setDevice(device);
         testLogger=TestLogger.getTestLogger();
+
+    }
+    @BeforeEach
+    public void reset(){
         failures=0;
     }
     public void writeSupportData(){
         String fileName = "Result Files/RUN_"+CURRENT_TIME+"/supportData.zip";
-            Path pathToFile = Paths.get(fileName);
+        Path pathToFile = Paths.get(fileName);
         try {
             Files.createDirectories(pathToFile.getParent());
         } catch (IOException e) {
@@ -164,16 +164,17 @@ public class  MobileTest {
     }
     public void printExeption(Exception e){
         failures++;
-        test_status="TEST "+test_name+" failed "+failures+" of times: "+e.toString()+"\n";
+        test_status="-- TEST "+test_name+" failed "+failures+" times: "+e.toString()+"\n";
         writeRunFile(test_status);
         testLogger.addDFail(device,e.toString()+"\n");
         writeSupportData();
-        if(failures==2){
-                // reboot and wait 3 minutes for the device to reload
-                // unlock the device after reboot
-                if(seeTestClient.reboot(180000)){
-                    seeTestClient.deviceAction("Unlock");
-                }
+        if(failures==3){
+            // reboot and wait 3 minutes for the device to reload
+            // unlock the device after reboot
+            if(seeTestClient.reboot(240000)){
+                System.out.println(test_name+ "reboot");
+                seeTestClient.deviceAction("Unlock");
+            }
 
 
         }
@@ -182,21 +183,23 @@ public class  MobileTest {
 
     public void printAssertionError(AssertionError e) {
         failures++;
-        test_status="TEST "+test_name+" failed "+e.toString()+failures+" of times"+"\n";
+        test_status="-- TEST "+test_name+" failed "+failures+" times: "+e.toString()+"\n";
         writeRunFile(test_status);
         testLogger.addDFail(device,e.toString()+"\n");
         writeSupportData();
 //        fail(test_status);
-        if(failures==2){
+        if(failures==3){
             // reboot and wait 3 minutes for the device to reload
             // unlock the device after reboot
-            if(seeTestClient.reboot(180000)){
+            if(seeTestClient.reboot(240000)){
+                System.out.println(test_name+ "reboot");
                 seeTestClient.deviceAction("Unlock");
+
             }
         }
     }
     public void printSeccess(){
-        test_status="TEST "+test_name+" passed\n";
+        test_status="-- TEST "+test_name+" passed\n";
         writeRunFile(test_status);
         System.out.println(test_status);
         testLogger.addDPassed(device);

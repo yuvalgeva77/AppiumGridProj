@@ -1,22 +1,14 @@
 
 import com.experitest.appium.SeeTestClient;
-import io.appium.java_client.android.AndroidDriver;
-
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.*;
-import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-//import org.junit.Test;
-//import org.junit.Test;
 import java.lang.*;
-
-
 
 public class EriBankTest_Android extends MobileTest {
 
@@ -30,23 +22,16 @@ public class EriBankTest_Android extends MobileTest {
             driver = driverFactory.getAndroidDriverApp("com.experitest.ExperiBank", ".LoginActivity", true);
             wait = new WebDriverWait(driver, 10);
             seeTestClient = new SeeTestClient(driver);
-//            device=new Device(driver);
-            //get driver from Test Runner
-
         } catch (Exception e) {
             System.out.println("TEST " + test_name + " failed in setUp");
             printExeption(e);
-
         }
-
-        System.out.println("----test Started----\n");
+        System.out.println("----"+test_name+" test started----\n");
     }
 
-
     @Test
-    public void EriBankLogin() throws Exception {
+    public void EriBankLogin() {
         test_name = "EriBank android Login";
-//             pathToCsv = "C:\\Users\\YuvalGeva\\IdeaProjects\\AppiumGridProj\\src\\test\\Login data.csv";
         do {
             try {
                 System.out.println("failures: "+ failures+"\n");
@@ -68,7 +53,6 @@ public class EriBankTest_Android extends MobileTest {
                         assertTrue(name + ", " + password + "didnt pop Erorr message", checkErrorMessage());
                         backToReister();
                     }
-
                 }
                 csvReader.close();
                 printSeccess();
@@ -85,38 +69,28 @@ public class EriBankTest_Android extends MobileTest {
                 printExeption(e);
             }
         }
-
         while(failures>=1&&failures<3);
-        failures=0;
     }
-
 
     @Test
     public void EriBankPayment() throws Exception {
-        test_name="EriBank android Payment";
-        try {
-            insertInfo("company", "company");
-            double payedAmount = 50;
-            double firstAmount = makePayment(payedAmount);
-            double finalAmount = checkAmount();
-            assertTrue("error:checkAmount!=firstAmount-payedAmount", finalAmount == firstAmount - payedAmount);
-            printSeccess();
-        }
-        catch (AssertionError e) {
-            System.out.println("AssertionError ");
-            printAssertionError(e);
-        }
-        catch (Exception e) {
-            printExeption(e);
-        }
-
-
+        test_name = "EriBank android Payment";
+        do {
+            try {
+                insertInfo("company", "company");
+                double payedAmount = 50;
+                double firstAmount = makePayment(payedAmount);
+                double finalAmount = checkAmount();
+                assertTrue("error:checkAmount!=firstAmount-payedAmount", finalAmount == firstAmount - payedAmount);
+                printSeccess();
+            } catch (AssertionError e) {
+                System.out.println("AssertionError ");
+                printAssertionError(e);
+            } catch (Exception e) {
+                printExeption(e);
+            }
+        } while(failures>=1&&failures<3);
     }
-//
-//        @AfterEach
-//        public void tearDown() {
-//            driver.quit();
-//        }
 
 
     public void insertInfo(String username, String password) {

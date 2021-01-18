@@ -1,85 +1,100 @@
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.remote.MobileBrowserType;
-import io.appium.java_client.remote.MobileCapabilityType;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
+import com.experitest.appium.SeeTestClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.io.*;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+
 public class EspnTest_Android extends MobileTest {
 
-
-
     public static void main(String[] args) {
-
     }
 
     @BeforeEach
-    public void setUp() throws MalformedURLException {
-
+    public void setUp(){
         try {
             driver =(driverFactory.getAndroidDriverChrome("EspnTest Android",true));
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
-            System.out.println("----test Started----\n");
-        } catch (Exception e) {
+            seeTestClient= new SeeTestClient(driver);
+            System.out.println("----"+test_name+" test started----\n");
+        }
+        catch (Exception e) {
             System.out.println("TEST "+test_name+" failed in setUp");
             printExeption(e);
-
         }
     }
 
     @Test
-    public void Espn() {
-        test_name="Espn Android";
-        try{
-            aproveCondiotionsStart();
-            for (int i=2;i<6;i++){
-                waitT();
-                List<WebElement> menu = driver.findElements(By.xpath( "//*[@id='global-nav-mobile-trigger' and @nodeName='A']"));
-                System.out.println(menu.get(0).isDisplayed());
-                waitT();
-                menu.get(0).click();
-                String path="#global-nav-mobile > ul > li.active > ul > li:nth-child("+i+")" ;
-                waitT();
-                WebElement el4 =  wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByCssSelector(path)));
-                String bTitle=el4.getText();
-                el4.click();
-                waitT();
-                WebElement el5 =   wait.until(ExpectedConditions.visibilityOf((driver.findElementByCssSelector(  "#global-nav-secondary > div > ul > li.sports.sub > span > a > span.link-text"))));
-                String title=el5.getText();
-                assertTrue(bTitle.equals(title));
-                printSeccess();
+    public void EspnMenu(){
+        test_name="Espn Android menu";
+        do{
+            try{
+                aproveCondiotionsStart();
+                for (int i=2;i<6;i++){
+                    waitT();
+                    List<WebElement> menu = driver.findElements(By.xpath( "//*[@id='global-nav-mobile-trigger' and @nodeName='A']"));
+                    System.out.println(menu.get(0).isDisplayed());
+                    waitT();
+                    menu.get(0).click();
+                    String path="#global-nav-mobile > ul > li.active > ul > li:nth-child("+i+")" ;
+                    waitT();
+                    WebElement el4 =  wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByCssSelector(path)));
+                    String bTitle=el4.getText();
+                    el4.click();
+                    waitT();
+                    WebElement el5 =   wait.until(ExpectedConditions.visibilityOf((driver.findElementByCssSelector(  "#global-nav-secondary > div > ul > li.sports.sub > span > a > span.link-text"))));
+                    String title=el5.getText();
+                    assertTrue(bTitle.equals(title));
+                    printSeccess();
+                }
+            } catch (Exception e) {
+                printExeption(e);
             }
-        } catch (Exception e) {
-            printExeption(e);
-        }
-        catch (AssertionError e) {
-            System.out.println("AssertionError ");
-            printAssertionError(e);
-        }
-
-
+            catch (AssertionError e) {
+                System.out.println("AssertionError ");
+                printAssertionError(e);
+            }
+        }while(failures>=1&&failures<3);
     }
-
+ @Test
+    public void EspnMenuButtons (){
+        test_name="Espn Android menu buttons ";
+        do{
+            try{
+                aproveCondiotionsStart();
+                for (int i=2;i<6;i++){
+                    waitT();
+                    List<WebElement> menu = driver.findElements(By.xpath( "//*[@id='global-nav-mobile-trigger' and @nodeName='A']"));
+                    System.out.println(menu.get(0).isDisplayed());
+                    waitT();
+                    menu.get(0).click();
+                    String path="#global-nav-mobile > ul > li.active > ul > li:nth-child("+i+")" ;
+                    waitT();
+                    WebElement el4 =  wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByCssSelector(path)));
+                    String bTitle=el4.getText();
+                    el4.click();
+                    waitT();
+                    WebElement el5 =   wait.until(ExpectedConditions.visibilityOf((driver.findElementByCssSelector(  "#global-nav-secondary > div > ul > li.sports.sub > span > a > span.link-text"))));
+                    String title=el5.getText();
+                    assertTrue(bTitle.equals(title));
+                    printSeccess();
+                }
+            } catch (Exception e) {
+                printExeption(e);
+            }
+            catch (AssertionError e) {
+                System.out.println("AssertionError ");
+                printAssertionError(e);
+            }
+        }while(failures>=1&&failures<3);
+    }
 
 
     public void aproveCondiotionsStart(){
@@ -98,7 +113,5 @@ public class EspnTest_Android extends MobileTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
-
 }

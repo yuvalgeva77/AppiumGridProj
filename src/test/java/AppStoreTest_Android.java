@@ -1,3 +1,4 @@
+import com.experitest.appium.SeeTestClient;
 import io.appium.java_client.FindsByAndroidViewTag;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
@@ -28,48 +29,28 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class AppStoreTest_Android extends MobileTest{
-//    static AndroidDriver<AndroidElement> driver;
-//    static WebDriverWait wait;
-//    String DEVICE_NAME = "device1";
-//    static long CURRENT_TIME;
 
     public static void main(String[] args) {
 
     }
-    //    @BeforeAll
-//    public static void resetTimer(){
-//        CURRENT_TIME = System.currentTimeMillis();
-//
-//    }
     @BeforeEach
     public void setUp()  {
         test_name = "AppStore android ";
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("testName", "AppStoreTest_Android");
-//        capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
-//        capabilities.setCapability("deviceQuery", "@os='android'");
-////        capabilities.setCapability(MobileCapabilityType.FULL_RESET, true);
-//        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.android.vending");
-//        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".AssetBrowserActivity");
         try {
             driver=driverFactory.getAndroidDriverApp("com.android.vending",".AssetBrowserActivity",false);
-//            driver = new AndroidDriver<>(new URL("https://qacloud.experitest.com/wd/hub"), capabilities);
             wait = new WebDriverWait(driver, 120);
-
+            seeTestClient= new SeeTestClient(driver);
         } catch (MalformedURLException e) {
             e.printStackTrace();
-
         }
-        System.out.println("Aplication Started");
-//        DEVICE_NAME=driver.getCapabilities().getCapability("deviceName").toString();
-//        String VERSION=driver.getCapabilities().getCapability("CapabilityType.VERSION").toString();
+        System.out.println("----"+test_name+" test started----\n");
     }
 
 
     @Test
     public void AppStoreDownload()  {
         test_name = "AppStore android Download";
-        while (failures>=1&&failures<3) {
+        do {
             try {
                 wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
                 List<AndroidElement> appList = driver.findElementsByXPath("//*[contains(@contentDescription, \"App:\")]");
@@ -83,64 +64,40 @@ public class AppStoreTest_Android extends MobileTest{
 
             } catch (Exception e) {
                 printExeption(e);
-
             }
-        }
+        } while(failures>=1&&failures<3);
     }
 
     @Test
     public void AppStoreTop10() {
         test_name = "AppStore android top10";
-        try {
-            // wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
-            wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
-            List <String> appNames = new LinkedList<String>();
-            while ( appNames.size() < 10) {
-                List<AndroidElement> appList = driver.findElementsByXPath("//*[contains(@contentDescription, \"App:\")]");
-                for (int i = 0; i < appList.size(); i++) {
-                    String app=getNameOfApp(appList.get(i));
-                    if (!appNames.contains(app))
-                        appNames.add(app);
+        do {
+            try {
+                // wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
+                wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Top charts']"))).click();
+                List<String> appNames = new LinkedList<String>();
+                while (appNames.size() < 10) {
+                    List<AndroidElement> appList = driver.findElementsByXPath("//*[contains(@contentDescription, \"App:\")]");
+                    for (int i = 0; i < appList.size(); i++) {
+                        String app = getNameOfApp(appList.get(i));
+                        if (!appNames.contains(app))
+                            appNames.add(app);
+                    }
+                    swipeDown();
                 }
-                swipeDown();
+                assertTrue(appNames.size() >= 10);
+                for (int i = 0; i < 10; i++) {
+                    System.out.println(String.valueOf(i + 1) + "." + appNames.get(i) + "\n");
+                }
+
+                printSeccess();
+            } catch (Exception e) {
+                printExeption(e);
+
             }
-            assertTrue(appNames.size()>=10);
-            for (int i = 0; i < 10; i++) {
-                System.out.println(String.valueOf(i+1)+"."+appNames.get(i)+"\n");}
-
-            printSeccess();
-        } catch(Exception e){
-            printExeption(e);
-
-        }
+        } while(failures>=1&&failures<3);
     }
-    //    public  void writeFile(String value){
-//        String PATH = "./";
-//        //crete RUN_CURRENT_TIME directory
-//        String directoryName = PATH.concat("RUN_"+CURRENT_TIME);
-//        String fileName = DEVICE_NAME+ ".txt";
-//        File directory = new File(directoryName);
-//        if (! directory.exists()){
-//            directory.mkdir();
-//            System.out.println("directory created at: "+directory.getAbsolutePath());
-//        }
-//        //crete device_number file id doesnt exist and write the data
-//        File file = new File(directoryName + "/" + fileName);
-//        try {
-//            file.createNewFile(); // if file already exists will do nothing
-//            //Here true is to append the content to file
-//            FileWriter fw = new FileWriter(file,true);
-//            //BufferedWriter writer give better performance
-//            BufferedWriter bw = new BufferedWriter(fw);
-//            bw.write(value);
-//            System.out.println("file data written at: "+file);
-//            bw.close();
-//        }
-//        catch (IOException e){
-//            e.printStackTrace();
-//            System.exit(-1);
-//        }
-//    }
+
     public void swipeDown ( ) {
         Dimension dimension = driver.manage().window().getSize();
         int start_x = (int) ( dimension.width * 0.5 );
@@ -157,9 +114,6 @@ public class AppStoreTest_Android extends MobileTest{
         String name = res[0].split("App: ")[1];
         return name;
     }
-//    @AfterEach
-//    public void tearDown() {
-//        driver.quit();
-//    }
+
 }
 
