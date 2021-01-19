@@ -1,0 +1,10 @@
+Summary Report
+Number of devices that were requested to run:1
+Number of Devices that actually ran:1
+Total number of tests passed:1
+Total number of tests failed:0
+------------------------------------------------------------
+
+--------iteration1:--------
+
+Device{name='samsung SM-T813', category='TABLET', version='7.0', os='Android'}, passed=1, failed=0

@@ -1,0 +1,2 @@
+-----iteration-----: 1
+*TEST EriBank android Login passed

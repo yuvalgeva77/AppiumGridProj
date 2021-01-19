@@ -1,4 +1,5 @@
 import com.experitest.appium.SeeTestClient;
+import io.github.artsok.RepeatedIfExceptionsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -23,17 +24,17 @@ public class EspnTest_ios extends MobileTest {
             wait = new WebDriverWait(driver, 600);
             seeTestClient= new SeeTestClient(driver);
         } catch (Exception e) {
-            System.out.println("TEST "+test_name+" failed in setUp");
+            System.out.println("--TEST "+test_name+" failed in setUp\n");
             printExeption(e);
         }
         System.out.println("----"+test_name+" test started----\n");
     }
 
 
-    @Test
+    @RepeatedIfExceptionsTest(repeats = 2)
     public void EspnMenu() {
         test_name="Espn ios menu";
-        do{
+      //  do{
             try{
                 aproveCondiotionsStart();
                 for (int i=2;i<6;i++){
@@ -61,12 +62,13 @@ public class EspnTest_ios extends MobileTest {
                 System.out.println("AssertionError ");
                 printAssertionError(e);
             }
-        }while(failures>=1&&failures<3);
+       // }while(failures>=1&&failures<3);
     }
- @Test
+
+    @RepeatedIfExceptionsTest(repeats = 2)
     public void EspnMenuButtons() {
         test_name="Espn2 ios menu buttons";
-        do{
+       // do{
             try{
                 aproveCondiotionsStart();
                 for (int i=2;i<6;i++){
@@ -94,7 +96,7 @@ public class EspnTest_ios extends MobileTest {
                 System.out.println("AssertionError ");
                 printAssertionError(e);
             }
-        }while(failures>=1&&failures<3);
+       // }while(failures>=1&&failures<3);
     }
 
 

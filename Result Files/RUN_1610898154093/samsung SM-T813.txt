@@ -1,0 +1,17 @@
+-----iteration-----: 1
+TEST EriBank Android failed 1 of times: org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Please check the server log for more details. Original error: Unable to parse remote response: <html>
+<head>
+   <title>Status page</title>
+</head>
+<body style="font-family: sans-serif;">
+<p style="font-size: 1.2em;font-weight: bold;margin: 1em 0px;">Internal Server Error</p>
+<p>The server encountered an unexpected condition which prevented it from fulfilling the request</p>
+<p>You can get technical details <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">here</a>.<br>
+Please continue your visit at our <a href="/">home page</a>.
+</p>
+</body>
+</html>
+
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver

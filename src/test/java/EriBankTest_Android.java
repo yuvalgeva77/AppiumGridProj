@@ -1,5 +1,6 @@
 
 import com.experitest.appium.SeeTestClient;
+import io.github.artsok.RepeatedIfExceptionsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,16 +24,16 @@ public class EriBankTest_Android extends MobileTest {
             wait = new WebDriverWait(driver, 10);
             seeTestClient = new SeeTestClient(driver);
         } catch (Exception e) {
-            System.out.println("TEST " + test_name + " failed in setUp");
+            System.out.println("TEST " + test_name + " failed in setUp\n");
             printExeption(e);
         }
         System.out.println("----"+test_name+" test started----\n");
     }
 
-    @Test
+    @RepeatedIfExceptionsTest(repeats = 2)
     public void EriBankLogin() {
         test_name = "EriBank android Login";
-        do {
+        //do {
             try {
                 System.out.println("failures: "+ failures+"\n");
                 BufferedReader csvReader = null;
@@ -69,13 +70,13 @@ public class EriBankTest_Android extends MobileTest {
                 printExeption(e);
             }
         }
-        while(failures>=1&&failures<3);
-    }
+      //  while(failures>=1&&failures<3);
+    //}
 
-    @Test
-    public void EriBankPayment() throws Exception {
+    @RepeatedIfExceptionsTest(repeats = 2)
+    public void EriBankPayment() {
         test_name = "EriBank android Payment";
-        do {
+      //  do {
             try {
                 insertInfo("company", "company");
                 double payedAmount = 50;
@@ -89,7 +90,7 @@ public class EriBankTest_Android extends MobileTest {
             } catch (Exception e) {
                 printExeption(e);
             }
-        } while(failures>=1&&failures<3);
+       // } while(failures>=1&&failures<3);
     }
 
 

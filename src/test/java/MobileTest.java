@@ -5,13 +5,11 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.BeforeClass;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.Rule;
+import org.junit.jupiter.api.*;
 import org.junit.Before;
 //import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.*;
@@ -19,10 +17,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Driver;
+import java.util.concurrent.TimeUnit;
+
 import com.experitest.client.*;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+//set test timeout(5 mins for reboot)
+@Timeout(value = 10, unit = TimeUnit.MINUTES)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class  MobileTest {
     protected AppiumDriver driver;
@@ -79,8 +81,10 @@ public class  MobileTest {
     }
     @BeforeEach
     public void reset(){
+        if(failures>3)
         failures=0;
     }
+
     public void writeSupportData(){
         String fileName = "Result Files/RUN_"+CURRENT_TIME+"/supportData.zip";
         Path pathToFile = Paths.get(fileName);
@@ -168,17 +172,15 @@ public class  MobileTest {
         writeRunFile(test_status);
         testLogger.addDFail(device,e.toString()+"\n");
         writeSupportData();
-        if(failures==3){
-            // reboot and wait 3 minutes for the device to reload
+        if(failures==2){
+            // reboot and wait 5 minutes for the device to reload
             // unlock the device after reboot
-            if(seeTestClient.reboot(240000)){
-                System.out.println(test_name+ "reboot");
+            if(seeTestClient.reboot(300000)){
+                System.out.println(test_name+ " reboot");
                 seeTestClient.deviceAction("Unlock");
             }
-
-
         }
-//        fail(test_status);
+        fail(test_status);
     }
 
     public void printAssertionError(AssertionError e) {
@@ -188,7 +190,7 @@ public class  MobileTest {
         testLogger.addDFail(device,e.toString()+"\n");
         writeSupportData();
 //        fail(test_status);
-        if(failures==3){
+        if(failures==2){
             // reboot and wait 3 minutes for the device to reload
             // unlock the device after reboot
             if(seeTestClient.reboot(240000)){
@@ -197,6 +199,8 @@ public class  MobileTest {
 
             }
         }
+        fail(test_status);
+
     }
     public void printSeccess(){
         test_status="-- TEST "+test_name+" passed\n";

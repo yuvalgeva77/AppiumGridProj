@@ -1,0 +1,38 @@
+Summary Report
+Number of devices that were requested to run:1
+Number of Devices that actually ran:1
+Total number of tests passed:0
+Total number of tests failed:3
+------------------------------------------------------------
+
+--------iteration1:--------
+
+Device{name='Xiaomi POCOPHONE F1', category='PHONE', version='9', os='Android'}, passed=0, failed=3
+, errorList=[org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@text='Install']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: .AssetBrowserActivity, appBuildVersion: , appPackage: com.android.vending, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {appActivity: .AssetBrowserActivity, appPackage: com.android.vending, platformName: Android, udid: 8d141db5}, device.category: PHONE, device.majorVersion: 9, device.manufacture: Xiaomi, device.model: POCOPHONE F1, device.name: Xiaomi POCOPHONE F1, device.os: Android, device.screenSize: 1080x2246, device.serialNumber: 8d141db5, device.version: 9, deviceUDID: 8d141db5, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3540344, ehmUrl: https://qaregion.experitest..., fullReset: false, gridNodePort: 7796, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 7847, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 01:11 PM, udid: 8d141db5, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_12-48-45-63f4968c-eafd-4bf2-8166-9fab21168e8e
+*** Element info: {Using=xpath, value=//*[@text='Install']}
+, org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@text='Install']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: .AssetBrowserActivity, appBuildVersion: , appPackage: com.android.vending, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {appActivity: .AssetBrowserActivity, appPackage: com.android.vending, platformName: Android, udid: 8d141db5}, device.category: PHONE, device.majorVersion: 9, device.manufacture: Xiaomi, device.model: POCOPHONE F1, device.name: Xiaomi POCOPHONE F1, device.os: Android, device.screenSize: 1080x2246, device.serialNumber: 8d141db5, device.version: 9, deviceUDID: 8d141db5, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3540344, ehmUrl: https://qaregion.experitest..., fullReset: false, gridNodePort: 7796, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 7848, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 01:12 PM, udid: 8d141db5, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_12-48-45-63f4968c-eafd-4bf2-8166-9fab21168e8e
+*** Element info: {Using=xpath, value=//*[@text='Install']}
+, org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@text='Install']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: .AssetBrowserActivity, appBuildVersion: , appPackage: com.android.vending, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {appActivity: .AssetBrowserActivity, appPackage: com.android.vending, platformName: Android, udid: 8d141db5}, device.category: PHONE, device.majorVersion: 9, device.manufacture: Xiaomi, device.model: POCOPHONE F1, device.name: Xiaomi POCOPHONE F1, device.os: Android, device.screenSize: 1080x2246, device.serialNumber: 8d141db5, device.version: 9, deviceUDID: 8d141db5, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3540344, ehmUrl: https://qaregion.experitest..., fullReset: false, gridNodePort: 7796, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 7849, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 01:16 PM, udid: 8d141db5, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_12-48-45-63f4968c-eafd-4bf2-8166-9fab21168e8e
+*** Element info: {Using=xpath, value=//*[@text='Install']}
+]

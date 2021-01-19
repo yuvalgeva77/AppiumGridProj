@@ -1,0 +1,147 @@
+Summary Report
+Number of devices that were requested to run:2
+Number of Devices that actually ran:2
+Total number of tests passed:2
+Total number of tests failed:22
+------------------------------------------------------------
+
+--------iteration1:--------
+
+Device{name='HUAWEI WAS-LX', category='PHONE', version='8.0.0', os='Android'}, passed=0, failed=12
+, errorList=[org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@id='nameTextBox']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appBuildVersion: , appPackage: com.example.tapthedot, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appPackage: com.example.tapthedot, platformName: Android, udid: PMF4C17916008174}, device.category: PHONE, device.majorVersion: 8, device.manufacture: HUAWEI, device.model: WAS-LX1, device.name: HUAWEI WAS-LX, device.os: Android, device.screenSize: 1080x1920, device.serialNumber: PMF4C17916008174, device.version: 8.0.0, deviceUDID: PMF4C17916008174, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3419115, ehmUrl: https://qacloud.experitest...., fullReset: false, gridNodePort: 7777, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 8037, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 08:38 PM, udid: PMF4C17916008174, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_20-24-17-f7abbe54-9417-4dcb-8720-32c931451770
+*** Element info: {Using=xpath, value=//*[@id='nameTextBox']}
+, org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@id='nameTextBox']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appBuildVersion: , appPackage: com.example.tapthedot, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appPackage: com.example.tapthedot, platformName: Android, udid: PMF4C17916008174}, device.category: PHONE, device.majorVersion: 8, device.manufacture: HUAWEI, device.model: WAS-LX1, device.name: HUAWEI WAS-LX, device.os: Android, device.screenSize: 1080x1920, device.serialNumber: PMF4C17916008174, device.version: 8.0.0, deviceUDID: PMF4C17916008174, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3419115, ehmUrl: https://qacloud.experitest...., fullReset: false, gridNodePort: 7777, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 8039, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 08:40 PM, udid: PMF4C17916008174, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_20-24-17-f7abbe54-9417-4dcb-8720-32c931451770
+*** Element info: {Using=xpath, value=//*[@id='nameTextBox']}
+, org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@id='nameTextBox']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appBuildVersion: , appPackage: com.example.tapthedot, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appPackage: com.example.tapthedot, platformName: Android, udid: PMF4C17916008174}, device.category: PHONE, device.majorVersion: 8, device.manufacture: HUAWEI, device.model: WAS-LX1, device.name: HUAWEI WAS-LX, device.os: Android, device.screenSize: 1080x1920, device.serialNumber: PMF4C17916008174, device.version: 8.0.0, deviceUDID: PMF4C17916008174, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3419115, ehmUrl: https://qacloud.experitest...., fullReset: false, gridNodePort: 7777, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 8043, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 08:44 PM, udid: PMF4C17916008174, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_20-24-17-f7abbe54-9417-4dcb-8720-32c931451770
+*** Element info: {Using=xpath, value=//*[@id='nameTextBox']}
+, org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@id='nameTextBox']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appBuildVersion: , appPackage: com.example.tapthedot, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appPackage: com.example.tapthedot, platformName: Android, udid: PMF4C17916008174}, device.category: PHONE, device.majorVersion: 8, device.manufacture: HUAWEI, device.model: WAS-LX1, device.name: HUAWEI WAS-LX, device.os: Android, device.screenSize: 1080x1920, device.serialNumber: PMF4C17916008174, device.version: 8.0.0, deviceUDID: PMF4C17916008174, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3419115, ehmUrl: https://qacloud.experitest...., fullReset: false, gridNodePort: 7777, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 8044, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 08:45 PM, udid: PMF4C17916008174, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_20-24-17-f7abbe54-9417-4dcb-8720-32c931451770
+*** Element info: {Using=xpath, value=//*[@id='nameTextBox']}
+, org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@id='nameTextBox']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appBuildVersion: , appPackage: com.example.tapthedot, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appPackage: com.example.tapthedot, platformName: Android, udid: PMF4C17916008174}, device.category: PHONE, device.majorVersion: 8, device.manufacture: HUAWEI, device.model: WAS-LX1, device.name: HUAWEI WAS-LX, device.os: Android, device.screenSize: 1080x1920, device.serialNumber: PMF4C17916008174, device.version: 8.0.0, deviceUDID: PMF4C17916008174, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3419115, ehmUrl: https://qacloud.experitest...., fullReset: false, gridNodePort: 7777, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 8045, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 08:46 PM, udid: PMF4C17916008174, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_20-24-17-f7abbe54-9417-4dcb-8720-32c931451770
+*** Element info: {Using=xpath, value=//*[@id='nameTextBox']}
+, org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@id='nameTextBox']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appBuildVersion: , appPackage: com.example.tapthedot, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {app: cloud:com.example.tapthedot..., appActivity: .MainActivity, appPackage: com.example.tapthedot, platformName: Android, udid: PMF4C17916008174}, device.category: PHONE, device.majorVersion: 8, device.manufacture: HUAWEI, device.model: WAS-LX1, device.name: HUAWEI WAS-LX, device.os: Android, device.screenSize: 1080x1920, device.serialNumber: PMF4C17916008174, device.version: 8.0.0, deviceUDID: PMF4C17916008174, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3419115, ehmUrl: https://qacloud.experitest...., fullReset: false, gridNodePort: 7777, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 8046, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 08:46 PM, udid: PMF4C17916008174, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_20-24-17-f7abbe54-9417-4dcb-8720-32c931451770
+*** Element info: {Using=xpath, value=//*[@id='nameTextBox']}
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Connection reset
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+]
+
+Device{name='Xiaomi POCOPHONE F1', category='PHONE', version='9', os='Android'}, passed=2, failed=10
+, errorList=[org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@text='Install']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: .AssetBrowserActivity, appBuildVersion: , appPackage: com.android.vending, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {appActivity: .AssetBrowserActivity, appPackage: com.android.vending, platformName: Android, udid: 8d141db5}, device.category: PHONE, device.majorVersion: 9, device.manufacture: Xiaomi, device.model: POCOPHONE F1, device.name: Xiaomi POCOPHONE F1, device.os: Android, device.screenSize: 1080x2246, device.serialNumber: 8d141db5, device.version: 9, deviceUDID: 8d141db5, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3540344, ehmUrl: https://qaregion.experitest..., fullReset: false, gridNodePort: 7832, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 8041, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 08:42 PM, udid: 8d141db5, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_20-38-05-e1d11c59-26db-49ae-a21c-6c4fabe56f91
+*** Element info: {Using=xpath, value=//*[@text='Install']}
+, org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@text='Install']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: .AssetBrowserActivity, appBuildVersion: , appPackage: com.android.vending, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {appActivity: .AssetBrowserActivity, appPackage: com.android.vending, platformName: Android, udid: 8d141db5}, device.category: PHONE, device.majorVersion: 9, device.manufacture: Xiaomi, device.model: POCOPHONE F1, device.name: Xiaomi POCOPHONE F1, device.os: Android, device.screenSize: 1080x2246, device.serialNumber: 8d141db5, device.version: 9, deviceUDID: 8d141db5, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3540344, ehmUrl: https://qaregion.experitest..., fullReset: false, gridNodePort: 7832, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 8042, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 08:43 PM, udid: 8d141db5, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_20-38-05-e1d11c59-26db-49ae-a21c-6c4fabe56f91
+*** Element info: {Using=xpath, value=//*[@text='Install']}
+, org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@text='Install']'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appActivity: .AssetBrowserActivity, appBuildVersion: , appPackage: com.android.vending, appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, commandTimeouts: 120000, desired: {appActivity: .AssetBrowserActivity, appPackage: com.android.vending, platformName: Android, udid: 8d141db5}, device.category: PHONE, device.majorVersion: 9, device.manufacture: Xiaomi, device.model: POCOPHONE F1, device.name: Xiaomi POCOPHONE F1, device.os: Android, device.screenSize: 1080x2246, device.serialNumber: 8d141db5, device.version: 9, deviceUDID: 8d141db5, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-3540344, ehmUrl: https://qaregion.experitest..., fullReset: false, gridNodePort: 7832, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 8047, reportUrl: https://qacloud.experitest...., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/19/21 08:47 PM, udid: 8d141db5, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-19_20-38-05-e1d11c59-26db-49ae-a21c-6c4fabe56f91
+*** Element info: {Using=xpath, value=//*[@text='Install']}
+, org.openqa.selenium.WebDriverException: java.net.ConnectException: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+, org.openqa.selenium.SessionNotCreatedException: Unable to create a new remote session. Original error: Failed to connect to qacloud.experitest.com/192.168.6.19:443
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: driver.version: AndroidDriver
+]

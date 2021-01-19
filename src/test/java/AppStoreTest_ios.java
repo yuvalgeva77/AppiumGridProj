@@ -3,6 +3,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSElement;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import io.github.artsok.RepeatedIfExceptionsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -27,21 +28,21 @@ public class AppStoreTest_ios extends MobileTest{
         test_name="App Store ios";
         try {
             driver = driverFactory.getIOSDriverApp("com.apple.AppStore");
-            driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
+            driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.MINUTES);
             wait = new WebDriverWait(driver, 120);
             seeTestClient= new SeeTestClient(driver);
         } catch (Exception e) {
-            System.out.println("TEST "+test_name+" failed in setUp");
+            System.out.println("--TEST " + test_name + " failed in setUp\n");
             printExeption(e);
         }
         System.out.println("----"+test_name+" test started----\n");
     }
 
 
-    @Test
+    @RepeatedIfExceptionsTest(repeats = 2)
     public void AppStoreDownload()  {
         test_name = "AppStore ios Download";
-        do {
+    //    do {
             try {
                 wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Games']"))).click();
                 while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0 || !checkVisable((WebElement) driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).get(0))) {
@@ -67,13 +68,13 @@ public class AppStoreTest_ios extends MobileTest{
             catch (Exception e) {
                 printExeption(e);
             }
-        } while(failures>=1&&failures<3);
+      //  } while(failures>=1&&failures<3);
     }
 
-    @Test
+    @RepeatedIfExceptionsTest(repeats = 2)
     public void AppStoreTop10() throws Exception {
         test_name = "AppStore ios top10";
-        do {
+      //  do {
             try {
                 wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@text='Games']"))).click();
                 while (driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).size() == 0 || !checkVisable((WebElement) driver.findElements(By.xpath("//*[@text='See All' and @class='UIAButton' and ./parent::*[@text='Top Free Games']]")).get(0))) {
@@ -101,7 +102,7 @@ public class AppStoreTest_ios extends MobileTest{
             } catch (Exception e) {
                 printExeption(e);
             }
-        } while(failures>=1&&failures<3);
+      //  } while(failures>=1&&failures<3);
     }
 
     public void swipeDown ( ) {

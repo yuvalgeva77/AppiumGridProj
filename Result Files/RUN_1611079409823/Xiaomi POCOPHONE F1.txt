@@ -1,0 +1,3 @@
+-----iteration-----: 1
+-- TEST AppStore android top10 failed 1 times: java.lang.IndexOutOfBoundsException: Index -1 out of bounds for length 5
+-- TEST AppStore android top10 failed 2 times: java.lang.IndexOutOfBoundsException: Index -1 out of bounds for length 5

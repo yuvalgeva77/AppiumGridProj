@@ -51,10 +51,6 @@ public class DriverFactory {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.UDID, device.getUdid());
         capabilities.setCapability("accessKey",accessKey);
-//        capabilities.setCapability("deviceQuery", "@os='android'");
-//        if (!serialNumber.equals(""))
-//            capabilities.setCapability("deviceQuery", "@os='android' and @serialNumber=\'"+serialNumber+"\'");
-//        capabilities.setCapability("testName", "EspnTest Android");
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
         capabilities.setBrowserName(MobileBrowserType.CHROMIUM);
         return new AndroidDriver<>(new URL(cloudUrl), capabilities);

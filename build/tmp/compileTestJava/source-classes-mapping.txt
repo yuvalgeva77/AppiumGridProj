@@ -7,17 +7,14 @@ TestLogger.java
  TestLogger$device_log
 DriverFactory.java
  DriverFactory
-TestRunner.java
- TestRunner
- TestRunner$1
- TestRunner$2
-TestThreadPool.java
- TestThreadPool
- TestThreadPool$RestProjectAPI
+MobileTest.java
+ MobileTest
+EriBankTest_Android.java
+ EriBankTest_Android
 temp.java
  temp
-AppStoreTest_Android.java
- AppStoreTest_Android
+AppStoreTest_ios.java
+ AppStoreTest_ios
 TapTheDotTest.java
  TapTheDotTest
 EriBankTest_ios.java
@@ -26,9 +23,12 @@ EspnTest_Android.java
  EspnTest_Android
 EspnTest_ios.java
  EspnTest_ios
-MobileTest.java
- MobileTest
-EriBankTest_Android.java
- EriBankTest_Android
-AppStoreTest_ios.java
- AppStoreTest_ios
+TestRunner.java
+ TestRunner
+ TestRunner$1
+ TestRunner$2
+TestThreadPool.java
+ TestThreadPool
+ TestThreadPool$RestProjectAPI
+AppStoreTest_Android.java
+ AppStoreTest_Android

@@ -42,6 +42,9 @@ dependencies {
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 //    testCompile group: 'com.experitest', name: 'seetest-client', version: "20.10"
     compile group: 'com.experitest', name: 'appium-seetest-extension', version: '+'
+    // https://mvnrepository.com/artifact/io.github.artsok/rerunner-jupiter
+    testCompile group: 'io.github.artsok', name: 'rerunner-jupiter', version: '2.1.6'
+
 
 }
 

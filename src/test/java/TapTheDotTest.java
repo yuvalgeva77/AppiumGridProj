@@ -1,4 +1,5 @@
 import com.experitest.appium.SeeTestClient;
+import io.github.artsok.RepeatedIfExceptionsTest;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,17 +25,18 @@ public class TapTheDotTest extends MobileTest{
             seeTestClient= new SeeTestClient(driver);
         }
         catch (Exception e) {
-            System.out.println("TEST "+test_name+" failed in setUp");
+            System.out.println("--TEST "+test_name+" failed in setUp\n");
             printExeption(e);
         }
         System.out.println("----"+test_name+" test started----\n");
     }
 
-    @Test
+    @RepeatedIfExceptionsTest(repeats = 2)
     public void TapTheDotLogin() {
         test_name="Tap The Dot Android Login";
-        do{
+       // do{
             try {
+                aproveConditions();
                 BufferedReader csvReader = null;
                 csvReader = new BufferedReader(new FileReader(pathToCsv));
                 String log = "";
@@ -73,14 +75,15 @@ public class TapTheDotTest extends MobileTest{
                 System.out.println("AssertionError ");
                 printAssertionError(e);
             }
-        }while(failures>=1&&failures<3);
+        //}while(failures>=1&&failures<3);
     }
 
-    @Test
+    @RepeatedIfExceptionsTest(repeats = 2)
     public void TapTheDotPlay() {
         test_name="Tap The Dot Android play 3 taps";
-        do{
+        //do{
             try {
+                aproveConditions();
                 insertInfo("Yuval", "Yuval");
                 wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@text='PLAY!']")))).click();
                 for (int i = 0; i < 3; i++) {
@@ -101,7 +104,7 @@ public class TapTheDotTest extends MobileTest{
                 System.out.println("AssertionError ");
                 printAssertionError(e);
             }
-        }while(failures>=1&&failures<3);
+        //}while(failures>=1&&failures<3);
     }
 
     public void insertInfo(String username, String verifyName) {
@@ -133,8 +136,11 @@ public class TapTheDotTest extends MobileTest{
 
 
     }
-    public void aproveConditions(){
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")))).click();
+    public void aproveConditions() {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("com.android.packageinstaller:id/permission_allow_button")))).click();
+        } catch (Exception e) {
+        }
     }
 
 

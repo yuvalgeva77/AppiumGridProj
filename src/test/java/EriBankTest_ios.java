@@ -1,4 +1,5 @@
 import com.experitest.appium.SeeTestClient;
+import io.github.artsok.RepeatedIfExceptionsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -26,20 +27,16 @@ public class EriBankTest_ios extends MobileTest {
             wait = new WebDriverWait(driver, 120);
             seeTestClient = new SeeTestClient(driver);
         } catch (Exception e) {
-            System.out.println("TEST "+test_name+" failed in setUp");
+            System.out.println("--TEST "+test_name+" failed in setUp\n");
             printExeption(e);
-        }
-        catch (AssertionError e) {
-            System.out.println("AssertionError ");
-            printAssertionError(e);
         }
         System.out.println("----"+test_name+" test started----\n");
     }
 
-    @Test
+    @RepeatedIfExceptionsTest(repeats = 2)
     public void EriBankLogin() {
         test_name="EriBank ios Login";
-        do {
+      //  do {
             try {
                 System.out.println("failures: "+ failures+"\n");
                 BufferedReader csvReader = null;
@@ -77,13 +74,13 @@ public class EriBankTest_ios extends MobileTest {
                 printAssertionError(e);
             }
         }
-        while(failures>=1&&failures<3);
-    }
+      //  while(failures>=1&&failures<3);
+   // }
 
-    @Test
+    @RepeatedIfExceptionsTest(repeats = 2)
     public void EriBankPayment() {
         test_name ="EriBank ios Payment";
-        do{
+        //do{
             try {
                 insertInfo("company","company");
                 double payedAmount=50;
@@ -100,7 +97,7 @@ public class EriBankTest_ios extends MobileTest {
                 System.out.println("AssertionError ");
                 printAssertionError(e);
             }
-        }while(failures>=1&&failures<3);
+      //  }while(failures>=1&&failures<3);
 
     }
 

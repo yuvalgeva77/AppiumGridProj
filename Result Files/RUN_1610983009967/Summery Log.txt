@@ -1,0 +1,10 @@
+Summary Report
+Number of devices that were requested to run:1
+Number of Devices that actually ran:1
+Total number of tests passed:4
+Total number of tests failed:0
+------------------------------------------------------------
+
+--------iteration1:--------
+
+Device{name='Xiaomi POCOPHONE F1', category='PHONE', version='9', os='Android'}, passed=4, failed=0

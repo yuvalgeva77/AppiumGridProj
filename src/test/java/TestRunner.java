@@ -41,18 +41,20 @@ public class TestRunner extends Thread {
         put("AppStoreTop10", "AppStoreTest_ios#AppStoreTop10");
         put("EriBankLogin", "EriBankTest_ios#EriBankLogin");
         put("EriBankPayment", "EriBankTest_ios#EriBankPayment");
-        put("EspnMenu", "EspnTest_ios#EspnMenuButtons");
-        put("EspnMenuButtons", "EspnTest_ios#TapTheDotLogin");
+        put("EspnMenu", "EspnTest_ios#EspnMenu");
+        put("EspnMenuButtons", "EspnTest_ios#EspnMenuButtons");
     }};
     Map<String, String> suite_Andtoid = new HashMap<String, String>() {{
+        put("TapTheDotPlay", "TapTheDotTest#TapTheDotPlay");
+        put("TapTheDotLogin", "TapTheDotTest#TapTheDotLogin");
         put("AppStoreDownload", "AppStoreTest_Android#AppStoreDownload");
         put("AppStoreTop10", "AppStoreTest_Android#AppStoreTop10");
         put("EriBankLogin", "EriBankTest_Android#EriBankLogin");
         put("EriBankPayment", "EriBankTest_Android#EriBankPayment");
         put("EspnMenu", "EspnTest_Android#EspnMenu");
         put("EspnMenuButtons", "EspnTest_Android#EspnMenuButtons");
-        put("TapTheDotLogin", "TapTheDotTest#TapTheDotLogin");
-        put("TapTheDotPlay", "TapTheDotTest#TapTheDotPlay");
+
+
     }};
 
 
@@ -98,6 +100,7 @@ public class TestRunner extends Thread {
             TestExecutionSummary summary = listener.getSummary();
             long testFoundCount = summary.getTestsFoundCount();
             List<Failure> failures = summary.getFailures();
+            //TODO: while failure mechnism to call with set up to create driver
             System.out.println("getTestsSucceededCount() - " + summary.getTestsSucceededCount());
             failures.forEach(failure -> System.out.println("failure - " + failure.getException()));
            TestLogger.getTestLogger().finishIteration(iteration,device);

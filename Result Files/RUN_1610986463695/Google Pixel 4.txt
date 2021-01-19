@@ -1,0 +1,3 @@
+-----iteration-----: 1
+-- TEST AppStore android Download failed 1 times: java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+-- TEST AppStore android Download failed 2 times: java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
