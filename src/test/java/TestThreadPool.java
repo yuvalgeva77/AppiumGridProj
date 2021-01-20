@@ -11,16 +11,11 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
 
 public class TestThreadPool {
     private static String allTests="AppStoreTest_Android,AppStoreTest_ios,EriBankTest_Android,EriBankTest_ios,EspnTest_Android,EspnTest_ios,TapTheDotTest";
     protected static   Configuration testConfiguration;
     protected static String configurationPath="src/test/configuration file.txt";
-    //    private static List<String> testNames;
     private static List<String> machines;
     private static List<Device> freeDevs;
     protected static long CURRENT_TIME;
@@ -29,77 +24,42 @@ public class TestThreadPool {
     int iteration=1;
 
     public static void main(String[] args) throws InterruptedException, UnirestException, JSONException {
-        //run the all suite chosen in testNames on a selected number of devices
-        // ( thread= device.  tasks in size of thread->each thread will run a task)
         resetConfigurations();
-//        while (toContinue()) {
         freeDevs = new RestProjectAPI().getFreeDevices();
         long startTestTims=MobileTest.setCURRENT_TIME();
         testLogger=TestLogger.getTestLogger();
-//            MobileTest.resetLogger();
         TestRunner.startRunResetInfo(startTestTims,testConfiguration);
-//        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(freeDevs.size());
-//        for (int i=0;i<freeDevs.size();i++) {
         testLogger.setDevrequested(testConfiguration.getNumOfDevices());
         testLogger.setNumDevices(freeDevs.size());
         List<TestRunner> testRunners = new ArrayList<>();
         for (Device dev : freeDevs) {
-//            List<String> testC = new LinkedList<>();
-//            testC.add(testClassName);
             TestRunner test = new TestRunner(testConfiguration.getTestToRun(), dev,testConfiguration.getRepeat());
             testRunners.add(test);
             test.start();
-//                System.out.println("-------Created : " + i+"---------\n");
-//            executor.execute(test);
         }
-//        executor.shutdown();
-//        executor.awaitTermination(60, TimeUnit.DAYS);
         for (TestRunner test : testRunners) {
             test.join();
         }
         MobileTest.writeLogFile();
     }
-//    public List<String> getDevices(){
-//
-//    }
-//    }
 
     public static class RestProjectAPI {
         List<Device> devArray;
         List<Device> mydevLst;
-
         private com.mashape.unirest.http.HttpResponse<JsonNode> responseString;
         private HttpResponse<InputStream> responseInputStream;
-
         public List<Device> getDevices() throws UnirestException, JSONException {
             String url = testConfiguration.getCloudUrl() + "/api/v1/devices";
             responseString = Unirest.get(url).header("Authorization", "Bearer " + testConfiguration.getAccessKey()).header("content-type", "application/json").asJson();
             System.out.println(responseString);
             JSONArray jsonArray = (JSONArray) responseString.getBody().getObject().get("data");
-//                Gson gson = ;
-//            List<Device> devLst = new ArrayList<Device>();
-//
-//            int i=0;
-//            for (Object jdev:jsonArray) {
-//                Device dev=gson.fromJson(String.valueOf(jsonArray.get(i)), Device.class);
-//                devLst.add(dev);
-//                i++;
-//
-//            }
             devArray = new ArrayList<>(Arrays.asList(new Gson().fromJson(String.valueOf(jsonArray), Device[].class)));
-
+            //get deviced with conditions
             if(!testConfiguration.getSerialNumber().equals("")){
                 devArray.removeIf(dev -> (!dev.getUdid().equals(testConfiguration.getSerialNumber())));
-//                for (Device dev:devArray) {
-//                    if(!dev.getUdid().equals(testConfiguration.getSerialNumber())){
-//                        devArray.remove(dev);
-//                    }
+            } if(testConfiguration.getTestToRun().equals("TapTheDotPlay")||testConfiguration.getTestToRun().equals("TapTheDotLogin")){
+                devArray.removeIf(dev -> (!dev.getOs().equals("Android")));
             }
-//                Device dev=gson.fromJson(String.valueOf(jsonArray.get(i)), Device.class);
-//                devLst.add(dev);
-//                i++;
-
-
             return devArray;
         }
         public List<Device> getFreeDevices() throws UnirestException {
@@ -114,7 +74,6 @@ public class TestThreadPool {
                     num--;
                     if(num<=0)
                         return mydevLst;}
-
             }
             for (Device dev:devArray) {
                 if(dev.getDisplayStatus().equals("Available")){
@@ -122,17 +81,10 @@ public class TestThreadPool {
                     num--;
                     if(num<=0)
                         return mydevLst;}
-
             }
             return mydevLst;
-
-
         }
-
     }
-
-
-
 
     public static void resetConfigurations(){
         BufferedReader csvReader = null;
@@ -141,21 +93,10 @@ public class TestThreadPool {
             testConfiguration = new Gson().fromJson(csvReader, Configuration.class);
             MobileTest.setTestConfiguration(testConfiguration);
             System.out.println(testConfiguration.toString());
-            //get testClasses
-//            startTime= Instant.now();
         } catch (FileNotFoundException e) {
             System.out.println("-------failed to open configuration csv!--------");
             e.printStackTrace();
         }
-//        CURRENT_TIME=System.currentTimeMillis();
     }
-//    public static boolean toContinue(){
-//        Long thisTime= System.currentTimeMillis();
-//        Long timePassed=System.currentTimeMillis()-CURRENT_TIME;
-////        Long min=  TimeUnit.MILLISECONDS.toMinutes(thisTime);
-//        Long minPassed=  (timePassed)/60000;
-//        return (minPassed<testConfiguration.getRepeat());
-//    }
-
 }
 

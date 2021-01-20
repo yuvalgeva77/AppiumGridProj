@@ -1,0 +1,13 @@
+SeeTest Version: Appium Studio Enterprise™ v21.1.7751
+
+Operating System: Mac OS X
+
+Date: Wed Jan 20 14:33:35 IST 2021
+Supported Features:
+ANDROID, IPHONE, 
+
+Scenario: null
+
+Expected Results: null
+
+Actual Results: null

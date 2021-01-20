@@ -81,12 +81,12 @@ public class  MobileTest {
     }
     @BeforeEach
     public void reset(){
-        if(failures>3)
-        failures=0;
+        if(failures>=3)
+            failures=0;
     }
 
     public void writeSupportData(){
-        String fileName = "Result Files/RUN_"+CURRENT_TIME+"/supportData.zip";
+        String fileName = "Result Files/RUN_"+CURRENT_TIME+"/"+device.getName()+"/"+test_name+ failures+" supportData.zip";
         Path pathToFile = Paths.get(fileName);
         try {
             Files.createDirectories(pathToFile.getParent());
@@ -176,7 +176,7 @@ public class  MobileTest {
             // reboot and wait 5 minutes for the device to reload
             // unlock the device after reboot
             if(seeTestClient.reboot(300000)){
-                System.out.println(test_name+ " reboot");
+                System.out.println(device.getName()+" "+test_name+ " reboot");
                 seeTestClient.deviceAction("Unlock");
             }
         }
@@ -193,7 +193,7 @@ public class  MobileTest {
         if(failures==2){
             // reboot and wait 3 minutes for the device to reload
             // unlock the device after reboot
-            if(seeTestClient.reboot(240000)){
+            if(seeTestClient.reboot(300000)){
                 System.out.println(test_name+ "reboot");
                 seeTestClient.deviceAction("Unlock");
 

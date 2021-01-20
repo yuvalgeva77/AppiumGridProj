@@ -1,0 +1,65 @@
+Product
+-------
+Version: 21.1.10497
+
+Operating System
+----------------
+Name: CentOS Linux release 7.7.1908 (Core)
+
+Java Runtime
+------------
+Name: Java(TM) SE Runtime Environment
+Version: 1.8.0_221
+JAVA_HOME: /opt/Experitest/jre/jre1.8.0_221
+
+Network Interfaces
+------------------
+IP Address(s): 192.168.122.1, 192.168.6.204
+
+Memory
+------
+Total: 15885 MB
+Available: 228 MB
+
+Disks
+-----
+Filesystem                              Size  Used Avail Use% Mounted on
+devtmpfs                                7.8G     0  7.8G   0% /dev
+tmpfs                                   7.8G  2.4M  7.8G   1% /dev/shm
+tmpfs                                   7.8G  440M  7.4G   6% /run
+tmpfs                                   7.8G     0  7.8G   0% /sys/fs/cgroup
+/dev/mapper/centos_michaelbserver-root   50G   26G   25G  51% /
+/dev/sda1                              1014M  237M  778M  24% /boot
+/dev/mapper/centos_michaelbserver-home  441G  138M  441G   1% /home
+tmpfs                                   1.6G  4.0K  1.6G   1% /run/user/42
+tmpfs                                   1.6G   36K  1.6G   1% /run/user/1000
+/dev/sr0                                4.4G  4.4G     0 100% /run/media/qa/CentOS 7 x86_64
+
+Network Configuration
+---------------------
+ens192: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.6.204  netmask 255.255.248.0  broadcast 192.168.7.255
+        inet6 fe80::33ce:83fa:2a68:5888  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:99:0f:50  txqueuelen 1000  (Ethernet)
+        RX packets 127498814  bytes 54042694566 (50.3 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 17369278  bytes 9732993947 (9.0 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 85649778  bytes 26419164709 (24.6 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 85649778  bytes 26419164709 (24.6 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:49:52:d9  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+

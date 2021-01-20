@@ -40,6 +40,9 @@ public class DriverFactory {
         dc.setCapability("appPackage", appPackage);
 //                dc.setCapability("appPackage", "com.experitest.ExperiBank");
         dc.setCapability("appActivity", appActivity);
+        dc.setCapability("autoGrantPermissions", true);
+
+
 //                dc.setCapability("appActivity", ".LoginActivity");
         if(createAppATribute){
             String APP="cloud:"+appPackage+"/"+appActivity;

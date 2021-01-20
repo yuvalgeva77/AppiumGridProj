@@ -23,6 +23,7 @@ public class EriBankTest_Android extends MobileTest {
             driver = driverFactory.getAndroidDriverApp("com.experitest.ExperiBank", ".LoginActivity", true);
             wait = new WebDriverWait(driver, 10);
             seeTestClient = new SeeTestClient(driver);
+            driver.hideKeyboard();
         } catch (Exception e) {
             System.out.println("TEST " + test_name + " failed in setUp\n");
             printExeption(e);
@@ -95,9 +96,12 @@ public class EriBankTest_Android extends MobileTest {
 
 
     public void insertInfo(String username, String password) {
-        wait.until(ExpectedConditions.visibilityOf(driver.findElementById("usernameTextField"))).sendKeys(username);
-        wait.until(ExpectedConditions.visibilityOf(driver.findElementById("passwordTextField"))).sendKeys(password);
-        wait.until(ExpectedConditions.visibilityOf(driver.findElementById("loginButton"))).click();
+//        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@id='usernameTextField']"))).sendKeys(username);
+//        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@id='passwordTextField']"))).sendKeys(password);
+//        wait.until(ExpectedConditions.visibilityOf(driver.findElementByXPath("//*[@text='Login']"))).click();
+        driver.findElementByXPath("//*[@id='usernameTextField']").sendKeys(username);
+        driver.findElementByXPath("//*[@id='passwordTextField']").sendKeys(password);
+        driver.findElementByXPath("//*[@text='Login']").click();
     }
 
     public Boolean checkErrorMessage() {

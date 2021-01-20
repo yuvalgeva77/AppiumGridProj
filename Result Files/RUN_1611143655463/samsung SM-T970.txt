@@ -1,0 +1,30 @@
+-----iteration-----: 1
+-- TEST Tap The Dot Android Login passed
+-- TEST Tap The Dot Android play 3 taps passed
+-- TEST AppStore android Download passed
+-- TEST AppStore android top10 passed
+-- TEST Espn Android menu failed 1 times: org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@id='global-nav-mobile']/ul/li[@class='active' or starts-with(@class, 'active ') or ' active' = substring(@class, string-length(@class) - string-length(' active') + 1) or contains(@class, ' active ')]/ul/li[position() = 2]'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appBuildVersion: , appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, browserName: Chromium, cloudViewLink: https://mbremote.experitest..., commandTimeouts: 120000, desired: {browserName: Chromium, fullReset: true, platformName: Android, udid: R52NA0QCE8M}, device.category: TABLET, device.majorVersion: 10, device.manufacture: samsung, device.model: SM-T970, device.name: samsung SM-T970, device.os: Android, device.screenSize: 1752x2800, device.serialNumber: R52NA0QCE8M, device.version: 10, deviceUDID: R52NA0QCE8M, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-63, ehmUrl: https://mbremote.experitest..., fullReset: true, gridNodePort: 7795, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 7222, reportUrl: https://mbremote.experitest..., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/20/21 02:01 PM, udid: R52NA0QCE8M, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-20_14-01-40-0c59d632-9f18-4f10-b06c-e05729e7f3f4
+*** Element info: {Using=css selector, value=#global-nav-mobile > ul > li.active > ul > li:nth-child(2)}
+-- TEST Espn Android menu failed 2 times: org.openqa.selenium.NoSuchElementException: no such element (An element could not be located on the page using the given search parameters (XPATH='//*[@id='global-nav-mobile']/ul/li[@class='active' or starts-with(@class, 'active ') or ' active' = substring(@class, string-length(@class) - string-length(' active') + 1) or contains(@class, ' active ')]/ul/li[position() = 2]'))  (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'YGEVA-LT', ip: '192.168.0.101', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.1'
+Driver info: io.appium.java_client.android.AndroidDriver
+Capabilities {appBuildVersion: , appReleaseVersion: , appiumVersion: 1.8.0, applicationClearData: false, autoAcceptAlerts: false, autoDismissAlerts: false, autoGrantPermissions: false, autoWebview: false, browserName: Chromium, cloudViewLink: https://mbremote.experitest..., commandTimeouts: 120000, desired: {browserName: Chromium, fullReset: true, platformName: Android, udid: R52NA0QCE8M}, device.category: TABLET, device.majorVersion: 10, device.manufacture: samsung, device.model: SM-T970, device.name: samsung SM-T970, device.os: Android, device.screenSize: 1752x2800, device.serialNumber: R52NA0QCE8M, device.version: 10, deviceUDID: R52NA0QCE8M, dontGoHomeOnQuit: false, dontStopAppOnReset: false, ehmPrefixUrl: /agent-63, ehmUrl: https://mbremote.experitest..., fullReset: true, gridNodePort: 7796, install.only.for.update: false, installOnlyForUpdate: false, instrumentApp: false, javascriptEnabled: true, keystorePath: ~/.android/debug.keystore, locationServicesAuthorized: false, newSessionWaitTimeout: 600, noReset: false, platform: ANDROID, platformName: Android, projectName: , reportDirectory: reports, reportFormat: xml, reportTestId: 7224, reportUrl: https://mbremote.experitest..., reservationDuration: 240, takeScreenshots: true, test.type: Mobile, testName: mobile test 01/20/21 02:03 PM, udid: R52NA0QCE8M, useKeystore: false, waitForDeviceTimeout: 120000}
+Session ID: CLOUD-SID:2021-01-20_14-03-26-5150e3be-4b36-441f-a2e7-d504501391ca
+*** Element info: {Using=css selector, value=#global-nav-mobile > ul > li.active > ul > li:nth-child(2)}
+-- TEST Espn Android menu passed
+-- TEST Espn Android menu buttons  passed
+-- TEST Espn Android menu buttons  passed
+-- TEST Espn Android menu buttons  passed
+-- TEST Espn Android menu buttons  passed
+-- TEST EriBank android Login passed
+-- TEST EriBank android Payment passed

@@ -1,0 +1,12 @@
+Summary Report
+Number of devices that were requested to run:1
+Number of Devices that actually ran:1
+Total number of tests passed:11
+Total number of tests failed:1
+------------------------------------------------------------
+
+--------iteration1:--------
+
+Device{name='samsung SM-N960F', category='PHONE', version='10', os='Android'}, passed=11, failed=1
+, errorList=[java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+]

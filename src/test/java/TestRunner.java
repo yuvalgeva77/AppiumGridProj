@@ -34,8 +34,7 @@ public class TestRunner extends Thread {
     protected  Instant startTime,thisTime;;
     int iteration=0;
     static int minsRepeat;
-    //    private static String suite_ios="AppStoreTest_ios#AppStoreDownload,AppStoreTest_ios#AppStoreTop10,EriBankTest_ios#EriBankLogin,EriBankTest_ios#EriBankPayment,EspnTest_ios#";
-//    private static String suite_Andtoid ="AppStoreTest_Android#AppStoreDownload,AppStoreTest_Android#AppStoreTop10,EriBankTest_Android#EriBankLogin,EriBankTest_Android#EriBankPayment,EspnTest_Android#Espn,TapTheDotTest#TapTheDotLogin,TapTheDotTest#TapTheDotPlay";
+
     Map<String, String> suite_ios = new HashMap<String, String>() {{
         put("AppStoreDownload", "AppStoreTest_ios#AppStoreDownload");
         put("AppStoreTop10", "AppStoreTest_ios#AppStoreTop10");
@@ -53,19 +52,11 @@ public class TestRunner extends Thread {
         put("EriBankPayment", "EriBankTest_Android#EriBankPayment");
         put("EspnMenu", "EspnTest_Android#EspnMenu");
         put("EspnMenuButtons", "EspnTest_Android#EspnMenuButtons");
-
-
     }};
 
 
     public static void main(String[] args) {
     }
-//    @Test
-//    void exceptionTesting() {
-//        Executable closureContainingCodeToTest = () -> {throw new IllegalArgumentException("a message");};
-//        Throwable throwable = assertThrows(IllegalArgumentException.class, closureContainingCodeToTest, "a message");
-//        assertEquals("a message", throwable.getMessage());
-
     public Device getDevice() {
         return device;
     }
@@ -100,33 +91,12 @@ public class TestRunner extends Thread {
             TestExecutionSummary summary = listener.getSummary();
             long testFoundCount = summary.getTestsFoundCount();
             List<Failure> failures = summary.getFailures();
-            //TODO: while failure mechnism to call with set up to create driver
             System.out.println("getTestsSucceededCount() - " + summary.getTestsSucceededCount());
             failures.forEach(failure -> System.out.println("failure - " + failure.getException()));
-           TestLogger.getTestLogger().finishIteration(iteration,device);
+            TestLogger.getTestLogger().finishIteration(iteration,device);
         }
     }
 
-    //    public void writeSummaryFile(String value){
-//        String fileName = "Result Files/RUN_"+CURRENT_TIME+"/"+ "Overall Summary.txt";
-//        try {
-//            Path pathToFile = Paths.get(fileName);
-//            Files.createDirectories(pathToFile.getParent());
-//            File file = new File(String.valueOf(pathToFile));
-//            file.createNewFile(); // if file already exists will do nothing
-//            FileWriter fw = new FileWriter(file,true);
-//            BufferedWriter bw = new BufferedWriter(fw);
-//            bw.write(value);
-//            System.out.println("file data written at: "+file);
-//            bw.close();
-//        }
-//        catch (IOException e){
-//            System.out.println("couldnt write to file");
-//            e.printStackTrace();
-//            System.exit(-1);
-//        }
-//
-//    }
     protected void seAlltSuite(){
         if(device.getOs().equals("Android")){
             for (String name:suite_Andtoid.values())
@@ -145,13 +115,10 @@ public class TestRunner extends Thread {
             } else {
                 testSelectors.add(selectMethod(suite_ios.get(name)));
             }
-
-
         }
     }
     public boolean toContinue(){
         Long timePassed=System.currentTimeMillis()-MobileTest.getCurrentTime();
-//        Long min=  TimeUnit.MILLISECONDS.toMinutes(thisTime);
         Long minPassed=  (timePassed)/60000;
         return (minPassed<minsRepeat);
     }

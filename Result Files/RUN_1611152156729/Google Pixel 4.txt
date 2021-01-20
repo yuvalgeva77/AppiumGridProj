@@ -1,0 +1,2 @@
+-----iteration-----: 1
+-- TEST Tap The Dot Android Login passed

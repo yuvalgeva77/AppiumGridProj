@@ -24,6 +24,7 @@ public class EspnTest_Android extends MobileTest {
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
             seeTestClient= new SeeTestClient(driver);
+            driver.hideKeyboard();
             System.out.println("----"+test_name+" test started----\n");
         }
         catch (Exception e) {

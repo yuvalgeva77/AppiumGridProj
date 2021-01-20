@@ -26,6 +26,7 @@ public class EriBankTest_ios extends MobileTest {
             driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
             wait = new WebDriverWait(driver, 120);
             seeTestClient = new SeeTestClient(driver);
+            driver.hideKeyboard();
         } catch (Exception e) {
             System.out.println("--TEST "+test_name+" failed in setUp\n");
             printExeption(e);

@@ -31,6 +31,7 @@ public class AppStoreTest_ios extends MobileTest{
             driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.MINUTES);
             wait = new WebDriverWait(driver, 120);
             seeTestClient= new SeeTestClient(driver);
+            driver.hideKeyboard();
         } catch (Exception e) {
             System.out.println("--TEST " + test_name + " failed in setUp\n");
             printExeption(e);
@@ -126,7 +127,7 @@ public class AppStoreTest_ios extends MobileTest{
 
     }
     public boolean checkVisable (WebElement button ) {
-        int minHight= wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath(" //*[@text='Tab Bar']"))).getRect().getY();
+        int minHight= wait.until(ExpectedConditions.elementToBeClickable(driver.findElementByXPath("//*[@class='UIATabBar' or @text='Tab Bar']"))).getRect().getY();
         int buttonHight=button.getRect().getY()+button.getRect().getHeight();
         if(minHight>buttonHight)
             return true;

@@ -1,0 +1,10 @@
+Summary Report
+Number of devices that were requested to run:1
+Number of Devices that actually ran:1
+Total number of tests passed:11
+Total number of tests failed:0
+------------------------------------------------------------
+
+--------iteration1:--------
+
+Device{name='samsung SM-F700F', category='PHONE', version='10', os='Android'}, passed=11, failed=0

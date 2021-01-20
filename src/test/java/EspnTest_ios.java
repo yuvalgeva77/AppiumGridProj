@@ -23,6 +23,7 @@ public class EspnTest_ios extends MobileTest {
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
             seeTestClient= new SeeTestClient(driver);
+            driver.hideKeyboard();
         } catch (Exception e) {
             System.out.println("--TEST "+test_name+" failed in setUp\n");
             printExeption(e);

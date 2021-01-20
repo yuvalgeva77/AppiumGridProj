@@ -43,6 +43,7 @@ public class AppStoreTest_Android extends MobileTest{
             wait = new WebDriverWait(driver, 120);
             driver.manage().timeouts().pageLoadTimeout(2, TimeUnit.MINUTES);
             seeTestClient= new SeeTestClient(driver);
+            driver.hideKeyboard();
         } catch (Exception e) {
             System.out.println("TEST "+test_name+" failed in setUp\n");
             printExeption(e);
