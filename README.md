@@ -21,13 +21,13 @@ serialNumber:"",
 testToRun:"all",
 repeat:15
 }
-
-Login data file location: src/test/Login data.csv
-Result File:
-Will be created automatically after run.
+Login data file: used in login tests. Location : src/test/Login data.csv
+Result File: Will be created automatically after run.
 Directory path from repository root: Result Files.
 Inside it will be created the RUN directories with the device.txt and summery.txt and support data.zip reports:
 For example: Result Files/RUN_1610541501087/samsung SM-N7505.txt
+With each failes test the report data is taken and written in the device directory:
+For example: Result Files/RUN_1611155769950/ B0147/App Store ios1 supportData.zip
 
 Classes:
 - TestThreadPool: gets list of relevant devices-> for each device creates and runs a TestRunner with the relevant tests.
@@ -38,10 +38,27 @@ Classes:
  File through json
 - Device - create device from GET /api/v1/devices request through json
 
-- MobileTest- basic class which all test extend. Contain test reset information and shared data like time stamp.
+- MobileTest- basic class which all test extend. Contain test reset information and shared data like time stamp. Each test has a failure mechanism and 10 mins timeout(including up to 5 mins of rebooting device if needed).
 -Ios Test classes: AppStoreTest_ios, EriBankTest_ios, EspnTest_ios.
 -Android Test classes: TapTheDotTest, AppStoreTest_Android, EriBankTest_Android, EspnTest_Android.
 creates a driver-> runs the specific test-> print the result to the device.txt and to the TestLogger-> releases driver.
+
+Failure mechanism: 
+3 tries to each test
+1. Test->
+	if succeeds- stop.
+	Else- test failure-> get support data and write exceptions-> 
+2. restart test with new driver-> 
+	if succeeds -stop. 
+	Else- test failure-> get support data and write exceptions-> 
+  reset device(up to 5 minutes)->
+3. restart test with new driver-> 
+if succeeds- stop.
+Else- test failure-> get support data and write exceptions.
+
+
+
+
 
 
 
