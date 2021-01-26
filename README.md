@@ -13,16 +13,16 @@ for no special profile: “default” /list of specific profiles
 }
 
 Example:
-{
-cloudUrl:"https://qacloud.experitest.com",
-username:"yuval_user",
-accessKey:"eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4",
-numOfDevices:4,
+{cloudUrl:"https://qacloud.experitest.com",
+username:"yuval",
+accessKey:"eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MTQ4NTQyLCJ4cC5wIjoyLCJ4cC5tIjoxNjExNTYyMjA2OTEyLCJleHAiOjE5MjY5MjIyMDcsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.bGSK-vOH1v2Ii5V9-YT5yJvBjm1sjLVsEKc3Dlx9yeA",
+numOfDevices:1,
 serialNumber:"",
-testToRun:"all",
-repeat:15,
+testToRun:"AppStoreTop10",
+repeat:7,
 NG_profile:"all"
 }
+
 
 *Login data file: used in login tests. Location : src/test/Login data.csv
 *Result File: Will be created automatically after run.
