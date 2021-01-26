@@ -1,5 +1,0 @@
------iteration-----: 1
--- TEST Espn Android menu passed
--- TEST Espn Android menu passed
--- TEST Espn Android menu passed
--- TEST Espn Android menu passed

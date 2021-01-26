@@ -14,6 +14,7 @@ public class Configuration  implements InstanceCreator {
     private String serialNumber;
     private String testToRun;
     private int repeat;
+    private String NG_profile;
 
 
     @Override
@@ -29,7 +30,11 @@ public class Configuration  implements InstanceCreator {
                 '}';
     }
 
-    public Configuration(String cloudUrl, String username, String accessKey, int numOfDevices, String serialNumber, String testToRun, int repeat) {
+    public String getNG_profile() {
+        return NG_profile;
+    }
+
+    public Configuration(String cloudUrl, String username, String accessKey, int numOfDevices, String serialNumber, String testToRun, int repeat, String NG_profile) {
         this.cloudUrl = cloudUrl+"/wd/hub";
         this.username = username;
         this.accessKey = accessKey;
@@ -38,6 +43,10 @@ public class Configuration  implements InstanceCreator {
         this.testToRun = testToRun;
         this.repeat = repeat;
         if(testToRun.equals("all")){
+//            this.testToRun=allTests;
+        }
+        this.NG_profile = NG_profile;
+        if(NG_profile.equals("none")){
 //            this.testToRun=allTests;
         }
 

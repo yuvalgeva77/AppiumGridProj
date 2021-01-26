@@ -33,6 +33,7 @@ public class TestRunner extends Thread {
     protected static Configuration configuration;
     protected  Instant startTime,thisTime;;
     int iteration=0;
+    String NV_profile="no profile";
     static int minsRepeat;
 
     Map<String, String> suite_ios = new HashMap<String, String>() {{
@@ -53,15 +54,15 @@ public class TestRunner extends Thread {
         put("EspnMenu", "EspnTest_Android#EspnMenu");
         put("EspnMenuButtons", "EspnTest_Android#EspnMenuButtons");
     }};
-
-
+    List<String> NV_profiles = new LinkedList<String>(Arrays.asList("Original","High_Latency"," Low_Bandwidth","High_PacketLoss"));
+    List<String> profiles;
     public static void main(String[] args) {
     }
     public Device getDevice() {
         return device;
     }
 
-    public TestRunner(String testTitle, Device device,int minsRepeat) {
+    public TestRunner(String testTitle, Device device,int minsRepeat,String profileNames) {
         testSelectors=new LinkedList<MethodSelector>();
         this.minsRepeat=minsRepeat;
         this.device = device;
@@ -70,30 +71,35 @@ public class TestRunner extends Thread {
         } else {
             getTestForOs(testTitle);
         }
+        getProfiles(profileNames);
     }
 
     @Override
     public void run() {
         while (toContinue()) {
             iteration++;
-            writeRunFile("-----iteration-----: "+iteration+"\n");
-            System.out.println("Thread name: " + Thread.currentThread().getName() + " Device Name: " + device.getName()+" iteration number: "+iteration);
-            final LauncherDiscoveryRequest request =
-                    LauncherDiscoveryRequestBuilder.request()
+            for (String profile : NV_profiles) {
+                device.setNV_profile(profile);
+            writeRunFile("-----iteration-----: " + iteration + "\n");
+            System.out.println("Thread name: " + Thread.currentThread().getName() + " Device Name: " + device.getName() + " iteration number: " + iteration+" profile: "+device.getNV_profile());
+
+                final LauncherDiscoveryRequest request =
+                        LauncherDiscoveryRequestBuilder.request()
 //                        .selectors(selectClass(EriBankTest_Android.class),selectMethod("temp#test2"))
-                            .selectors(testSelectors)
+                                .selectors(testSelectors)
 //                        .selectors(selectMethod("temp#test2"))
-                            .build();
-            final Launcher launcher = LauncherFactory.create();
-            final SummaryGeneratingListener listener = new SummaryGeneratingListener();
-            launcher.registerTestExecutionListeners(listener);
-            launcher.execute(request);
-            TestExecutionSummary summary = listener.getSummary();
-            long testFoundCount = summary.getTestsFoundCount();
-            List<Failure> failures = summary.getFailures();
-            System.out.println("getTestsSucceededCount() - " + summary.getTestsSucceededCount());
-            failures.forEach(failure -> System.out.println("failure - " + failure.getException()));
-            TestLogger.getTestLogger().finishIteration(iteration,device);
+                                .build();
+                final Launcher launcher = LauncherFactory.create();
+                final SummaryGeneratingListener listener = new SummaryGeneratingListener();
+                launcher.registerTestExecutionListeners(listener);
+                launcher.execute(request);
+                TestExecutionSummary summary = listener.getSummary();
+                long testFoundCount = summary.getTestsFoundCount();
+                List<Failure> failures = summary.getFailures();
+                System.out.println("getTestsSucceededCount() - " + summary.getTestsSucceededCount());
+                failures.forEach(failure -> System.out.println("failure - " + failure.getException()));
+                TestLogger.getTestLogger().finishIteration(iteration, device);
+            }
         }
     }
 
@@ -116,6 +122,15 @@ public class TestRunner extends Thread {
                 testSelectors.add(selectMethod(suite_ios.get(name)));
             }
         }
+    }
+    protected void getProfiles(String profileNames){
+        if(profileNames.equals("all")){
+            profiles=NV_profiles;
+        }
+        else {
+            profiles = Arrays.asList(profileNames.split(",").clone());
+        }
+
     }
     public boolean toContinue(){
         Long timePassed=System.currentTimeMillis()-MobileTest.getCurrentTime();
@@ -142,7 +157,7 @@ public class TestRunner extends Thread {
         setConfiguration( configuration);
     }
     public void writeRunFile(String value){
-        String fileName = "Result Files/RUN_"+MobileTest.getCurrentTime()+"/"+device.getName()+ ".txt";
+        String fileName = "Result Files/RUN_"+MobileTest.getCurrentTime()+"/"+device.getNV_profile()+"/"+device.getName()+"/"+device.getName()+ ".txt";
         try {
             Path pathToFile = Paths.get(fileName);
             Files.createDirectories(pathToFile.getParent());

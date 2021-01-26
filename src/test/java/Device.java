@@ -36,6 +36,10 @@ public class Device{
     public String displayStatus;
     public boolean whitelistCleanup;
     public String defaultDeviceLanguage;
+    public String NV_profile;
+
+    public Device(AppiumDriver driver) {
+    }
 
     public String getUdid() {
         return udid;
@@ -49,20 +53,20 @@ public class Device{
         return currentStatus;
     }
 
+    public void setNV_profile(String NV_profile) {
+        this.NV_profile = NV_profile;
+    }
+
+    public String getNV_profile() {
+        return NV_profile;
+    }
+
     public String defaultDeviceRegion;
     public int screenWidth;
     public int screenHeight;
     public List<Object> tags;
     public List<String> imeis;
 
-    public Device(AppiumDriver driver) {
-        //TODO
-//        name=driver.getCapabilities().getCapability("device.name").toString();
-//        category=driver.getCapabilities().getCapability("device.category").toString();
-//        version =driver.getCapabilities().getCapability("device.version").toString();
-//        os =driver.getCapabilities().getCapability("device.os").toString();
-
-    }
 
     public String getName() {
         return deviceName;
@@ -79,6 +83,9 @@ public class Device{
         return deviceOs;
     }
 
+    public String getProfiles() {
+        return profiles;
+    }
 
     @Override
     public String toString() {
@@ -87,6 +94,7 @@ public class Device{
                 ", category='" + deviceCategory + '\'' +
                 ", version='" + osVersion + '\'' +
                 ", os='" + deviceOs + '\'' +
+                ", nv_profile='" + NV_profile + '\'' +
                 '}';
     }
 

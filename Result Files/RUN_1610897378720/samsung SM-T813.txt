@@ -1,2 +1,0 @@
------iteration-----: 1
-TEST EriBank android Login failed java.lang.AssertionError: , onedidnt pop Erorr message1 of times

@@ -2,6 +2,8 @@ Configuration.java
  Configuration
 Device.java
  Device
+DriverFactory.java
+ DriverFactory
 TestRunner.java
  TestRunner
  TestRunner$1
@@ -9,15 +11,10 @@ TestRunner.java
 TestThreadPool.java
  TestThreadPool
  TestThreadPool$RestProjectAPI
-TestLogger.java
- TestLogger
- TestLogger$device_log
-EriBankTest_Android.java
- EriBankTest_Android
+temp.java
+ temp
 AppStoreTest_Android.java
  AppStoreTest_Android
-DriverFactory.java
- DriverFactory
 TapTheDotTest.java
  TapTheDotTest
 EriBankTest_ios.java
@@ -28,7 +25,11 @@ EspnTest_ios.java
  EspnTest_ios
 MobileTest.java
  MobileTest
+EriBankTest_Android.java
+ EriBankTest_Android
 AppStoreTest_ios.java
  AppStoreTest_ios
-temp.java
- temp
+TestLogger.java
+ TestLogger
+ TestLogger$device_log
+ TestLogger$ngProfile_log

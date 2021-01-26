@@ -44,6 +44,8 @@ dependencies {
     compile group: 'com.experitest', name: 'appium-seetest-extension', version: '+'
     // https://mvnrepository.com/artifact/io.github.artsok/rerunner-jupiter
     testCompile group: 'io.github.artsok', name: 'rerunner-jupiter', version: '2.1.6'
+// https://mvnrepository.com/artifact/org.apache.commons/commons-collections4
+    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.0'
 
 
 }

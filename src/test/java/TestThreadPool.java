@@ -33,7 +33,7 @@ public class TestThreadPool {
         testLogger.setNumDevices(freeDevs.size());
         List<TestRunner> testRunners = new ArrayList<>();
         for (Device dev : freeDevs) {
-            TestRunner test = new TestRunner(testConfiguration.getTestToRun(), dev,testConfiguration.getRepeat());
+            TestRunner test = new TestRunner(testConfiguration.getTestToRun(), dev,testConfiguration.getRepeat(),testConfiguration.getNG_profile());
             testRunners.add(test);
             test.start();
         }
@@ -41,6 +41,7 @@ public class TestThreadPool {
             test.join();
         }
         MobileTest.writeLogFile();
+        MobileTest.writeNVprofileLogFile();
     }
 
     public static class RestProjectAPI {

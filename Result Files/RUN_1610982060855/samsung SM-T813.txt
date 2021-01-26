@@ -1,4 +1,0 @@
------iteration-----: 1
--- TEST Espn Android menu failed 1 times: java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
--- TEST Espn Android menu failed 2 times: java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
--- TEST Espn Android menu failed 3 times: java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0

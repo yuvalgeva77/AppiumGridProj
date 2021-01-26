@@ -1,5 +1,4 @@
-//import org.junit.Before;
-//import org.junit.Test; // junit 4
+
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -67,13 +66,4 @@ public class temp extends MobileTest {
                 printExeption(e);
             }
         }
-
-
-//
-//        @AfterEach
-//        public void tearDown() {
-//            driver.quit();
-//        }
-
-
 }

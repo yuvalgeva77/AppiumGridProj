@@ -10,14 +10,21 @@ import org.junit.jupiter.api.*;
 import org.junit.Before;
 //import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
+import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import java.lang.reflect.Method;
+import java.util.logging.Logger;
 import java.io.*;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Driver;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 import com.experitest.client.*;
 import static org.junit.Assert.assertTrue;
@@ -26,7 +33,7 @@ import static org.junit.Assert.fail;
 //set test timeout(5 mins for reboot)
 @Timeout(value = 10, unit = TimeUnit.MINUTES)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class  MobileTest {
+public class  MobileTest implements BeforeTestExecutionCallback, AfterTestExecutionCallback {
     protected AppiumDriver driver;
     protected String test_status;
     public static  Configuration testConfiguration;
@@ -48,7 +55,7 @@ public class  MobileTest {
     protected static long CURRENT_TIME;
     protected String pathToCsv = "src/test/Login data.csv";
     protected String configurationPath="src/test/configuration file.txt";
-
+    protected Long testStartTime;
     public static TestLogger getTestLogger() {
         return testLogger;
     }
@@ -81,12 +88,13 @@ public class  MobileTest {
     }
     @BeforeEach
     public void reset(){
+        testStartTime=System.currentTimeMillis();
         if(failures>=3)
             failures=0;
     }
 
     public void writeSupportData(){
-        String fileName = "Result Files/RUN_"+CURRENT_TIME+"/"+device.getName()+"/"+test_name+ failures+" supportData.zip";
+        String fileName = "Result Files/RUN_"+CURRENT_TIME+"/"+device.getNV_profile()+"/"+device.getName()+"/"+test_name+ failures+" supportData.zip";
         Path pathToFile = Paths.get(fileName);
         try {
             Files.createDirectories(pathToFile.getParent());
@@ -106,7 +114,7 @@ public class  MobileTest {
         }
     }
     public void writeRunFile(String value){
-        String fileName = "Result Files/RUN_"+CURRENT_TIME+"/"+device.getName()+ ".txt";
+        String fileName = "Result Files/RUN_"+MobileTest.getCurrentTime()+"/"+device.getNV_profile()+"/"+device.getName()+"/"+device.getName()+ ".txt";
         try {
             Path pathToFile = Paths.get(fileName);
             Files.createDirectories(pathToFile.getParent());
@@ -140,12 +148,31 @@ public class  MobileTest {
             e.printStackTrace();
             System.exit(-1);
         }
+    }public static void writeNVprofileLogFile(){
+        String fileName = "Result Files/RUN_"+CURRENT_TIME+"/"+"NV Profile Summery Log.txt";
+        try {
+            Path pathToFile = Paths.get(fileName);
+            Files.createDirectories(pathToFile.getParent());
+            File file = new File(String.valueOf(pathToFile));
+            file.createNewFile(); // if file already exists will do nothing
+            FileWriter fw = new FileWriter(file,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(testLogger.printProfileLog());
+            bw.close();
+        }
+        catch (IOException e){
+            System.out.println("couldnt write to file");
+            e.printStackTrace();
+            System.exit(-1);
+        }
     }
 
     @AfterEach
     public void tearDown() {
         driver.quit();
-        System.out.println("-----"+test_name+" finished\n");
+        long duration = System.currentTimeMillis() - testStartTime;
+        testLogger.addTestTime(device.getNV_profile(),test_name,duration);
+        System.out.println("-----"+test_name+" finished in "+duration+ " miliseconds----\n");
 
     }
     //    public static TestLogger resetLogger(){
@@ -207,6 +234,29 @@ public class  MobileTest {
         writeRunFile(test_status);
         System.out.println(test_status);
         testLogger.addDPassed(device);
+    }
+    //-------------------test timer
+    private static final Logger logger = Logger.getLogger(MobileTest.class.getName());
+    private static final String START_TIME = "start time";
+
+    @Override
+    public void beforeTestExecution(ExtensionContext context) throws Exception {
+        getStore(context).put(START_TIME, System.currentTimeMillis());
+    }
+
+    @Override
+    public void afterTestExecution(ExtensionContext context) throws Exception {
+        Method testMethod = context.getRequiredTestMethod();
+        long startTime = getStore(context).remove(START_TIME, long.class);
+        long duration = System.currentTimeMillis() - startTime;
+        testLogger.addTestTime(device.getNV_profile(),testMethod.getName(),duration);
+
+        logger.info(() ->
+                String.format("Method [%s] took %s ms.", testMethod.getName(), duration));
+    }
+
+    private ExtensionContext.Store getStore(ExtensionContext context) {
+        return context.getStore(ExtensionContext.Namespace.create(getClass(), context.getRequiredTestMethod()));
     }
 
 

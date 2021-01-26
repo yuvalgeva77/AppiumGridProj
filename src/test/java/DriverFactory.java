@@ -18,14 +18,20 @@ public class DriverFactory {
     private String cloudUrl;
     private String serialNumber;
     private Device device;
+    private String NV_profile;
 
     public DriverFactory(String accessKey, String cloudUrl) {
         this.accessKey = accessKey;
         this.cloudUrl = cloudUrl+"/wd/hub";
     }
 
+    public void setNV_profile(String NV_profile) {
+        this.NV_profile = NV_profile;
+    }
+
     public void setDevice(Device device) {
         this.device = device;
+            NV_profile=device.getNV_profile();
     }
 
     public AndroidDriver getAndroidDriverApp(String appPackage, String appActivity, Boolean createAppATribute) throws MalformedURLException {
@@ -41,12 +47,13 @@ public class DriverFactory {
 //                dc.setCapability("appPackage", "com.experitest.ExperiBank");
         dc.setCapability("appActivity", appActivity);
         dc.setCapability("autoGrantPermissions", true);
-
-
 //                dc.setCapability("appActivity", ".LoginActivity");
         if(createAppATribute){
             String APP="cloud:"+appPackage+"/"+appActivity;
             dc.setCapability("app", APP);
+        }
+        if (NV_profile!="defult"){
+            dc.setCapability("nvProfile", NV_profile);
         }
         return new AndroidDriver(new URL(cloudUrl), dc);}
 
@@ -56,6 +63,9 @@ public class DriverFactory {
         capabilities.setCapability("accessKey",accessKey);
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
         capabilities.setBrowserName(MobileBrowserType.CHROMIUM);
+        if (NV_profile!="defult"){
+            capabilities.setCapability("nvProfile", NV_profile);
+        }
         return new AndroidDriver<>(new URL(cloudUrl), capabilities);
 
 
@@ -84,6 +94,9 @@ public class DriverFactory {
         dc.setCapability(MobileCapabilityType.UDID, device.getUdid());
         dc.setCapability(MobileCapabilityType.FULL_RESET, true);
         dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, bundle_id);
+        if (NV_profile!="defult"){
+        dc.setCapability("nvProfile", NV_profile);
+    }
 //        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
         return new IOSDriver<>(new URL(cloudUrl), dc);
 
@@ -96,6 +109,9 @@ public class DriverFactory {
         capabilities.setCapability(MobileCapabilityType.UDID, device.getUdid());
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,fullReset);
         capabilities.setBrowserName(MobileBrowserType.SAFARI);
+        if (NV_profile!="defult"){
+        capabilities.setCapability("nvProfile", NV_profile);
+    }
         return new IOSDriver(new URL(cloudUrl), capabilities);
 
 

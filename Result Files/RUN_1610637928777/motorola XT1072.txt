@@ -1,4 +1,0 @@
------iteration-----: 1
-TEST EriBank android Login passed
-TEST EriBank android Login failed
-java.lang.NullPointerException: Cannot invoke "TestLogger.addDPassed(Device)" because "MobileTest.testLogger" is null

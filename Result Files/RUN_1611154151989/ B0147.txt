@@ -1,6 +1,0 @@
------iteration-----: 1
--- TEST AppStore ios Download failed 1 times: java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 0
--- TEST AppStore ios Download failed 2 times: java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 0
--- TEST AppStore ios Download failed 3 times: java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 0
--- TEST AppStore ios top10 failed 4 times: java.lang.Exception: appList size == 0
--- TEST AppStore ios top10 failed 1 times: java.lang.Exception: appList size == 0

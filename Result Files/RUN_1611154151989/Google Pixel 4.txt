@@ -1,5 +1,0 @@
------iteration-----: 1
--- TEST Tap The Dot Android Login passed
--- TEST Tap The Dot Android play 3 taps passed
--- TEST AppStore android Download passed
--- TEST AppStore android top10 passed
