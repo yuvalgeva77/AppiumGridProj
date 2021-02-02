@@ -1,3 +1,6 @@
+import com.experitest.appium.SeeTestClient;
+import com.experitest.client.Client;
+import com.experitest.client.GridClient;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -31,23 +34,16 @@ public class DriverFactory {
 
     public void setDevice(Device device) {
         this.device = device;
-            NV_profile=device.getNV_profile();
+        NV_profile=device.getNV_profile();
     }
 
-    public AndroidDriver getAndroidDriverApp(String appPackage, String appActivity, Boolean createAppATribute) throws MalformedURLException {
+    public AndroidDriver getAndroidDriverApp(String appPackage, String appActivity, Boolean createAppATribute,Boolean instrumented) throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
         dc.setCapability(MobileCapabilityType.UDID, device.getUdid());
         dc.setCapability("accessKey", accessKey);
-//        dc.setCapability("deviceQuery", "@os='android'");
-//        if (!serialNumber.equals(""))
-//            dc.setCapability("deviceQuery", "@os='android' and @serialNumber=\'"+serialNumber+"\'");
-////                dc.setCapability("app", "cloud:com.experitest.ExperiBank/.LoginActivity");
-////        dc.setCapability("fullReset", true);
         dc.setCapability("appPackage", appPackage);
-//                dc.setCapability("appPackage", "com.experitest.ExperiBank");
         dc.setCapability("appActivity", appActivity);
         dc.setCapability("autoGrantPermissions", true);
-//                dc.setCapability("appActivity", ".LoginActivity");
         if(createAppATribute){
             String APP="cloud:"+appPackage+"/"+appActivity;
             dc.setCapability("app", APP);
@@ -55,7 +51,30 @@ public class DriverFactory {
         if (NV_profile!="defult"){
             dc.setCapability("nvProfile", NV_profile);
         }
+        if (instrumented){
+            dc.setCapability("instrumentApp", instrumented);
+        }
         return new AndroidDriver(new URL(cloudUrl), dc);}
+
+//    public AndroidDriver getAndroidDriver() throws MalformedURLException {
+//        DesiredCapabilities dc = new DesiredCapabilities();
+//        dc.setCapability(MobileCapabilityType.UDID, device.getUdid());
+//        dc.setCapability("accessKey", accessKey);
+//        dc.setCapability("autoGrantPermissions", true);
+//        if (NV_profile!="defult"){
+//            dc.setCapability("nvProfile", NV_profile);
+//        }
+//        dc.setCapability(MobileCapabilityType.APP, "cloud:com.experitest.uicatalog/.MainActivity");
+//        dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.experitest.uicatalog");
+//        dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".MainActivity");
+//        dc.setCapability("instrumentApp", true);
+//        return new AndroidDriver(new URL(cloudUrl), dc);}
+
+    public Client getClient() throws MalformedURLException {
+        GridClient grid = new GridClient(accessKey,cloudUrl);
+        Client client = grid.lockDeviceForExecution("Camera API2 test", "@serialNumber='" + device.getUdid() + "'", 10, 50000);
+        client.setReporter("xml", "", "Camera API2 test");
+        return client;}
 
     public AndroidDriver getAndroidDriverChrome(String testName,Boolean fullReset) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -63,7 +82,7 @@ public class DriverFactory {
         capabilities.setCapability("accessKey",accessKey);
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
         capabilities.setBrowserName(MobileBrowserType.CHROMIUM);
-        if (NV_profile!="defult"){
+        if (NV_profile!="default"){
             capabilities.setCapability("nvProfile", NV_profile);
         }
         return new AndroidDriver<>(new URL(cloudUrl), capabilities);
@@ -95,8 +114,8 @@ public class DriverFactory {
         dc.setCapability(MobileCapabilityType.FULL_RESET, true);
         dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, bundle_id);
         if (NV_profile!="defult"){
-        dc.setCapability("nvProfile", NV_profile);
-    }
+            dc.setCapability("nvProfile", NV_profile);
+        }
 //        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
         return new IOSDriver<>(new URL(cloudUrl), dc);
 
@@ -110,8 +129,8 @@ public class DriverFactory {
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,fullReset);
         capabilities.setBrowserName(MobileBrowserType.SAFARI);
         if (NV_profile!="defult"){
-        capabilities.setCapability("nvProfile", NV_profile);
-    }
+            capabilities.setCapability("nvProfile", NV_profile);
+        }
         return new IOSDriver(new URL(cloudUrl), capabilities);
 
 

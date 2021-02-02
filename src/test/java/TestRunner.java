@@ -53,6 +53,8 @@ public class TestRunner extends Thread {
         put("EriBankPayment", "EriBankTest_Android#EriBankPayment");
         put("EspnMenu", "EspnTest_Android#EspnMenu");
         put("EspnMenuButtons", "EspnTest_Android#EspnMenuButtons");
+        put("SimulateCapture", "SimulateCapture_Android#SimulateCapture");
+        put("MockAuthentication", "MockAuthentication_Android#MockAuthentication");
     }};
     List<String> NV_profiles = new LinkedList<String>(Arrays.asList("Original","High_Latency"," Low_Bandwidth","High_PacketLoss"));
     List<String> profiles;

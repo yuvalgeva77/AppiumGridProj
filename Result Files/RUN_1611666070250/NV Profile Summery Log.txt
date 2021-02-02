@@ -1,3 +1,0 @@
-NV profile Report:
---------------------
-1. profileName='Original', testName='AppStore android top10', avg=56185miliseconds, min=55273miliseconds, max=57098miliseconds/n1. profileName='High_Latency', testName='AppStore android top10', avg=55602miliseconds, min=55142miliseconds, max=56062miliseconds/n1. profileName='High_PacketLoss', testName='AppStore android top10', avg=56077miliseconds, min=55308miliseconds, max=56846miliseconds/n1. profileName=' Low_Bandwidth', testName='AppStore android top10', avg=55222miliseconds, min=55012miliseconds, max=55433miliseconds/n

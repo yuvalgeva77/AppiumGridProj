@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -6,7 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.*;
-import java.net.http.HttpResponse;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +58,7 @@ public class TestThreadPool {
             //get deviced with conditions
             if(!testConfiguration.getSerialNumber().equals("")){
                 devArray.removeIf(dev -> (!dev.getUdid().equals(testConfiguration.getSerialNumber())));
-            } if(testConfiguration.getTestToRun().equals("TapTheDotPlay")||testConfiguration.getTestToRun().equals("TapTheDotLogin")){
+            } if(testConfiguration.getTestToRun().equals("TapTheDotPlay")||testConfiguration.getTestToRun().equals("TapTheDotLogin")||testConfiguration.getTestToRun().equals("SimulateCapture")||testConfiguration.getTestToRun().equals("MockAuthentication")){
                 devArray.removeIf(dev -> (!dev.getOs().equals("Android")));
             }
             return devArray;

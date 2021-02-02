@@ -20,7 +20,7 @@ public class TapTheDotTest extends MobileTest{
     public void setUp() {
         test_name="Tap The Dot Android";
         try {
-            driver =(driverFactory.getAndroidDriverApp("com.example.tapthedot",".MainActivity",true));
+            driver =(driverFactory.getAndroidDriverApp("com.example.tapthedot",".MainActivity",true,false));
             wait = new WebDriverWait(driver, 10L);
             seeTestClient= new SeeTestClient(driver);
             seeTestClient.setProperty("android.install.grant.permissions", "true");

@@ -1,4 +1,0 @@
------iteration-----: 1
--- TEST AppStore android top10 passed
------iteration-----: 2
--- TEST AppStore android top10 passed

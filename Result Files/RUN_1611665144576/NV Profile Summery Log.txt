@@ -1,3 +1,0 @@
-NV profile Report:
---------------------
-ngProfile_log{profileName='Original', testName='AppStore android top10', avg=119518, min=119518, max=119518}ngProfile_log{profileName='High_Latency', testName='AppStore android top10', avg=66938, min=66938, max=66938}ngProfile_log{profileName='High_PacketLoss', testName='AppStore android top10', avg=55828, min=55828, max=55828}ngProfile_log{profileName=' Low_Bandwidth', testName='AppStore android top10', avg=60809, min=60809, max=60809}
