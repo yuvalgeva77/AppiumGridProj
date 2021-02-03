@@ -55,6 +55,7 @@ public class TestRunner extends Thread {
         put("EspnMenuButtons", "EspnTest_Android#EspnMenuButtons");
         put("SimulateCapture", "SimulateCapture_Android#SimulateCapture");
         put("MockAuthentication", "MockAuthentication_Android#MockAuthentication");
+        put("EspressoTest", "EspressoTest_Android#EspressoTest");
     }};
     List<String> NV_profiles = new LinkedList<String>(Arrays.asList("Original","High_Latency"," Low_Bandwidth","High_PacketLoss"));
     List<String> profiles;
@@ -87,9 +88,7 @@ public class TestRunner extends Thread {
 
                 final LauncherDiscoveryRequest request =
                         LauncherDiscoveryRequestBuilder.request()
-//                        .selectors(selectClass(EriBankTest_Android.class),selectMethod("temp#test2"))
                                 .selectors(testSelectors)
-//                        .selectors(selectMethod("temp#test2"))
                                 .build();
                 final Launcher launcher = LauncherFactory.create();
                 final SummaryGeneratingListener listener = new SummaryGeneratingListener();

@@ -3,7 +3,7 @@ username:"yuval_user",
 accessKey:"eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjo0MTYwODA2LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5Mjc1NTA0MTAsImlzcyI6ImNvbS5leHBlcml0ZXN0In0._Bv06E5PrI_yf1v7zkOgs1yEYNXzQBarMg8-Ftk4G2M",
 numOfDevices:1,
 serialNumber:"",
-testToRun:"MockAuthentication",
+testToRun:"EspressoTest",
 repeat:1,
 NG_profile:"default"
 }

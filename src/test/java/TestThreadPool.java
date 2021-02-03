@@ -58,7 +58,7 @@ public class TestThreadPool {
             //get deviced with conditions
             if(!testConfiguration.getSerialNumber().equals("")){
                 devArray.removeIf(dev -> (!dev.getUdid().equals(testConfiguration.getSerialNumber())));
-            } if(testConfiguration.getTestToRun().equals("TapTheDotPlay")||testConfiguration.getTestToRun().equals("TapTheDotLogin")||testConfiguration.getTestToRun().equals("SimulateCapture")||testConfiguration.getTestToRun().equals("MockAuthentication")){
+            } if(testConfiguration.getTestToRun().equals("TapTheDotPlay")||testConfiguration.getTestToRun().equals("TapTheDotLogin")||testConfiguration.getTestToRun().equals("SimulateCapture")||testConfiguration.getTestToRun().equals("MockAuthentication")||testConfiguration.getTestToRun().equals("EspressoTest")){
                 devArray.removeIf(dev -> (!dev.getOs().equals("Android")));
             }
             return devArray;

@@ -28,12 +28,14 @@ TestRunner.java
  TestRunner
  TestRunner$1
  TestRunner$2
+MobileTest.java
+ MobileTest
 TestThreadPool.java
  TestThreadPool
  TestThreadPool$RestProjectAPI
 SimulateCapture_Android.java
  SimulateCapture_Android
-MobileTest.java
- MobileTest
 MockAuthentication_Android.java
  MockAuthentication_Android
+EspressoTest_Android.java
+ EspressoTest_Android
