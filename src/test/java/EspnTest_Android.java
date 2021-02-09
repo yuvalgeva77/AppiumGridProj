@@ -19,8 +19,9 @@ public class EspnTest_Android extends MobileTest {
 
     @BeforeEach
     public void setUp(){
+        test_name="EspnTest Android";
         try {
-            driver =(driverFactory.getAndroidDriverChrome("EspnTest Android",true));
+            driver =(driverFactory.getAndroidDriverChrome(test_name,true));
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
             seeTestClient= new SeeTestClient(driver);

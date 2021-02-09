@@ -128,8 +128,8 @@ public class TestRunner extends Thread {
         if(profileNames.equals("all")){
             profiles=NV_profiles;
         }
-        if(profileNames.equals("defult")){
-            profiles=Arrays.asList("defult");
+      else  if(profileNames.equals("default")){
+            profiles=Arrays.asList("default");
         }
         else {
             profiles = Arrays.asList(profileNames.split(",").clone());

@@ -50,7 +50,7 @@ public class DriverFactory {
             String APP="cloud:"+appPackage+"/"+appActivity;
             dc.setCapability("app", APP);
         }
-        if (NV_profile!="defult"){
+        if (NV_profile!="default"){
             dc.setCapability("nvProfile", NV_profile);
         }
         if (instrumented){
@@ -82,11 +82,13 @@ public class DriverFactory {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.UDID, device.getUdid());
         capabilities.setCapability("accessKey",accessKey);
-        capabilities.setCapability(MobileCapabilityType.FULL_RESET,true);
+        capabilities.setCapability(MobileCapabilityType.FULL_RESET,fullReset);
         capabilities.setBrowserName(MobileBrowserType.CHROMIUM);
         if (NV_profile!="default"){
             capabilities.setCapability("nvProfile", NV_profile);
         }
+        capabilities.setCapability("testName", testName);
+
         return new AndroidDriver<>(new URL(cloudUrl), capabilities);
 
 
@@ -104,7 +106,7 @@ public class DriverFactory {
 //
 ////        capabilities.setCapability(MobileCapabilityType.APP, "cloud:com.apple.AppStore");
 //        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
-    public IOSDriver getIOSDriverApp(String bundle_id) throws MalformedURLException {
+    public IOSDriver getIOSDriverApp(String bundle_id,String testName) throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
         String APP="cloud:";
         dc.setCapability("accessKey", accessKey);
@@ -115,7 +117,9 @@ public class DriverFactory {
         dc.setCapability(MobileCapabilityType.UDID, device.getUdid());
         dc.setCapability(MobileCapabilityType.FULL_RESET, true);
         dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, bundle_id);
-        if (NV_profile!="defult"){
+        dc.setCapability("testName", testName);
+
+        if (NV_profile!="default"){
             dc.setCapability("nvProfile", NV_profile);
         }
 //        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
@@ -123,16 +127,18 @@ public class DriverFactory {
 
 
     }
-    public IOSDriver getIOSDriverSAFARI(Boolean fullReset) throws MalformedURLException {
+    public IOSDriver getIOSDriverSAFARI(Boolean fullReset,String testName) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("accessKey", accessKey);
 //        capabilities.setCapability("deviceQuery", "@os='ios'");
         capabilities.setCapability(MobileCapabilityType.UDID, device.getUdid());
         capabilities.setCapability(MobileCapabilityType.FULL_RESET,fullReset);
         capabilities.setBrowserName(MobileBrowserType.SAFARI);
-        if (NV_profile!="defult"){
+        if (NV_profile!="default"){
             capabilities.setCapability("nvProfile", NV_profile);
         }
+        capabilities.setCapability("testName", testName);
+
         return new IOSDriver(new URL(cloudUrl), capabilities);
 
 

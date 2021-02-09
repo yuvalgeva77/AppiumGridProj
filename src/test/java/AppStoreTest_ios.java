@@ -27,7 +27,7 @@ public class AppStoreTest_ios extends MobileTest{
     public void setUp()  {
         test_name="App Store ios";
         try {
-            driver = driverFactory.getIOSDriverApp("com.apple.AppStore");
+            driver = driverFactory.getIOSDriverApp("com.apple.AppStore",test_name);
             driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.MINUTES);
             wait = new WebDriverWait(driver, 120);
             seeTestClient= new SeeTestClient(driver);

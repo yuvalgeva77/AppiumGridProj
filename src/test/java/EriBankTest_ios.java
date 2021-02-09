@@ -22,7 +22,7 @@ public class EriBankTest_ios extends MobileTest {
     public void setUp()  {
         test_name="EriBank Ios";
         try {
-            driver = driverFactory.getIOSDriverApp("com.experitest.ExperiBank");
+            driver = driverFactory.getIOSDriverApp("com.experitest.ExperiBank",test_name);
             driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.MINUTES);
             wait = new WebDriverWait(driver, 120);
             seeTestClient = new SeeTestClient(driver);

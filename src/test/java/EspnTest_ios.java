@@ -19,7 +19,7 @@ public class EspnTest_ios extends MobileTest {
     public void setUp() {
         test_name="Espn ios";
         try {
-            driver = driverFactory.getIOSDriverSAFARI(true);
+            driver = driverFactory.getIOSDriverSAFARI(true,test_name);
             driver.get("https://www.espn.com/");
             wait = new WebDriverWait(driver, 600);
             seeTestClient= new SeeTestClient(driver);
