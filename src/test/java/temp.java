@@ -19,7 +19,7 @@ public class temp extends MobileTest {
     public void setUp() {
         test_name = "temp android";
         try {
-            driver = ( driverFactory.getAndroidDriverApp("com.experitest.ExperiBank", ".LoginActivity", true,false) );
+            driver = ( driverFactory.getAndroidDriverApp("com.experitest.ExperiBank", ".LoginActivity", true,false,test_name) );
             wait = new WebDriverWait(driver, 10);
             device = new Device(driver);
 

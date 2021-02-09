@@ -37,13 +37,15 @@ public class DriverFactory {
         NV_profile=device.getNV_profile();
     }
 
-    public AndroidDriver getAndroidDriverApp(String appPackage, String appActivity, Boolean createAppATribute,Boolean instrumented) throws MalformedURLException {
+    public AndroidDriver getAndroidDriverApp(String appPackage, String appActivity, Boolean createAppATribute,Boolean instrumented,String testName) throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
         dc.setCapability(MobileCapabilityType.UDID, device.getUdid());
         dc.setCapability("accessKey", accessKey);
         dc.setCapability("appPackage", appPackage);
         dc.setCapability("appActivity", appActivity);
         dc.setCapability("autoGrantPermissions", true);
+        dc.setCapability("testName", testName);
+
         if(createAppATribute){
             String APP="cloud:"+appPackage+"/"+appActivity;
             dc.setCapability("app", APP);

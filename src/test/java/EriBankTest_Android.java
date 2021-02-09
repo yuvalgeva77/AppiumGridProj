@@ -20,7 +20,7 @@ public class EriBankTest_Android extends MobileTest {
     public void setUp() {
         test_name = "EriBank Android";
         try {
-            driver = driverFactory.getAndroidDriverApp("com.experitest.ExperiBank", ".LoginActivity", true,false);
+            driver = driverFactory.getAndroidDriverApp("com.experitest.ExperiBank", ".LoginActivity", true,false,test_name);
             wait = new WebDriverWait(driver, 10);
             seeTestClient = new SeeTestClient(driver);
             driver.hideKeyboard();
@@ -31,7 +31,8 @@ public class EriBankTest_Android extends MobileTest {
         System.out.println("----"+test_name+" test started----\n");
     }
 
-    @RepeatedIfExceptionsTest(repeats = 2)
+   // @RepeatedIfExceptionsTest(repeats = 2)
+    @Test
     public void EriBankLogin() {
         test_name = "EriBank android Login";
         //do {

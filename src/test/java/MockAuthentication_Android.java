@@ -8,7 +8,7 @@ public class MockAuthentication_Android extends MobileTest {
     public void setUp() {
         test_name = "MockAuthentication Android";
         try {
-            driver = driverFactory.getAndroidDriverApp("com.experitest.uicatalog",".MainActivity",true,true);
+            driver = driverFactory.getAndroidDriverApp("com.experitest.uicatalog",".MainActivity",true,true,test_name);
 //                wait = new WebDriverWait(driver, 10);
             seeTestClient = new SeeTestClient(driver);
             seeTestClient.setProperty("android.instrument.fingerprint", "true");

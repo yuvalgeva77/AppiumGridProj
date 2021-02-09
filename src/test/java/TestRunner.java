@@ -81,7 +81,7 @@ public class TestRunner extends Thread {
     public void run() {
         while (toContinue()) {
             iteration++;
-            for (String profile : NV_profiles) {
+            for (String profile : profiles) {
                 device.setNV_profile(profile);
             writeRunFile("-----iteration-----: " + iteration + "\n");
             System.out.println("Thread name: " + Thread.currentThread().getName() + " Device Name: " + device.getName() + " iteration number: " + iteration+" profile: "+device.getNV_profile());
@@ -127,6 +127,9 @@ public class TestRunner extends Thread {
     protected void getProfiles(String profileNames){
         if(profileNames.equals("all")){
             profiles=NV_profiles;
+        }
+        if(profileNames.equals("defult")){
+            profiles=Arrays.asList("defult");
         }
         else {
             profiles = Arrays.asList(profileNames.split(",").clone());

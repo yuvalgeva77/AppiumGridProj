@@ -39,7 +39,7 @@ public class AppStoreTest_Android extends MobileTest{
     public void setUp()  {
         test_name = "AppStore android ";
         try {
-            driver=driverFactory.getAndroidDriverApp("com.android.vending",".AssetBrowserActivity",false,false);
+            driver=driverFactory.getAndroidDriverApp("com.android.vending",".AssetBrowserActivity",false,false,test_name);
             wait = new WebDriverWait(driver, 120);
             driver.manage().timeouts().pageLoadTimeout(2, TimeUnit.MINUTES);
             seeTestClient= new SeeTestClient(driver);

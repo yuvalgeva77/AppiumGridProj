@@ -2,20 +2,26 @@ Configuration.java
  Configuration
 Device.java
  Device
-EspnTest_ios.java
- EspnTest_ios
+EriBankTest_Android.java
+ EriBankTest_Android
 AppStoreTest_ios.java
  AppStoreTest_ios
 temp.java
  temp
-EriBankTest_Android.java
- EriBankTest_Android
+SimulateCapture_Ios.java
+ SimulateCapture_Ios
 TestLogger.java
  TestLogger
  TestLogger$device_log
  TestLogger$ngProfile_log
+SimulateCapture_Android.java
+ SimulateCapture_Android
+EspressoTest_Android.java
+ EspressoTest_Android
 AppStoreTest_Android.java
  AppStoreTest_Android
+MockAuthentication_Android.java
+ MockAuthentication_Android
 DriverFactory.java
  DriverFactory
 TapTheDotTest.java
@@ -24,18 +30,14 @@ EriBankTest_ios.java
  EriBankTest_ios
 EspnTest_Android.java
  EspnTest_Android
+EspnTest_ios.java
+ EspnTest_ios
 TestRunner.java
  TestRunner
  TestRunner$1
  TestRunner$2
-MobileTest.java
- MobileTest
 TestThreadPool.java
  TestThreadPool
  TestThreadPool$RestProjectAPI
-SimulateCapture_Android.java
- SimulateCapture_Android
-MockAuthentication_Android.java
- MockAuthentication_Android
-EspressoTest_Android.java
- EspressoTest_Android
+MobileTest.java
+ MobileTest
