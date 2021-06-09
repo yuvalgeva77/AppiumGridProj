@@ -91,21 +91,6 @@ public class DriverFactory {
 
         return new AndroidDriver<>(new URL(cloudUrl), capabilities);
 
-
-//        if(createAppATribute){
-//            String APP="cloud:"+appPackage+"/"+appActivity;
-//            dc.setCapability("app", APP);
-//    }
-    }
-
-    //        test_name="App Store ios";
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("accessKey", "eyJhbGciOiJIUzI1NiJ9.eyJ4cC51Ijo0MDY4NjAyLCJ4cC5wIjozOTQ5MDQ1LCJ4cC5tIjoxNjA3NTA3MTQyNzMxLCJleHAiOjE5MjI4NjcxNDIsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.0CmfSM3ZeEOlm8wXW1CAzg_JzZcUBu5ujz1vfgD73t4");
-//        capabilities.setCapability("deviceQuery", "@os='ios'");
-////        capabilities.setCapability(MobileCapabilityType.FULL_RESET, true);
-//
-////        capabilities.setCapability(MobileCapabilityType.APP, "cloud:com.apple.AppStore");
-//        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.AppStore");
     public IOSDriver getIOSDriverApp(String bundle_id,String testName) throws MalformedURLException {
         DesiredCapabilities dc = new DesiredCapabilities();
         String APP="cloud:";
