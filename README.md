@@ -30,7 +30,7 @@ for no special profile: “default” /list of specific profiles
 Example:  
 {cloudUrl:"https://qacloud.experitest.com",  
 username:"yuval",  
-accessKey(user's accesskey to the cloud):"*dfdsd444***.*45645tgfghf**************.*gdd*-*******************************dyjh7709k*****yy*********************",  
+accessKey(user's accesskey to the cloud):"*dfdsd444***.*45645tgfghf**************.*gdd*-*************************dyjh7*yy****e*****",  
 numOfDevices:1,  
 serialNumber:"",  
 testToRun:"AppStoreTop10",  
